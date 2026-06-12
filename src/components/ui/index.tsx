@@ -2,8 +2,25 @@ import { ReactNode } from 'react'
 import Link from 'next/link'
 import { GRADE_META, type GradeKey } from '@/lib/products'
 
-export function Container({ children, className='' }:{ children:ReactNode; className?:string }) {
-  return <div className={`max-w-site mx-auto px-6 ${className}`}>{children}</div>
+import React from 'react'
+
+export function Container({
+  children,
+  className = '',
+  style,
+}: {
+  children: React.ReactNode
+  className?: string
+  style?: React.CSSProperties
+}) {
+  return (
+    <div
+      className={`mx-auto max-w-7xl px-6 ${className}`}
+      style={style}
+    >
+      {children}
+    </div>
+  )
 }
 
 export function Eyebrow({ children, light=false }:{ children:ReactNode; light?:boolean }) {

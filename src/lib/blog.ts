@@ -832,4 +832,5 @@ export function getRelatedPosts(slug: string, limit = 3) {
     .slice(0, limit)
 }
 
-export const categories = [...new Set(blogPosts.map(p => p.category))]
+export const categories = Array.from(
+  new Set(blogPosts.map((p) => p.category)))
