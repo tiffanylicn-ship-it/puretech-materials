@@ -3,6 +3,8 @@
 // 10 SEO-optimized articles targeting semiconductor chemical keywords
 // ═══════════════════════════════════════════════════════════════
 
+import { faqItems } from "./seo-content"
+
 export interface BlogPost {
   slug: string
   title: string
@@ -829,7 +831,8 @@ export function getRelatedPosts(slug: string, limit = 3) {
       p.category === post.category ||
       p.tags.some(t => post.tags.includes(t))
     ))
-    .slice(0, limit)
+    .
+    slice(0, limit)
 }
 
-export const categories = [...new Set(blogPosts.map(p => p.category))]
+export const categories = Array.from(new Set(faqItems.map(f => f.category)))

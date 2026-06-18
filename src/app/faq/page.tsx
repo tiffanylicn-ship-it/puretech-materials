@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   description: 'Answers to frequently asked questions about electronic grade IPA, SEMI C1 grades, CoA requirements, battery grade DMC/NMP, HPLC solvents, supplier qualification, and packaging options.',
 }
 
-const CATEGORIES = [...new Set(faqItems.map(f=>f.category))]
+const CATEGORIES = Array.from(
+  new Set(faqItems.map(f => f.category))
+)
 const CAT_ICONS: Record<string,string> = {
   'Grade & Specification':'📊','Quality & Documentation':'📋',
   'Process Applications':'⚗️','Battery Applications':'🔋',

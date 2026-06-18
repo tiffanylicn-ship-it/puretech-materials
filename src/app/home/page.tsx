@@ -162,7 +162,8 @@ export default function HomePage() {
         <div className="glow bg-[#0055CC]/20 w-[800px] h-[800px]" style={{ top:'40%', left:'58%', transform:'translate(-50%,-50%)' }} />
         <div className="glow bg-[#00C2FF]/08 w-[500px] h-[500px]" style={{ top:'5%', left:'-5%' }} />
 
-        <Container className="relative z-10 py-24 flex flex-col justify-center" style={{ minHeight:'calc(100vh - 68px)' }}>
+        <Container
+  className="relative z-10 py-24 flex flex-col justify-center min-h-screen">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-16 items-center">
 
             {/* Left */}

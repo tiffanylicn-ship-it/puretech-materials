@@ -2,38 +2,7 @@ import Link from 'next/link'
 import { LogoMark, LogoText } from '@/components/ui/Logo'
 
 const COLS = {
-  'Products': [
-    { label:'G1 Grade (Entry-Level)',    href:'/products?cat=g1' },
-    { label:'Electronic Grade Solvents',href:'/products?cat=electronic' },
-    { label:'H₂O₂ & Oxidants',          href:'/products?cat=peroxide' },
-    { label:'NH₄OH / TMAH / Bases',     href:'/products?cat=base' },
-    { label:'Process Acids',             href:'/products?cat=acid' },
-    { label:'Battery Chemicals',         href:'/products?cat=battery' },
-    { label:'View All 42+ Products',     href:'/products' },
-  ],
-  'Industries': [
-    { label:'Semiconductor Fab',         href:'/industries/semiconductor' },
-    { label:'EV Battery',                href:'/industries/ev-battery' },
-    { label:'Display & OLED',            href:'/industries/display-panel' },
-    { label:'Pharmaceutical & HPLC',     href:'/industries/pharmaceutical-lab' },
-    { label:'All Industries',            href:'/industries' },
-  ],
-  'Resources': [
-    { label:'Technical Blog',            href:'/blog' },
-    { label:'FAQ',                       href:'/faq' },
-    { label:'Technical Resources',       href:'/resources' },
-    { label:'IPA for Wafer Cleaning',    href:'/solutions/ipa-for-wafer-cleaning' },
-    { label:'PGMEA for EUV Litho',       href:'/solutions/pgmea-for-euv-lithography' },
-    { label:'NMP for Battery',           href:'/solutions/nmp-for-battery-electrode' },
-  ],
-  'Company': [
-    { label:'About Us',                  href:'/about' },
-    { label:'Quality System',            href:'/about#quality' },
-    { label:'Manufacturing',             href:'/about#manufacturing' },
-    { label:'Contact Us',                href:'/contact' },
-    { label:'Request Sample / RFQ',      href:'/contact' },
-  ],
-},
+  'Products':[
     { label:'Electronic Grade Solvents',    href:'/products?cat=electronic' },
     { label:'Process Acids (H₂SO₄, HCl)',  href:'/products?cat=acid' },
     { label:'H₂O₂ & Oxidants',            href:'/products?cat=peroxide' },

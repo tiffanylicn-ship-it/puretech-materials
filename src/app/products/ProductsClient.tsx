@@ -120,7 +120,7 @@ export default function ProductsClient() {
         <Container className="relative z-10">
           <Eyebrow light>Product Catalog</Eyebrow>
           <h1 className="font-serif text-[clamp(30px,4vw,50px)] text-white leading-[1.12] mb-3 tracking-[-0.5px]">
-            {allProducts.length}+ Products · 8 Categories
+            {allProductsWithG1.length}+ Products · 8 Categories
           </h1>
           <p className="text-[15.5px] max-w-[560px] leading-[1.7] mb-7" style={{ color: 'rgba(255,255,255,0.58)' }}>
             Electronic grade solvents, process acids, hydrogen peroxide, ammonium hydroxide, TMAH, photoresist solvents, and battery chemicals — complete wet chemical portfolio with G2–G5 SEMI certification.
