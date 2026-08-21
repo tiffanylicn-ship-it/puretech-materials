@@ -1,147 +1,211 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub, CtaBanner } from '@/components/ui/index'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
-import { industries } from '@/lib/seo-content'
+import { industries } from '@/lib/industry-content'
 
-export function generateStaticParams() { return industries.map(i=>({slug:i.slug})) }
-
-export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata> {
-  const ind = industries.find(i=>i.slug===params.slug)
-  if(!ind) return {title:'Not Found'}
-  return { title:ind.metaTitle, description:ind.metaDescription, keywords:ind.keywords.join(', '),
-    alternates:{canonical:`https://puretechmaterials.com/industries/${ind.slug}`} }
+export function generateStaticParams() {
+  return industries.map((industry) => ({ slug: industry.slug }))
 }
 
-export default function IndustryPage({params}:{params:{slug:string}}) {
-  const ind = industries.find(i=>i.slug===params.slug)
-  if(!ind) notFound()
-  const jsonLd = { '@context':'https://schema.org','@type':'WebPage', name:ind.metaTitle,
-    description:ind.metaDescription, url:`https://puretechmaterials.com/industries/${ind.slug}`,
-    publisher:{'@type':'Organization',name:'PureTech Materials',url:'https://puretechmaterials.com'} }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const industry = industries.find((item) => item.slug === slug)
+  if (!industry) return { title: 'Not Found' }
+
+  return {
+    title: industry.metaTitle,
+    description: industry.metaDescription,
+    keywords: industry.keywords.join(', '),
+    alternates: { canonical: `https://puretechmaterials.com/industries/${industry.slug}` },
+  }
+}
+
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const industry = industries.find((item) => item.slug === slug)
+  if (!industry) notFound()
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: industry.metaTitle,
+    description: industry.metaDescription,
+    url: `https://puretechmaterials.com/industries/${industry.slug}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'PureTech Materials',
+      url: 'https://puretechmaterials.com',
+    },
+  }
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/>
-      <div className="border-b border-[rgba(0,102,204,0.1)] py-3 bg-[#F2F6FB]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <div className="border-b border-[#DCE3EC] bg-[#F7F9FC] py-3">
         <Container>
-          <nav className="flex items-center gap-2 text-[12px]" style={{color:'#8BA8C0'}}>
-            <Link href="/home" className="no-underline hover:text-[#0066CC]" style={{color:'#506880'}}>Home</Link>
-            <span style={{color:'#C5D8E8'}}>›</span>
-            <Link href="/industries" className="no-underline hover:text-[#0066CC]" style={{color:'#506880'}}>Industries</Link>
-            <span style={{color:'#C5D8E8'}}>›</span>
-            <span className="text-[#0A1628] font-medium">{ind.title}</span>
+          <nav className="flex flex-wrap items-center gap-2 text-[12px] text-[#667085]">
+            <Link href="/home" className="no-underline hover:text-[#0066CC]">Home</Link>
+            <span className="text-[#B8C2CE]">›</span>
+            <Link href="/industries" className="no-underline hover:text-[#0066CC]">Industries</Link>
+            <span className="text-[#B8C2CE]">›</span>
+            <span className="font-medium text-[#0A1628]">{industry.title}</span>
           </nav>
         </Container>
       </div>
-      <section className="relative py-20 overflow-hidden" style={{background:'linear-gradient(135deg,#020C1B 0%,#040D1E 55%,#0A1F3A 100%)'}}>
-        <div className="wafer-bg absolute inset-0 opacity-28 pointer-events-none"/>
-        <div className="glow bg-[#0055CC]/20 w-[500px] h-[400px]" style={{top:'-60px',right:0}}/>
+
+      <section
+        className="relative overflow-hidden py-20"
+        style={{ background: 'linear-gradient(135deg,#020C1B 0%,#07182D 100%)' }}
+      >
+        <div className="wafer-bg pointer-events-none absolute inset-0 opacity-20" />
         <Container className="relative z-10">
-          <Eyebrow light>{ind.title}</Eyebrow>
-          <h1 className="font-serif text-[clamp(28px,4vw,50px)] text-white leading-[1.1] mb-4 tracking-[-0.5px]">{ind.headline}</h1>
-          <p className="text-[16px] leading-[1.72] max-w-[540px] mb-8" style={{color:'rgba(255,255,255,0.62)'}}>{ind.intro}</p>
-          <div className="inline-flex items-center gap-4 px-6 py-4 rounded-[12px]"
-            style={{background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.1)'}}>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
             <div>
-              <div className="font-mono text-[28px] font-bold text-[#4BAAF5] leading-none">{ind.heroStat}</div>
-              <div className="text-[10px] mt-0.5 uppercase tracking-[0.1em]" style={{color:'rgba(255,255,255,0.38)'}}>{ind.heroStatLabel}</div>
+              <Eyebrow light>{industry.title}</Eyebrow>
+              <h1 className="mb-5 max-w-[760px] font-serif text-[clamp(32px,4.5vw,54px)] leading-[1.08] tracking-[-0.7px] text-white">
+                {industry.headline}
+              </h1>
+              <p className="max-w-[720px] text-[15.5px] leading-[1.75] text-white/65">{industry.intro}</p>
             </div>
-            <div className="w-px h-10 bg-white/10"/>
-            <div className="text-[13px]" style={{color:'rgba(255,255,255,0.55)'}}>{ind.subline}</div>
+            <div className="border-l border-white/15 pl-6">
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8FC7FF]">{industry.heroStatLabel}</p>
+              <p className="mb-4 font-serif text-[25px] text-white">{industry.heroStat}</p>
+              <div className="flex flex-wrap gap-2">
+                {industry.commonEnquiries.map((item) => (
+                  <span key={item} className="border border-white/15 px-2.5 py-1 text-[10.5px] text-white/65">{item}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
-      <section className="py-20">
+
+      <section className="py-16">
         <Container>
-          <Reveal className="mb-12"><Eyebrow>Key Challenges</Eyebrow><SectionTitle>What Makes {ind.title} Chemistry Demanding</SectionTitle></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {ind.challenges.map((c,i)=>(
-              <Reveal key={i} delay={i*60}>
-                <div className="bg-white border border-[rgba(0,102,204,0.1)] rounded-[14px] p-6 h-full" style={{boxShadow:'0 1px 3px rgba(4,13,30,0.04)'}}>
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className="w-7 h-7 rounded-full bg-[#EEF4FF] flex items-center justify-center flex-shrink-0 font-mono text-[11px] font-bold text-[#0066CC]">{String(i+1).padStart(2,'0')}</div>
-                    <h3 className="text-[15px] font-semibold text-[#0A1628]">{c.title}</h3>
-                  </div>
-                  <p className="text-[13.5px] text-[#2C4160] leading-[1.65]">{c.desc}</p>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_390px]">
+            <div>
+              <Reveal className="mb-8">
+                <Eyebrow>Qualification reality</Eyebrow>
+                <h2 className="font-serif text-[30px] tracking-[-0.3px] text-[#0A1628]">What usually needs a closer look</h2>
+              </Reveal>
+              <div className="grid grid-cols-1 border-l border-t border-[#DCE3EC] md:grid-cols-2">
+                {industry.challenges.map((challenge, index) => (
+                  <Reveal key={challenge.title} delay={index * 55}>
+                    <div className="h-full border-b border-r border-[#DCE3EC] bg-white p-6">
+                      <p className="mb-3 font-mono text-[11px] font-semibold text-[#0066CC]">0{index + 1}</p>
+                      <h3 className="mb-2 text-[14px] font-semibold text-[#0A1628]">{challenge.title}</h3>
+                      <p className="text-[13px] leading-[1.65] text-[#475467]">{challenge.desc}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <Reveal delay={120}>
+              <aside className="border-t-4 border-[#0066CC] bg-[#F1F6FB] p-7">
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0055CC]">Before we suggest a product</p>
+                <h2 className="mb-5 font-serif text-[23px] leading-tight text-[#0A1628]">Four questions worth answering</h2>
+                <ol className="space-y-4">
+                  {industry.selectionQuestions.map((question, index) => (
+                    <li key={question} className="flex gap-3 text-[13px] leading-[1.6] text-[#344054]">
+                      <span className="mt-0.5 shrink-0 font-mono text-[11px] font-semibold text-[#0066CC]">{index + 1}</span>
+                      {question}
+                    </li>
+                  ))}
+                </ol>
+                <p className="mt-7 border-t border-[#C9DCEB] pt-5 text-[12px] italic leading-[1.65] text-[#475467]">“{industry.editorNote}”</p>
+              </aside>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-[#E4E7EC] bg-[#F7F9FC] py-16">
+        <Container>
+          <Reveal className="mb-8">
+            <Eyebrow>Product routes</Eyebrow>
+            <h2 className="font-serif text-[30px] tracking-[-0.3px] text-[#0A1628]">A practical starting shortlist</h2>
+            <p className="mt-3 max-w-[720px] text-[13.5px] leading-[1.7] text-[#475467]">
+              Grade descriptions below indicate the direction of the conversation. The final controlled specification and customer qualification determine suitability.
+            </p>
+          </Reveal>
+
+          <div className="overflow-hidden border border-[#DCE3EC] bg-white">
+            <div className="hidden grid-cols-[1.1fr_1fr_2fr_120px] gap-5 border-b border-[#DCE3EC] bg-[#EEF3F8] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#667085] md:grid">
+              <span>Product</span>
+              <span>Grade direction</span>
+              <span>Often considered for</span>
+              <span>Next step</span>
+            </div>
+            {industry.chemicals.map((chemical, index) => (
+              <Reveal key={chemical.name} delay={index * 40}>
+                <div className="grid grid-cols-1 gap-3 border-b border-[#EAECF0] px-5 py-5 last:border-b-0 md:grid-cols-[1.1fr_1fr_2fr_120px] md:items-center md:gap-5">
+                  <h3 className="text-[14px] font-semibold text-[#0A1628]">{chemical.name}</h3>
+                  <span className="w-fit border border-[#B9D3EB] bg-[#EFF6FC] px-2 py-1 font-mono text-[10.5px] font-semibold text-[#0055CC]">{chemical.grade}</span>
+                  <p className="text-[13px] leading-[1.55] text-[#475467]">{chemical.use}</p>
+                  <Link href={chemical.href} className="text-[12px] font-semibold text-[#0066CC] no-underline hover:underline">View product →</Link>
                 </div>
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
-      <section className="py-20 bg-[#F2F6FB]">
+
+      <section className="py-16">
         <Container>
-          <Reveal className="mb-10"><Eyebrow>Product Portfolio</Eyebrow><SectionTitle>Chemicals for {ind.title}</SectionTitle></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {ind.chemicals.map((c,i)=>(
-              <Reveal key={i} delay={i*50}>
-                <Link href={c.href} className="group flex flex-col bg-white border border-[rgba(0,102,204,0.1)] rounded-[13px] p-5 no-underline hover:shadow-[0_6px_20px_rgba(0,102,204,0.1)] hover:-translate-y-0.5 transition-all" style={{boxShadow:'0 1px 3px rgba(4,13,30,0.04)'}}>
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-[14.5px] font-semibold text-[#0A1628] group-hover:text-[#0055CC] transition-colors">{c.name}</h3>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-[4px] flex-shrink-0 ml-2" style={{background:'rgba(0,102,204,0.08)',color:'#0055CC',border:'1px solid rgba(0,102,204,0.18)'}}>{c.grade}</span>
+          <Reveal className="mb-9">
+            <Eyebrow>Process map</Eyebrow>
+            <h2 className="font-serif text-[30px] tracking-[-0.3px] text-[#0A1628]">From use case to qualification</h2>
+          </Reveal>
+          <div className="space-y-0 border-t border-[#DCE3EC]">
+            {industry.processSteps.map((step, index) => (
+              <Reveal key={step.step} delay={index * 45}>
+                <div className="grid grid-cols-1 gap-3 border-b border-[#DCE3EC] py-5 md:grid-cols-[44px_1fr_1fr_2fr] md:items-start md:gap-5">
+                  <span className="font-mono text-[11px] font-semibold text-[#98A2B3]">0{index + 1}</span>
+                  <h3 className="text-[13.5px] font-semibold text-[#0A1628]">{step.step}</h3>
+                  <div>
+                    <p className="text-[13px] font-semibold text-[#0055CC]">{step.chemical}</p>
+                    <p className="mt-1 font-mono text-[10.5px] text-[#667085]">{step.grade}</p>
                   </div>
-                  <p className="text-[12.5px] text-[#3A5570] leading-[1.55] flex-1">{c.use}</p>
-                  <div className="mt-4 flex items-center gap-1 text-[12px] font-semibold text-[#0066CC]" style={{borderTop:'1px solid rgba(0,102,204,0.07)',paddingTop:'12px'}}>
-                    View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
-                  </div>
-                </Link>
+                  <p className="text-[13px] leading-[1.65] text-[#475467]">{step.detail}</p>
+                </div>
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
-      {ind.processSteps.length>0&&(
-        <section className="py-20" style={{background:'linear-gradient(180deg,#040D1E 0%,#071429 100%)'}}>
-          <Container>
-            <Reveal className="mb-12"><Eyebrow light>Process Mapping</Eyebrow><SectionTitle light>Step-by-Step Chemical Guide</SectionTitle></Reveal>
-            <div className="space-y-3">
-              {ind.processSteps.map((s,i)=>(
-                <Reveal key={i} delay={i*45}>
-                  <div className="grid grid-cols-1 md:grid-cols-[40px_200px_140px_1fr] gap-4 items-start p-5 rounded-[12px]"
-                    style={{background:'rgba(255,255,255,0.04)',border:'1px solid rgba(255,255,255,0.07)'}}>
-                    <span className="font-mono text-[12px] font-bold" style={{color:'rgba(0,194,255,0.45)'}}>{String(i+1).padStart(2,'0')}</span>
-                    <p className="text-[13.5px] font-semibold text-white">{s.step}</p>
-                    <span className="font-mono text-[11px] px-2.5 py-1 rounded-[5px] self-start"
-                      style={{background:'rgba(0,102,204,0.2)',color:'#4BAAF5',border:'1px solid rgba(0,102,204,0.3)'}}>{s.chemical}</span>
-                    <p className="text-[13px] leading-[1.6]" style={{color:'rgba(255,255,255,0.52)'}}>{s.detail}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-      {ind.faqs.length>0&&(
-        <section className="py-20">
-          <Container>
-            <Reveal className="mb-10"><Eyebrow>FAQ</Eyebrow><SectionTitle>Frequently Asked Questions</SectionTitle></Reveal>
-            <div className="max-w-[800px] space-y-4">
-              {ind.faqs.map((faq,i)=>(
-                <Reveal key={i} delay={i*50}>
-                  <div className="bg-white border border-[rgba(0,102,204,0.1)] rounded-[13px] p-6" style={{boxShadow:'0 1px 3px rgba(4,13,30,0.04)'}}>
-                    <h3 className="text-[15px] font-semibold text-[#0A1628] mb-3 leading-snug">{faq.q}</h3>
-                    <p className="text-[13.5px] text-[#2C4160] leading-[1.7]">{faq.a}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-      <section className="py-10 bg-[#F2F6FB]">
+
+      <section className="bg-[#07182D] py-16">
         <Container>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8BA8C0] mb-3">Related Search Topics</p>
-          <div className="flex flex-wrap gap-2">
-            {ind.keywords.map(kw=>(
-              <span key={kw} className="text-[12px] px-2.5 py-1 rounded-[5px] bg-white text-[#2C4160]" style={{border:'1px solid rgba(0,102,204,0.12)'}}>{kw}</span>
+          <Reveal className="mb-8">
+            <Eyebrow light>During qualification</Eyebrow>
+            <h2 className="font-serif text-[30px] tracking-[-0.3px] text-white">Questions we hear from technical buyers</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-px bg-white/10 lg:grid-cols-3">
+            {industry.faqs.map((faq, index) => (
+              <Reveal key={faq.q} delay={index * 60}>
+                <div className="h-full bg-[#07182D] p-6">
+                  <h3 className="mb-3 text-[14px] font-semibold leading-snug text-white">{faq.q}</h3>
+                  <p className="text-[13px] leading-[1.7] text-white/55">{faq.a}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Container>
       </section>
-      <CtaBanner label={`${ind.title} Supply`} title={<>Ready to Qualify for<br />{ind.title}?</>}
-        subtitle="Request sample lots with full CoA, ICP-MS data, and process-specific FAE support."
-        p1="Request Sample / RFQ" h1="/contact" p2="Browse All Products" h2="/products"/>
+
+      <CtaBanner
+        label={`${industry.title} application review`}
+        title={<>Bring us the process.<br />We will help frame the shortlist.</>}
+        subtitle="Share a redacted specification, current product, critical limits, pack format and qualification timeline."
+        p1="Discuss This Application"
+        h1="/contact"
+        p2="Open Product Finder"
+        h2="/products"
+      />
     </>
   )
 }

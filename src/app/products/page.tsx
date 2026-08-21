@@ -3,8 +3,8 @@ import { Suspense } from 'react'
 import ProductsClient from './ProductsClient'
 
 export const metadata: Metadata = {
-  title:'Product Catalog — 42+ Electronic Grade Chemicals G1–G5 | PureTech',
-  description:'Browse 42+ products across G1–G5 electronic grades: IPA, PGMEA, NMP, H₂O₂, NH₄OH, TMAH, HCl, H₂SO₄, DMC, acetonitrile and more. SEMI C1 certified. Full CoA per lot.',
+  title:'Chemical Product Finder by Application | PureTech Materials',
+  description:'Find solvents and process chemicals by wafer cleaning, lithography, battery, HPLC, LC-MS, pharmaceutical processing and precision-cleaning applications.',
 }
 
 export default function ProductsPage() {

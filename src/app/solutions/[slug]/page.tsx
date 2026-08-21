@@ -1,191 +1,107 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub, CtaBanner } from '@/components/ui/index'
+import { notFound, redirect } from 'next/navigation'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
-import { solutions } from '@/lib/seo-content'
-import { GradeCompareChart } from '@/components/ui/GradeChart'
+import { solutionRoutes } from '@/lib/architecture-content'
 
-export function generateStaticParams() { return solutions.map(s=>({slug:s.slug})) }
-
-export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata> {
-  const sol = solutions.find(s=>s.slug===params.slug)
-  if(!sol) return {title:'Not Found'}
-  return { title:sol.metaTitle, description:sol.metaDescription, keywords:sol.keywords.join(', '),
-    alternates:{canonical:`https://puretechmaterials.com/solutions/${sol.slug}`} }
+const legacyRoutes: Record<string, string> = {
+  'ipa-for-wafer-cleaning': '/solutions/semiconductor',
+  'pgmea-for-euv-lithography': '/solutions/semiconductor',
+  'nmp-for-battery-electrode': '/industries/ev-battery',
 }
 
-export default function SolutionDetailPage({params}:{params:{slug:string}}) {
-  const sol = solutions.find(s=>s.slug===params.slug)
-  if(!sol) notFound()
-  const jsonLd = {
-    '@context':'https://schema.org','@type':'TechArticle',
-    headline:sol.title, description:sol.metaDescription,
-    url:`https://puretechmaterials.com/solutions/${sol.slug}`,
-    keywords:sol.keywords.join(', '),
-    author:{'@type':'Organization',name:'PureTech Materials'},
-    publisher:{'@type':'Organization',name:'PureTech Materials',url:'https://puretechmaterials.com'},
-    mainEntity:{ '@type':'FAQPage',
-      mainEntity:sol.faqs.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))
-    }
-  }
+export function generateStaticParams() {
+  return solutionRoutes.map((solution) => ({ slug: solution.slug }))
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const solution = solutionRoutes.find((item) => item.slug === slug)
+  if (!solution) return { title: 'Solution Not Found' }
+  return { title: solution.metaTitle, description: solution.metaDescription, alternates: { canonical: `https://puretechmaterials.com/solutions/${solution.slug}` } }
+}
+
+export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  if (legacyRoutes[slug]) redirect(legacyRoutes[slug])
+  const solution = solutionRoutes.find((item) => item.slug === slug)
+  if (!solution) notFound()
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/>
-      <div className="border-b border-[rgba(0,102,204,0.1)] py-3 bg-[#F2F6FB]">
-        <Container>
-          <nav className="flex items-center gap-2 text-[12px] flex-wrap" style={{color:'#8BA8C0'}}>
-            <Link href="/home" className="no-underline hover:text-[#0066CC]" style={{color:'#506880'}}>Home</Link>
-            <span style={{color:'#C5D8E8'}}>›</span>
-            <Link href="/solutions" className="no-underline hover:text-[#0066CC]" style={{color:'#506880'}}>Solutions</Link>
-            <span style={{color:'#C5D8E8'}}>›</span>
-            <span className="text-[#0A1628] font-medium">{sol.title}</span>
-          </nav>
-        </Container>
+      <div className="border-b border-[#DCE3EC] bg-[#F7F9FC] py-3">
+        <Container><nav className="flex flex-wrap items-center gap-2 text-[12px] text-[#667085]"><Link href="/solutions" className="no-underline hover:text-[#12657B]">Solutions</Link><span>›</span><span className="font-medium text-[#0A1628]">{solution.title}</span></nav></Container>
       </div>
-      <section className="relative py-16 overflow-hidden" style={{background:'linear-gradient(160deg,#020C1B 0%,#040D1E 55%,#0A1F3A 100%)'}}>
-        <div className="wafer-bg absolute inset-0 opacity-25 pointer-events-none"/>
-        <div className="glow bg-[#0055CC]/18 w-[500px] h-[400px]" style={{top:'-60px',right:0}}/>
-        <Container className="relative z-10">
-          <div className="flex items-center gap-2.5 mb-5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full"
-              style={{background:'rgba(0,102,204,0.25)',color:'#4BAAF5',border:'1px solid rgba(0,102,204,0.3)'}}>{sol.chemical}</span>
-            <span className="text-[11px]" style={{color:'rgba(255,255,255,0.4)'}}>Application Guide</span>
-          </div>
-          <h1 className="font-serif text-[clamp(26px,3.5vw,44px)] text-white leading-[1.15] mb-4 tracking-[-0.4px] max-w-[700px]">{sol.title}</h1>
-          <p className="text-[16px] leading-[1.72] max-w-[620px] mb-6" style={{color:'rgba(255,255,255,0.62)'}}>{sol.intro}</p>
-          <div className="max-w-[620px] p-5 rounded-[12px]"
-            style={{background:'rgba(255,200,0,0.07)',border:'1px solid rgba(255,200,0,0.2)'}}>
-            <p className="text-[13px] leading-[1.65]" style={{color:'rgba(255,255,255,0.72)'}}>
-              <span className="font-semibold text-[#FCD34D]">Why purity matters: </span>{sol.whyMatters}
-            </p>
+
+      <section className="relative min-h-[560px] overflow-hidden bg-[#061d2b] text-white">
+        <Image src={solution.image} alt={`${solution.title} production application`} fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061d2b] via-[#061d2b]/91 to-[#061d2b]/18" />
+        <Container className="relative z-10 flex min-h-[560px] items-center py-20">
+          <div className="max-w-[760px]">
+            <Eyebrow light>{solution.title}</Eyebrow>
+            <h1 className="mt-5 font-serif text-[clamp(34px,4.5vw,55px)] leading-[1.08] tracking-[-0.7px]">{solution.headline}</h1>
+            <p className="mt-6 max-w-[690px] text-[16px] leading-[1.75] text-white/68">{solution.overview}</p>
+            <Link href="/contact" className="mt-9 inline-flex bg-white px-6 py-3.5 text-[13px] font-semibold text-[#08283b] no-underline hover:bg-[#DDEDE4]">Discuss this application</Link>
           </div>
         </Container>
       </section>
 
-      {/* Spec requirements */}
-      <section className="py-16">
+      <section className="py-20">
         <Container>
-          <Reveal className="mb-8">
-            <Eyebrow>Specification Requirements</Eyebrow>
-            <SectionTitle>Critical Parameters for {sol.application}</SectionTitle>
-            <SectionSub>Each parameter directly impacts process outcome — understand why each limit exists.</SectionSub>
-          </Reveal>
-          <Reveal delay={60}>
-            <div className="overflow-hidden rounded-[14px] border border-[rgba(0,102,204,0.12)]">
-              <div className="overflow-x-auto">
-                <table style={{width:'100%',borderCollapse:'collapse'}}>
-                  <thead>
-                    <tr style={{background:'#0A1628'}}>
-                      <th style={{padding:'11px 16px',textAlign:'left',color:'rgba(255,255,255,0.65)',fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.1em',minWidth:160}}>Parameter</th>
-                      <th style={{padding:'11px 16px',textAlign:'left',color:'rgba(255,255,255,0.65)',fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.1em',minWidth:200}}>Requirement</th>
-                      <th style={{padding:'11px 16px',textAlign:'left',color:'rgba(255,255,255,0.65)',fontSize:10,fontWeight:600,textTransform:'uppercase',letterSpacing:'0.1em'}}>Why This Limit Exists</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sol.specs.map((s,i)=>(
-                      <tr key={i} style={{borderBottom:i<sol.specs.length-1?'1px solid rgba(0,102,204,0.07)':'none',background:i%2===0?'white':'#FAFCFF'}}>
-                        <td style={{padding:'11px 16px',fontSize:13,fontWeight:600,color:'#0A1628'}}>{s.param}</td>
-                        <td style={{padding:'11px 16px',fontSize:13,fontFamily:'Space Mono,monospace',color:'#0055CC'}}>{s.requirement}</td>
-                        <td style={{padding:'11px 16px',fontSize:13,color:'#2C4160',lineHeight:1.55}}>{s.why}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </Reveal>
+          <Reveal><Eyebrow>Applications</Eyebrow><h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">Where the conversation usually begins</h2></Reveal>
+          <div className="mt-10 grid grid-cols-1 gap-px bg-[#DCE3EC] md:grid-cols-2 lg:grid-cols-4">
+            {solution.applications.map((application, index) => (
+              <Reveal key={application.title} delay={index * 55}>
+                <article className="h-full bg-white p-7"><span className="font-mono text-[11px] text-[#2F8C67]">0{index + 1}</span><h3 className="mt-7 text-[15px] font-semibold text-[#0A1628]">{application.title}</h3><p className="mt-3 text-[13px] leading-[1.65] text-[#475467]">{application.detail}</p></article>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 
-      {/* Grade guide */}
-      <section className="py-16 bg-[#F2F6FB]">
-        <Container>
-          <Reveal className="mb-8">
-            <Eyebrow>Grade Selection</Eyebrow>
-            <SectionTitle>Which Grade Do You Need?</SectionTitle>
-            <SectionSub>Match your process node and contamination budget to the right grade — every grade available with full CoA.</SectionSub>
-          </Reveal>
-          <Reveal delay={50}>
-            <div className="space-y-3 mb-10">
-              {sol.gradeGuide.map((g,i)=>(
-                <div key={i} className="flex items-start gap-5 p-5 bg-white border border-[rgba(0,102,204,0.1)] rounded-[12px]"
-                  style={{boxShadow:'0 1px 3px rgba(4,13,30,0.04)'}}>
-                  <div className="flex-shrink-0 w-14 text-center">
-                    <span className="inline-flex items-center justify-center px-3 py-1.5 rounded-[6px] font-mono text-[13px] font-bold text-white"
-                      style={{background:g.grade.includes('G5')?'#0099E8':g.grade.includes('G4')?'#0066CC':g.grade.includes('G3')?'#0050C8':g.grade.includes('G2')?'#003DA5':'#1E3A5F'}}>
-                      {g.grade.split(' ')[0]}
-                    </span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="font-mono text-[12px] font-semibold text-[#0A1628] block mb-1">{g.spec}</span>
-                    <p className="text-[13.5px] text-[#2C4160]">{g.when}</p>
-                  </div>
-                  <Link href="/contact" className="flex-shrink-0 text-[12px] font-semibold text-[#0066CC] no-underline hover:underline whitespace-nowrap">Request →</Link>
-                </div>
-              ))}
-            </div>
-            <GradeCompareChart showG1={true}/>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* FAQs */}
-      {sol.faqs.length>0&&(
-        <section className="py-16">
+      {solution.products.length > 0 && (
+        <section className="bg-[#F1F5F3] py-20">
           <Container>
-            <Reveal className="mb-8"><Eyebrow>Technical FAQ</Eyebrow><SectionTitle>Expert Answers</SectionTitle></Reveal>
-            <div className="max-w-[800px] space-y-4">
-              {sol.faqs.map((faq,i)=>(
-                <Reveal key={i} delay={i*50}>
-                  <div className="bg-white border border-[rgba(0,102,204,0.1)] rounded-[13px] p-6" style={{boxShadow:'0 1px 3px rgba(4,13,30,0.04)'}}>
-                    <div className="flex gap-3 items-start mb-3">
-                      <span className="font-mono text-[11px] font-bold text-[#0066CC] bg-[#EEF4FF] px-2 py-0.5 rounded flex-shrink-0 mt-0.5">Q</span>
-                      <h3 className="text-[15px] font-semibold text-[#0A1628] leading-snug">{faq.q}</h3>
-                    </div>
-                    <div className="flex gap-3 items-start">
-                      <span className="font-mono text-[11px] font-bold text-white bg-[#0066CC] px-2 py-0.5 rounded flex-shrink-0 mt-0.5">A</span>
-                      <p className="text-[13.5px] text-[#2C4160] leading-[1.72]">{faq.a}</p>
-                    </div>
-                  </div>
-                </Reveal>
+            <Reveal><Eyebrow>Recommended products</Eyebrow><h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">A focused starting shortlist</h2><p className="mt-4 max-w-[760px] text-[14px] leading-[1.7] text-[#475467]">These products are commonly reviewed for the applications above. Final suitability depends on the controlled specification and customer qualification.</p></Reveal>
+            <div className="mt-10 overflow-hidden border border-[#D5E0E3] bg-white">
+              {solution.products.map((product) => (
+                <div key={product.id} className="grid grid-cols-1 gap-3 border-b border-[#E4E7EC] p-5 last:border-b-0 md:grid-cols-[1fr_2fr_140px] md:items-center">
+                  <h3 className="text-[14px] font-semibold text-[#0A1628]">{product.label}</h3>
+                  <p className="text-[13px] leading-[1.6] text-[#475467]">{product.use}</p>
+                  <Link href={`/product/${product.id}`} className="text-[12px] font-semibold text-[#12657B] no-underline hover:underline">View product →</Link>
+                </div>
               ))}
             </div>
           </Container>
         </section>
       )}
 
-      {/* Related products */}
-      <section className="py-14 bg-[#F2F6FB]">
+      <section className={solution.products.length > 0 ? 'py-20' : 'bg-[#F1F5F3] py-20'}>
         <Container>
-          <h2 className="text-[19px] font-semibold text-[#0A1628] mb-5">Related Products</h2>
-          <div className="flex flex-wrap gap-3">
-            {sol.relatedProducts.map(p=>(
-              <Link key={p.href} href={p.href}
-                className="px-5 py-2.5 bg-white border border-[rgba(0,102,204,0.18)] rounded-[9px] text-[13.5px] font-semibold text-[#0066CC] no-underline hover:bg-[#EEF6FF] transition-all">
-                {p.name} →
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_390px]">
+            <div>
+              <Reveal><Eyebrow>Technical review</Eyebrow><h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">What we need before recommending a route</h2></Reveal>
+              <div className="mt-9 border-t border-[#DCE3EC]">
+                {solution.reviewPoints.map((point, index) => <div key={point} className="grid grid-cols-[40px_1fr] gap-4 border-b border-[#DCE3EC] py-4"><span className="font-mono text-[11px] text-[#2F8C67]">0{index + 1}</span><p className="text-[13px] text-[#344054]">{point}</p></div>)}
+              </div>
+            </div>
+            <Reveal delay={80}>
+              <aside className="border-t-4 border-[#12657B] bg-[#07182D] p-7 text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8FC7FF]">Manufacturing route</p>
+                <h2 className="mt-3 font-serif text-[24px]">Four stages buyers can review</h2>
+                <ol className="mt-6 space-y-4">
+                  {['Purification strategy', 'Filtration and transfer controls', 'Specification testing and release', 'Qualified filling and packaging route'].map((item, index) => <li key={item} className="flex gap-3 text-[13px] text-white/65"><span className="font-mono text-[#62BD88]">{index + 1}</span>{item}</li>)}
+                </ol>
+                <Link href="/manufacturing" className="mt-7 inline-flex text-[12px] font-semibold text-[#8FC7FF] no-underline hover:underline">Review manufacturing →</Link>
+              </aside>
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      {/* SEO keywords */}
-      <section className="py-8 bg-[#F2F6FB]">
-        <Container>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#8BA8C0] mb-3">Related Search Topics</p>
-          <div className="flex flex-wrap gap-2">
-            {sol.keywords.map(kw=>(
-              <span key={kw} className="text-[12px] px-2.5 py-1 rounded-[5px] bg-white text-[#2C4160]"
-                style={{border:'1px solid rgba(0,102,204,0.12)'}}>{kw}</span>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <CtaBanner label="Get Started" title={<>Request a Sample for<br />{sol.application}</>}
-        subtitle="Qualification lot with full CoA, ICP-MS data, and process-specific FAE support. Response within one business day."
-        p1="Request Sample / RFQ" h1="/contact" p2="Full Product Catalog" h2="/products"/>
+      <CtaBanner label={`${solution.title} solution`} title={<>Bring us the requirement.<br />We will help frame the shortlist.</>} subtitle="Share the use, current product or specification, critical limits, documents, pack and timing." p1="Request Technical Review" h1="/contact" p2="Browse Products" h2="/products" />
     </>
   )
 }

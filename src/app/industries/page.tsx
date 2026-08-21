@@ -1,83 +1,85 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub, CtaBanner } from '@/components/ui/index'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
-import { industries } from '@/lib/seo-content'
+import { industries } from '@/lib/industry-content'
 
 export const metadata: Metadata = {
-  title: 'Industries Served | Semiconductor, EV Battery, Display, Pharma | PureTech',
-  description: 'PureTech supplies electronic grade chemicals for semiconductor fabs, EV battery gigafactories, display panel manufacturers, and pharmaceutical labs. SEMI C1 G1–G5.',
+  title: 'Industries & Application Guides | PureTech Materials',
+  description:
+    'Explore process-led chemical guides for semiconductor, battery, display and pharmaceutical applications, then narrow the relevant product family and grade.',
 }
-
-const ICONS: Record<string,string> = { semiconductor:'💾','ev-battery':'🔋','display-panel':'📺','pharmaceutical-lab':'🧪' }
 
 export default function IndustriesPage() {
   return (
     <>
-      <section className="relative py-20 overflow-hidden"
-        style={{ background:'linear-gradient(135deg,#020C1B 0%,#040D1E 60%,#071629 100%)' }}>
-        <div className="grid-bg grid-mask absolute inset-0 pointer-events-none"/>
-        <div className="glow bg-[#0055CC]/20 w-[500px] h-[320px]" style={{ top:0,left:'40%',transform:'translateX(-50%)' }}/>
+      <section
+        className="relative overflow-hidden py-20"
+        style={{ background: 'linear-gradient(135deg,#020C1B 0%,#07182D 100%)' }}
+      >
+        <div className="grid-bg grid-mask pointer-events-none absolute inset-0" />
         <Container className="relative z-10">
-          <Eyebrow light>Industries Served</Eyebrow>
-          <h1 className="font-serif text-[clamp(30px,4.5vw,52px)] text-white leading-[1.1] mb-4 tracking-[-0.5px]">
-            Precision Chemistry Across<br /><span className="grad-text">Every Advanced Industry</span>
-          </h1>
-          <p className="text-[16px] leading-[1.72] max-w-[540px]" style={{ color:'rgba(255,255,255,0.58)' }}>
-            From sub-3nm logic foundry to EV gigafactory — PureTech supplies the right grade of electronic chemical for every industrial application.
-          </p>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div>
+              <Eyebrow light>Application guides</Eyebrow>
+              <h1 className="mb-5 max-w-[760px] font-serif text-[clamp(32px,4.5vw,56px)] leading-[1.08] tracking-[-0.7px] text-white">
+                Choose the process environment.<br />Then build the shortlist.
+              </h1>
+              <p className="max-w-[650px] text-[16px] leading-[1.75] text-white/65">
+                Four practical guides for technical buyers, process teams and laboratories. Each one begins with the job being done, the questions worth asking and the chemicals commonly considered.
+              </p>
+            </div>
+            <div className="border-l border-white/15 pl-6">
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8FC7FF]">How to use these pages</p>
+              <p className="text-[13px] leading-[1.7] text-white/55">
+                Use the guide to frame an enquiry. Final product selection should follow your controlled specification, risk assessment and qualification plan.
+              </p>
+            </div>
+          </div>
         </Container>
       </section>
-      <section className="py-20">
+
+      <section className="py-16">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {industries.map((ind,i) => (
-              <Reveal key={ind.slug} delay={i*70}>
-                <Link href={`/industries/${ind.slug}`}
-                  className="group flex flex-col bg-white border border-[rgba(0,102,204,0.1)] rounded-[20px] overflow-hidden no-underline hover:shadow-[0_8px_32px_rgba(0,102,204,0.12)] hover:-translate-y-1 transition-all duration-250"
-                  style={{ boxShadow:'0 1px 4px rgba(4,13,30,0.05)' }}>
-                  <div className="relative p-8 pb-6 overflow-hidden" style={{ background:'linear-gradient(135deg,#040D1E,#071429)' }}>
-                    <div className="wafer-bg absolute inset-0 opacity-30 pointer-events-none"/>
-                    <div className="relative z-10 flex items-start justify-between">
-                      <div>
-                        <div className="text-[32px] mb-3">{ICONS[ind.slug]||'⚗️'}</div>
-                        <h2 className="font-serif text-[22px] text-white leading-tight mb-1">{ind.title}</h2>
-                        <p className="text-[12px] font-mono" style={{ color:'rgba(0,194,255,0.55)' }}>{ind.subline}</p>
-                      </div>
-                      <div className="text-right flex-shrink-0 ml-4">
-                        <div className="font-mono text-[26px] font-bold text-[#4BAAF5] leading-none">{ind.heroStat}</div>
-                        <div className="text-[10px] mt-0.5 uppercase tracking-[0.08em]" style={{ color:'rgba(255,255,255,0.35)' }}>{ind.heroStatLabel}</div>
-                      </div>
-                    </div>
-                    <div className="relative z-10 flex flex-wrap gap-1.5 mt-4">
-                      {ind.chemicals.slice(0,4).map(c => (
-                        <span key={c.name} className="font-mono text-[10px] px-2 py-0.5 rounded-[4px]"
-                          style={{ background:'rgba(255,255,255,0.08)',color:'rgba(255,255,255,0.65)',border:'1px solid rgba(255,255,255,0.12)' }}>
-                          {c.name}
-                        </span>
+          <div className="mb-9 grid grid-cols-1 gap-4 md:grid-cols-[1fr_450px] md:items-end">
+            <div>
+              <Eyebrow>Choose a process environment</Eyebrow>
+              <h2 className="font-serif text-[30px] tracking-[-0.3px] text-[#0A1628]">Where will the chemical be used?</h2>
+            </div>
+            <p className="text-[13.5px] leading-[1.7] text-[#475467]">
+              The same chemical name can lead to very different requirements. These pages separate the conversations before they turn into specifications.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 border-l border-t border-[#DCE3EC] md:grid-cols-2">
+            {industries.map((industry, index) => (
+              <Reveal key={industry.slug} delay={index * 70}>
+                <Link
+                  href={`/industries/${industry.slug}`}
+                  className="group flex h-full flex-col border-b border-r border-[#DCE3EC] bg-white p-7 no-underline transition-colors hover:bg-[#F7F9FC] lg:p-9"
+                >
+                  <div className="mb-7 flex items-start justify-between gap-4">
+                    <span className="font-mono text-[12px] font-semibold text-[#98A2B3]">0{index + 1}</span>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#0066CC]">{industry.heroStat}</span>
+                  </div>
+                  <h2 className="mb-2 font-serif text-[25px] leading-tight text-[#0A1628] transition-colors group-hover:text-[#0055CC]">
+                    {industry.title}
+                  </h2>
+                  <p className="mb-5 text-[12px] font-medium text-[#667085]">{industry.subline}</p>
+                  <p className="mb-7 line-clamp-4 flex-1 text-[13.5px] leading-[1.7] text-[#475467]">{industry.intro}</p>
+
+                  <div className="mb-6">
+                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#667085]">Common starting points</p>
+                    <div className="flex flex-wrap gap-2">
+                      {industry.commonEnquiries.map((item) => (
+                        <span key={item} className="border border-[#D0D5DD] bg-white px-2.5 py-1 text-[11px] text-[#344054]">{item}</span>
                       ))}
                     </div>
                   </div>
-                  <div className="p-8 pt-6 flex flex-col flex-1">
-                    <p className="text-[14px] text-[#2C4160] leading-[1.68] mb-5 flex-1">{ind.intro}</p>
-                    <div className="space-y-2.5 mb-5">
-                      {ind.challenges.slice(0,2).map(c => (
-                        <div key={c.title} className="flex gap-2.5 items-start">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC] flex-shrink-0 mt-1.5"/>
-                          <p className="text-[13px] text-[#3A5570]"><strong className="text-[#0A1628]">{c.title}:</strong> {c.desc.slice(0,80)}…</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center justify-between pt-4" style={{ borderTop:'1px solid rgba(0,102,204,0.08)' }}>
-                      <div className="flex flex-wrap gap-1">
-                        {ind.keywords.slice(0,2).map(k => (
-                          <span key={k} className="text-[10px] px-2 py-0.5 rounded-full bg-[#E8F2FF] text-[#0044BB]">{k}</span>
-                        ))}
-                      </div>
-                      <span className="text-[13px] font-semibold text-[#0066CC] flex items-center gap-1">
-                        Full Guide <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
-                      </span>
-                    </div>
+
+                  <div className="flex items-center justify-between border-t border-[#EAECF0] pt-4">
+                    <span className="text-[11px] text-[#667085]">{industry.chemicals.length} product routes</span>
+                    <span className="text-[13px] font-semibold text-[#0066CC]">Open process guide →</span>
                   </div>
                 </Link>
               </Reveal>
@@ -85,9 +87,16 @@ export default function IndustriesPage() {
           </div>
         </Container>
       </section>
-      <CtaBanner label="Industry Support" title={<>Talk to an Application<br />Engineer</>}
-        subtitle="Our FAE team has hands-on process experience across all industries we serve."
-        p1="Contact FAE Team" h1="/contact" p2="Browse Products" h2="/products"/>
+
+      <CtaBanner
+        label="Application review"
+        title={<>Have a specification,<br />process note or incumbent grade?</>}
+        subtitle="Send us the context. We can help organise the shortlist and document questions before a sample is proposed."
+        p1="Discuss Your Application"
+        h1="/contact"
+        p2="Use Product Finder"
+        h2="/products"
+      />
     </>
   )
 }

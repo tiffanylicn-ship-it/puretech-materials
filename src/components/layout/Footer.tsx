@@ -3,58 +3,51 @@ import { LogoMark, LogoText } from "@/components/ui/Logo";
 
 const COLS = {
   Products: [
-    { label: "Electronic Grade Solvents", href: "/products?cat=electronic" },
-    { label: "Process Acids (H₂SO₄, HCl)", href: "/products?cat=acid" },
-    { label: "H₂O₂ & Oxidants", href: "/products?cat=peroxide" },
-    { label: "NH₄OH / TMAH / Bases", href: "/products?cat=base" },
-    { label: "Photoresist & Litho", href: "/products?cat=photoresist" },
-    { label: "Battery Chemicals", href: "/products?cat=battery" },
-    { label: "View All 42+ Products", href: "/products" },
+    { label: "Electronic Materials", href: "/products/electronic-materials" },
+    { label: "High-Purity Solvents", href: "/products/high-purity-solvents" },
+    { label: "Pharmaceutical Solvents", href: "/products/pharmaceutical-solvents" },
+    { label: "Trace Analysis Chemicals", href: "/products/trace-analysis" },
+    { label: "Specialty Chemicals", href: "/products/specialty-chemicals" },
+    { label: "Full Product Finder", href: "/products" },
   ],
   Applications: [
-    { label: "Logic / Foundry (<3nm)", href: "/applications#logic" },
-    { label: "Memory (DRAM / NAND)", href: "/applications#memory" },
-    { label: "Advanced Packaging", href: "/applications#packaging" },
-    { label: "EV Li-Battery", href: "/applications#battery" },
-    { label: "Display & OLED", href: "/applications#display" },
-    { label: "HPLC & Pharma Lab", href: "/applications#pharma" },
+    { label: "Semiconductor & Electronics", href: "/applications/semiconductor" },
+    { label: "Pharmaceutical Manufacturing", href: "/applications/pharmaceutical" },
+    { label: "Battery & Advanced Materials", href: "/applications/battery-materials" },
+    { label: "Laboratory Testing", href: "/applications/laboratory-testing" },
+    { label: "ICP-MS & Trace Analysis", href: "/applications/icp-ms" },
+    { label: "Coatings & Processing", href: "/applications/coatings" },
+    { label: "Custom Industrial", href: "/applications/industrial-applications" },
+    { label: "All Applications", href: "/applications" },
   ],
   Resources: [
-    { label: "Technical Blog", href: "/blog" },
-    {
-      label: "IPA Specification Guide",
-      href: "/blog/electronic-grade-ipa-semiconductor-wafer-cleaning",
-    },
-    {
-      label: "PGMEA Litho Guide",
-      href: "/blog/pgmea-photoresist-solvent-euv-arf-lithography",
-    },
-    {
-      label: "SEMI C1 Standard",
-      href: "/blog/semi-c1-standard-electronic-chemicals-semiconductor",
-    },
+    { label: "Knowledge Centre", href: "/resources" },
+    { label: "Technical Knowledge", href: "/knowledge" },
+    { label: "Application Guides", href: "/applications" },
+    { label: "Product Selection Guides", href: "/guides" },
+    { label: "Regulatory & Compliance", href: "/compliance" },
+    { label: "Downloads", href: "/downloads" },
+    { label: "Technical Articles", href: "/blog" },
+    { label: "FAQ", href: "/faq" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
-    { label: "Quality System", href: "/about#quality" },
-    { label: "Manufacturing", href: "/about#manufacturing" },
+    { label: "Manufacturing", href: "/manufacturing" },
+    { label: "Quality & Compliance", href: "/quality" },
+    { label: "OEM & Custom Supply", href: "/oem-custom-chemical-solutions" },
+    { label: "Global Markets", href: "/markets" },
+    { label: "Global Supply & Export", href: "/global-chemical-supply" },
     { label: "Contact Us", href: "/contact" },
     { label: "Request Sample", href: "/contact" },
   ],
 };
 
-const CERTS = [
-  "ISO 9001:2015",
-  "SEMI C1",
-  "SEMI C12",
-  "ISO 14001",
-  "REACH/RoHS",
-];
+const CERTS = ["COA", "SDS", "Specifications", "Traceability", "Regulatory Support"];
 
 export function Footer() {
   return (
     <footer style={{ background: "#020C1B" }}>
-      {/* Cert strip */}
+      {/* Documentation strip */}
       <div
         className="py-7"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
@@ -87,7 +80,7 @@ export function Footer() {
 
       {/* Main grid */}
       <div className="max-w-site mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div>
             <Link

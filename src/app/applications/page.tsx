@@ -1,220 +1,134 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub, CtaBanner } from '@/components/ui/index'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
+import { applicationPages, applicationPath } from '@/lib/application-pages'
 
 export const metadata: Metadata = {
-  title:'Applications — Semiconductor, Battery, Display & Pharma Lab',
-  description:'PureTech electronic chemicals serve Logic, Memory, Advanced Packaging, EV Battery, Display, Compound Semiconductor, and HPLC lab markets.',
+  title: 'Chemical Solutions for Advanced Industries',
+  description: 'High-purity solvents and specialty chemical materials for semiconductor, pharmaceutical, battery, analytical and industrial manufacturing applications.',
+  alternates: { canonical: 'https://puretechmaterials.com/applications' },
 }
-
-const MARKETS = [
-  {
-    id:'logic', num:'01',
-    title:'Logic & High-Performance Computing',
-    sub:'FinFET / GAA / EUV · <3nm Nodes',
-    tags:['FinFET','GAA','EUV','<3nm','Sub-5nm'],
-    desc:'Sub-3nm logic and gate-all-around (GAA) devices require total metal contamination below 0.1 ppb per element. Our SEMI G5 IPA, ethanol, acetone, and PGMEA are EUV-compatible and validated for post-FEOL etch rinse, BEOL copper barrier rinse, Marangoni drying, photomask cleaning, and FOUP maintenance.',
-    chems:['EIPA G5','Ethanol G4','Acetone G4','PGMEA G4','n-Heptane G4'],
-    links:[{l:'IPA G5',h:'/product/eipa'},{l:'Ethanol',h:'/product/ethanol'},{l:'PGMEA',h:'/product/pgmea'},{l:'Acetone',h:'/product/acetone'}],
-  },
-  {
-    id:'memory', num:'02',
-    title:'DRAM & 3D NAND Flash Memory',
-    sub:'High-Volume · IBC / Bulk Supply',
-    tags:['DRAM','3D NAND','High Volume','Bulk IBC'],
-    desc:'Memory fabs consume IPA and cleaning solvents in high volumes across dozens of wet cleaning steps per wafer pass. PureTech delivers lot-to-lot consistency with CoA on every shipment. IPA and acetone support multi-step CMP post-clean and final rinse sequences in DRAM capacitor and 3D NAND channel hole fabrication.',
-    chems:['EIPA G4/G5','Acetone G3','Ethanol G3','NMP G3'],
-    links:[{l:'IPA',h:'/product/eipa'},{l:'Acetone',h:'/product/acetone'},{l:'NMP',h:'/product/nmp'}],
-  },
-  {
-    id:'packaging', num:'03',
-    title:'Advanced & Heterogeneous Packaging',
-    sub:'FOWLP / HBM / 2.5D / 3D-IC / CoW',
-    tags:['FOWLP','HBM','2.5D','3D-IC','CoW/WoW'],
-    desc:'Fan-out wafer-level packaging, chip-on-wafer, 2.5D interposer, and 3D-IC stacking require precision solvent cleaning. PGMEA and PGME support RDL patterning lithography; NMP dissolves thick polyimide precursors for HDI substrates; IPA provides contamination-free substrate cleaning at every stage.',
-    chems:['PGMEA G4','PGME G4','NMP G4','EIPA G4','Acetone G3'],
-    links:[{l:'PGMEA',h:'/product/pgmea'},{l:'PGME',h:'/product/pgme'},{l:'NMP',h:'/product/nmp'}],
-  },
-  {
-    id:'battery', num:'04',
-    title:'EV Lithium-Ion Battery',
-    sub:'NMC / LFP / NCA · Electrolyte & Electrode Slurry',
-    tags:['Li-ion','NMC','LFP','Electrolyte','PVDF Slurry'],
-    desc:'Electronic grade DMC is a critical co-solvent in LiPF₆-based electrolytes (EC/DMC/EMC system). G5 grade DMC with <0.1 ppb metals and ≤10 ppm water ensures minimal LiPF₆ hydrolysis and optimal ionic conductivity. NMP dissolves PVDF binder for NMC and LFP cathode slurry coating in EV gigafactory production lines.',
-    chems:['DMC G4/G5','NMP G4','Ethanol G3','DMSO G3'],
-    links:[{l:'DMC',h:'/product/dmc'},{l:'NMP',h:'/product/nmp'},{l:'Ethanol',h:'/product/ethanol'}],
-  },
-  {
-    id:'display', num:'05',
-    title:'Display & OLED',
-    sub:'TFT-LCD / AMOLED / MicroLED / Flexible',
-    tags:['TFT-LCD','AMOLED','MicroLED','Flexible Display'],
-    desc:'PGMEA and PGME are the primary solvents for positive photoresist in TFT-LCD array patterning. DMSO and NMP serve as organic light-emitting layer coating solvents in OLED inkjet printing. IPA provides final substrate cleaning. Electronic grade purity ensures zero residue contamination of pixel electrodes.',
-    chems:['PGMEA G3','PGME G3','NMP G3','DMSO G3','EIPA G3'],
-    links:[{l:'PGMEA',h:'/product/pgmea'},{l:'DMSO',h:'/product/dmso'},{l:'NMP',h:'/product/nmp'}],
-  },
-  {
-    id:'compound', num:'06',
-    title:'Compound Semiconductor & Photonics',
-    sub:'GaN / SiC / InP / GaAs / Si Photonics / VCSEL',
-    tags:['GaN','SiC','InP','GaAs','Si Photonics','VCSEL'],
-    desc:'GaN power devices, SiC MOSFETs, InP HEMTs, and GaAs solar cells require halide-free IPA with <1 ppb Cl⁻ and F⁻ to prevent surface pitting and ohmic contact degradation. n-Heptane G4 is used for GaN-on-SiC MOCVD reactor cleaning; ethanol for LED and VCSEL device cleaning.',
-    chems:['EIPA G4','Ethanol G3','n-Heptane G4','Acetone G3'],
-    links:[{l:'IPA',h:'/product/eipa'},{l:'n-Heptane',h:'/product/n-heptane'},{l:'Ethanol',h:'/product/ethanol'}],
-  },
-  {
-    id:'pharma', num:'07',
-    title:'HPLC / Pharmaceutical & Bioanalytical',
-    sub:'Drug Analysis / QC / LC-MS / Bioanalytical',
-    tags:['HPLC','LC-MS','Pharma QC','Bioanalytical'],
-    desc:'LC-MS grade acetonitrile is the gold standard reverse-phase mobile phase for pharmaceutical API analysis. HPLC-gradient methanol and ethanol meet strict UV absorbance requirements. Anhydrous THF and DCM support Grignard reactions, GPC polymer analysis, and Fmoc/Boc peptide synthesis. n-Hexane for food fat extraction per ISO 6492.',
-    chems:['Acetonitrile LC-MS','Methanol HPLC-G','THF HPLC','DCM Pharma','n-Hexane HPLC'],
-    links:[{l:'Acetonitrile',h:'/product/acetonitrile'},{l:'Methanol',h:'/product/methanol'},{l:'THF',h:'/product/thf'}],
-  },
-]
-
-const PROCESS_MAP = [
-  { step:'RCA SC-1 (APM)',     chem:'IPA rinse after APM',    role:'Organic & particle removal',      prod:'EIPA G4/G5' },
-  { step:'RCA SC-2 (HPM)',     chem:'IPA rinse after HPM',    role:'Metal ion removal rinse',          prod:'EIPA G4/G5' },
-  { step:'Piranha (SPM)',      chem:'Acetone rinse assist',   role:'Photoresist & organic strip',      prod:'Acetone G4' },
-  { step:'Resist EBR Coat',   chem:'PGME / PGMEA',           role:'Edge bead removal & EBR coat',     prod:'PGME G4/G5' },
-  { step:'ArF/EUV Litho',     chem:'PGMEA primary solvent',  role:'Photoresist formulation',          prod:'PGMEA G4/G5' },
-  { step:'NTD Development',    chem:'Butyl acetate solvent',  role:'Negative-tone develop (EUV)',      prod:'BuOAc G4' },
-  { step:'Thick PR Strip',    chem:'NMP / Acetone',          role:'Post-etch resist removal',         prod:'NMP G4' },
-  { step:'PI/BCB Coating',    chem:'NMP solvent',            role:'Polyimide precursor coating',      prod:'NMP G4/G5' },
-  { step:'CMP Post-Clean',    chem:'IPA SRD',                role:'Brush-scrub spin-rinse-dry',       prod:'EIPA G4/G5' },
-  { step:'Marangoni Dry',     chem:'IPA G5 vapor',           role:'Stiction-free final dry',          prod:'EIPA G5' },
-  { step:'Li-Battery Slurry', chem:'NMP',                    role:'PVDF binder dissolution',          prod:'NMP G4/G5' },
-  { step:'Electrolyte Mix',   chem:'DMC co-solvent',         role:'LiPF₆ in EC/DMC/EMC',             prod:'DMC G4/G5' },
-  { step:'HPLC Analysis',     chem:'MeCN / MeOH',            role:'Reverse-phase mobile phase',       prod:'ACN LC-MS' },
-]
 
 export default function ApplicationsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-20 overflow-hidden"
-        style={{ background:'linear-gradient(135deg,#020C1B 0%,#040D1E 60%,#0A1F3A 100%)' }}>
-        <div className="grid-bg grid-mask absolute inset-0 pointer-events-none" />
-        <div className="glow bg-[#0055CC]/22 w-[550px] h-[380px]" style={{ top:'-60px',left:'50%',transform:'translateX(-50%)' }} />
-        <Container className="relative z-10">
-          <Eyebrow light>Applications</Eyebrow>
-          <h1 className="font-serif text-[clamp(30px,4.5vw,52px)] text-white leading-[1.1] mb-4 tracking-[-0.5px]">
-            Process Chemistry for<br /><span className="grad-text">7 Industry Segments</span>
-          </h1>
-          <p className="text-[16px] leading-[1.72] max-w-[520px]" style={{ color:'rgba(255,255,255,0.62)' }}>
-            From sub-3nm logic wafer cleaning to EV battery electrolyte and HPLC pharmaceutical analysis — PureTech provides the right grade for every application.
-          </p>
+      <section className="relative min-h-[650px] overflow-hidden bg-[#061d2b] text-white">
+        <Image src="/images/puretech/applications.jpg" alt="Advanced manufacturing, analytical and high-purity chemical application environment" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061d2b] via-[#061d2b]/91 to-[#061d2b]/34" />
+        <Container className="relative z-10 flex min-h-[650px] items-center py-20">
+          <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div className="max-w-[760px]">
+              <Eyebrow light>Applications</Eyebrow>
+              <h1 className="mt-5 font-serif text-[clamp(39px,5.3vw,67px)] leading-[1.02] tracking-[-0.9px]">Chemical Solutions<br />for Advanced Industries</h1>
+              <p className="mt-7 max-w-[670px] text-[16px] leading-[1.78] text-white/72">High-purity solvents and specialty chemical materials supporting semiconductor, pharmaceutical, analytical and industrial manufacturing applications.</p>
+              <Link href="#application-routes" className="mt-9 inline-flex bg-white px-6 py-3.5 text-[13px] font-semibold text-[#08283b] no-underline hover:bg-[#DDEDE4]">Explore application routes</Link>
+            </div>
+            <aside className="border border-white/12 bg-[#061d2b]/75 p-6 backdrop-blur-sm">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9ED8C2]">Find your route</p>
+              <div className="mt-5 border-t border-white/10">
+                {applicationPages.map((application, index) => (
+                  <Link key={application.slug} href={applicationPath(application)} className="group flex items-center gap-3 border-b border-white/10 py-3 text-white/70 no-underline hover:text-white">
+                    <span className="font-mono text-[10px] text-white/35">0{index + 1}</span>
+                    <span className="text-[12.5px] font-medium">{application.navLabel}</span>
+                    <span className="ml-auto text-[#8FC7FF] opacity-0 transition-opacity group-hover:opacity-100">→</span>
+                  </Link>
+                ))}
+              </div>
+            </aside>
+          </div>
         </Container>
       </section>
 
-      {/* Markets */}
-      <section className="py-20">
+      <section className="border-b border-[#DCE3EC] bg-white py-8">
         <Container>
-          <Reveal className="mb-14">
-            <Eyebrow>Market Applications</Eyebrow>
-            <SectionTitle>Application by Industry Segment</SectionTitle>
-            <SectionSub>Each market segment lists the key chemistry and links to full product specification sheets.</SectionSub>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-[250px_1fr] md:items-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-[#12657B]">Search by application</p>
+            <div className="flex flex-wrap gap-2">
+              {applicationPages.map((application) => (
+                <Link key={application.slug} href={applicationPath(application)} className="border border-[#D5E0E3] bg-[#F7F9FC] px-3 py-2 text-[11.5px] font-medium text-[#344054] no-underline hover:border-[#7FA99A] hover:text-[#12657B]">{application.navLabel}</Link>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id="application-routes" className="scroll-mt-24 py-20">
+        <Container>
+          <Reveal>
+            <Eyebrow>Application routes</Eyebrow>
+            <div className="mt-3 grid grid-cols-1 gap-5 lg:grid-cols-[420px_1fr] lg:items-end">
+              <h2 className="font-serif text-[33px] leading-tight text-[#0A1628]">Begin with the process environment, then narrow the chemistry</h2>
+              <p className="max-w-[740px] text-[14px] leading-[1.75] text-[#475467]">These pages are designed for buyers who know the job to be done but may not yet know the exact product or grade. Each route connects the application, qualification questions and a focused product shortlist.</p>
+            </div>
           </Reveal>
 
-          <div className="space-y-4">
-            {MARKETS.map((m,i) => (
-              <Reveal key={m.id} delay={i*40}>
-                <div id={m.id} className="bg-white border border-[rgba(0,102,204,0.1)] rounded-[18px] p-7 md:p-9"
-                  style={{ boxShadow:'0 1px 3px rgba(4,13,30,0.04)' }}>
-                  <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-6 items-start">
+          <div className="mt-14 space-y-12">
+            {applicationPages.map((application, index) => (
+              <Reveal key={application.slug} delay={(index % 4) * 45}>
+                <article className="grid grid-cols-1 overflow-hidden border border-[#DCE3EC] bg-white lg:grid-cols-2">
+                  <div className={`relative min-h-[360px] ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <Image src={application.image} alt={application.imageAlt} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#061d2b]/55 via-transparent to-transparent" />
+                    <span className="absolute bottom-5 left-5 border border-white/25 bg-[#061d2b]/70 px-3 py-1.5 font-mono text-[10px] font-semibold text-white/80 backdrop-blur-sm">APPLICATION 0{index + 1}</span>
+                  </div>
+                  <div className={`flex flex-col p-7 lg:p-10 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.13em] text-[#2F8C67]">{application.subline}</p>
+                    <h2 className="mt-4 font-serif text-[29px] leading-tight text-[#0A1628]">{application.title}</h2>
+                    <p className="mt-5 line-clamp-4 text-[13.5px] leading-[1.75] text-[#475467]">{application.overview}</p>
 
-                    {/* Number */}
-                    <div className="flex-shrink-0">
-                      <span className="font-mono text-[32px] font-bold" style={{ color:'rgba(0,102,204,0.18)' }}>{m.num}</span>
-                    </div>
-
-                    {/* Content */}
-                    <div>
-                      <h3 className="text-[18px] font-semibold text-[#0A1628] mb-0.5">{m.title}</h3>
-                      <p className="text-[12px] font-mono text-[#506880] mb-3">{m.sub}</p>
-                      <p className="text-[13.5px] text-[#2C4160] leading-[1.68] mb-4 max-w-[640px]">{m.desc}</p>
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {m.tags.map(t=>(
-                          <span key={t} className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#E8F2FF] text-[#0044BB]">{t}</span>
+                    <div className="mt-7">
+                      <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Related products</p>
+                      <div className="flex flex-wrap gap-2">
+                        {application.products.slice(0, 5).map((product) => (
+                          <Link key={product.name} href={product.href} className="border border-[#D5E0E3] bg-[#F7F9FC] px-3 py-1.5 text-[11px] font-medium text-[#12657B] no-underline hover:border-[#12657B]">{product.name}</Link>
                         ))}
                       </div>
-                      <div>
-                        <p className="text-[10px] text-[#506880] uppercase tracking-[0.1em] font-semibold mb-2">Key Chemistry</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {m.chems.map(c=>(
-                            <span key={c} className="text-[11px] font-mono px-2.5 py-1 rounded-[6px]"
-                              style={{ background:'rgba(0,102,204,0.07)', color:'#0044BB', border:'1px solid rgba(0,102,204,0.15)' }}>
-                              {c}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
 
-                    {/* Product links */}
-                    <div className="flex flex-col gap-2 min-w-[130px]">
-                      {m.links.map(l=>(
-                        <Link key={l.h} href={l.h}
-                          className="block px-4 py-2 text-[12.5px] font-semibold text-[#0066CC] no-underline rounded-[8px] text-center transition-all hover:bg-[#0066CC] hover:text-white"
-                          style={{ border:'1px solid rgba(0,102,204,0.25)' }}>
-                          {l.l} →
-                        </Link>
-                      ))}
+                    <div className="mt-8 border-t border-[#EAECF0] pt-5">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Route</p>
+                      <p className="mt-2 text-[12px] leading-[1.7] text-[#475467]">{application.process.map((step) => step.title).join('  →  ')}</p>
                     </div>
+
+                    <Link href={applicationPath(application)} className="mt-8 inline-flex w-fit bg-[#12657B] px-5 py-3 text-[12.5px] font-semibold text-white no-underline hover:bg-[#2F8C67]">Explore {application.navLabel} →</Link>
                   </div>
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Process mapping */}
-      <section className="py-20 bg-[#F2F6FB]">
+      <section className="bg-[#F1F5F3] py-20">
         <Container>
-          <Reveal className="mb-10">
-            <Eyebrow>Process Reference</Eyebrow>
-            <SectionTitle>Chemical-to-Process Mapping</SectionTitle>
-            <SectionSub>Which PureTech product to specify for each process step — from fab to battery factory.</SectionSub>
-          </Reveal>
-          <Reveal delay={60}>
-            <div className="overflow-hidden rounded-[14px] border border-[rgba(0,102,204,0.1)]">
-              <div className="overflow-x-auto">
-                <table className="w-full stbl border-collapse">
-                  <thead>
-                    <tr>
-                      <th style={{ minWidth:'160px' }}>Process Step</th>
-                      <th style={{ minWidth:'140px' }}>Chemistry</th>
-                      <th style={{ minWidth:'180px' }}>Role</th>
-                      <th style={{ minWidth:'120px' }}>PureTech Product</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {PROCESS_MAP.map((row,i) => (
-                      <tr key={i}>
-                        <td className="font-semibold text-[#0A1628]">{row.step}</td>
-                        <td><span className="font-mono text-[12px] text-[#0044BB]">{row.chem}</span></td>
-                        <td className="text-[#2C4160]">{row.role}</td>
-                        <td><span className="font-mono text-[12px] font-bold text-[#0066CC]">{row.prod}</span></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_430px] lg:items-start">
+            <Reveal>
+              <div>
+                <Eyebrow>How to use these pages</Eyebrow>
+                <h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">A better enquiry starts with the work, not the catalogue</h2>
+                <p className="mt-5 max-w-[760px] text-[14px] leading-[1.78] text-[#475467]">Describe the process in plain language: the surface, formulation, instrument or manufacturing step; the current material; what goes wrong; and what your approval process needs to see. That is usually enough to replace a long product list with a useful first shortlist.</p>
+                <div className="mt-9 grid grid-cols-1 gap-px bg-[#CBD8D5] sm:grid-cols-2">
+                  {['Application and contact stage', 'Current product or specification', 'Critical impurity or performance limits', 'Pack, forecast and qualification timing'].map((item, index) => (
+                    <div key={item} className="flex gap-4 bg-white p-5"><span className="font-mono text-[11px] font-semibold text-[#2F8C67]">0{index + 1}</span><p className="text-[13px] font-medium text-[#344054]">{item}</p></div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+            <Reveal delay={80}>
+              <aside className="border-t-4 border-[#12657B] bg-[#07182D] p-7 text-white">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8FC7FF]">Not sure which route fits?</p>
+                <h2 className="mt-3 font-serif text-[25px]">Send the process note you already have</h2>
+                <p className="mt-4 text-[13px] leading-[1.72] text-white/60">A redacted specification, method, flow description or current product name is often enough for an initial technical conversation.</p>
+                <Link href="/contact" className="mt-7 inline-flex bg-[#2F8C67] px-5 py-3 text-[12.5px] font-semibold text-white no-underline hover:bg-[#267456]">Ask for application support</Link>
+              </aside>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
-      <CtaBanner
-        label="Application Support"
-        title={<>Process-Specific<br />Technical Guidance</>}
-        subtitle="Our FAE team provides compatibility data, qualification protocols, and on-site process engineering support."
-        p1="Contact FAE Team"    h1="/contact"
-        p2="View All Products"   h2="/products"
-      />
+      <CtaBanner label="Application support" title={<>Start with the process.<br />Then qualify the product.</>} subtitle="Share the use, current specification, critical limits, pack format and target qualification date." p1="Discuss an Application" h1="/contact" p2="Browse Products" h2="/products" />
     </>
   )
 }

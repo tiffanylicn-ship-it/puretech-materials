@@ -1,93 +1,142 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub, CtaBanner } from '@/components/ui/index'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
-import { resources } from '@/lib/seo-content'
+import { blogPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Technical Resources | Electronic Grade Chemical Guides & Spec Sheets | PureTech',
-  description: 'Free technical resources: electronic grade chemical buyer guides, IPA grade comparison charts, battery chemical spec sheets, semiconductor wet process checklists.',
+  title: 'Chemical Knowledge & Technical Resources',
+  description: 'Technical articles, application guides, product-selection knowledge and document support for high-purity chemical buyers and process teams.',
+  alternates: { canonical: 'https://puretechmaterials.com/resources' },
 }
 
-const TYPE_ICONS: Record<string,string> = {guide:'📖','spec-sheet':'📊',comparison:'⚖️',checklist:'✅'}
-const TYPE_LABELS: Record<string,string> = {guide:'Buyer Guide','spec-sheet':'Spec Sheet',comparison:'Comparison',checklist:'Checklist'}
+const categories = [
+  { no: '01', title: 'Technical Knowledge', description: 'Chemical fundamentals, purity grades, analytical methods and manufacturing concepts.', href: '/knowledge', image: '/images/puretech/quality-control.jpg' },
+  { no: '02', title: 'Application Guides', description: 'How chemical requirements change across real industrial and analytical processes.', href: '/applications', image: '/images/puretech/applications.jpg' },
+  { no: '03', title: 'Product Selection Guides', description: 'Choose a useful chemical grade, specification and pack without over-specifying.', href: '/guides', image: '/images/puretech/high-purity-solvents.jpg' },
+  { no: '04', title: 'Regulatory & Compliance', description: 'REACH, GHS, SDS, CoA, traceability and export-document review.', href: '/compliance', image: '/images/puretech/pharma-gmp.jpg' },
+  { no: '05', title: 'Downloads', description: 'Find the current TDS, SDS, specification, CoA example or company document route.', href: '/downloads', image: '/images/puretech/manufacturing.jpg' },
+  { no: '06', title: 'FAQ', description: 'Straight answers to common product, quality, packaging and export questions.', href: '/faq', image: '/images/puretech/trace-analysis.jpg' },
+]
+
+const applicationGuides = [
+  ['Semiconductor chemical solutions', 'Contamination control, cleaning, lithography and advanced-packaging product routes.', '/applications/semiconductor', '/images/puretech/electronic-materials.jpg'],
+  ['Pharmaceutical manufacturing', 'Process-solvent selection around manufacturing role, quality documents and approved supply.', '/applications/pharmaceutical', '/images/puretech/pharma-gmp.jpg'],
+  ['ICP-MS & trace analysis', 'Reagent selection around analytes, reporting limits, blank contribution and container practice.', '/applications/icp-ms', '/images/puretech/trace-analysis.jpg'],
+]
+
+const selectionGuides = [
+  ['How to choose the right solvent grade', 'Industrial, high-purity, analytical and electronic grades compared by application need.', '/guides#solvent-grade-selection'],
+  ['IPA buying guide for industrial customers', 'Purity, water, residue, packaging and supplier qualification questions.', '/guides#ipa-buying-guide'],
+  ['Bulk chemical purchasing guide', 'Drums, IBCs, storage, receiving, documentation and delivery planning.', '/guides#bulk-purchasing-guide'],
+]
 
 export default function ResourcesPage() {
+  const featuredArticles = blogPosts.slice(0, 4)
+
   return (
     <>
-      <section className="relative py-20 overflow-hidden" style={{background:'linear-gradient(135deg,#020C1B 0%,#040D1E 60%,#071629 100%)'}}>
-        <div className="grid-bg grid-mask absolute inset-0 pointer-events-none"/>
-        <div className="glow bg-[#0055CC]/18 w-[480px] h-[300px]" style={{top:0,left:'45%',transform:'translateX(-50%)'}}/>
-        <Container className="relative z-10">
-          <Eyebrow light>Technical Resources</Eyebrow>
-          <h1 className="font-serif text-[clamp(28px,4vw,48px)] text-white leading-[1.1] mb-4 tracking-[-0.5px]">Free Technical Guides &<br />Specification References</h1>
-          <p className="text-[16px] leading-[1.72] max-w-[520px]" style={{color:'rgba(255,255,255,0.58)'}}>
-            Practical guides written by process engineers: grade selection, specification interpretation, qualification protocols, and procurement checklists.
-          </p>
+      <section className="relative min-h-[620px] overflow-hidden bg-[#061d2b] text-white">
+        <Image src="/images/puretech/quality-control.jpg" alt="Chemical research laboratory, analytical instruments and technical document review" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061d2b] via-[#061d2b]/91 to-[#061d2b]/24" />
+        <Container className="relative z-10 flex min-h-[620px] items-center py-20">
+          <div className="max-w-[760px]">
+            <Eyebrow light>Resources & knowledge centre</Eyebrow>
+            <h1 className="mt-5 font-serif text-[clamp(40px,5.2vw,65px)] leading-[1.02] tracking-[-0.9px]">Chemical Knowledge<br />& Technical Resources</h1>
+            <p className="mt-7 max-w-[690px] text-[16px] leading-[1.78] text-white/72">Technical insights, application guides and product knowledge to help purchasing and process teams select the right chemical solution.</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="#knowledge-categories" className="bg-white px-6 py-3.5 text-[13px] font-semibold text-[#08283b] no-underline hover:bg-[#DDEDE4]">Explore knowledge</Link>
+              <Link href="/downloads" className="border border-white/25 px-6 py-3.5 text-[13px] font-semibold text-white no-underline hover:bg-white/10">Find technical documents</Link>
+            </div>
+          </div>
         </Container>
       </section>
 
-      <section className="py-16">
+      <section id="knowledge-categories" className="scroll-mt-24 py-20">
         <Container>
-          <Reveal className="mb-10"><Eyebrow>Downloads & Guides</Eyebrow><SectionTitle>Technical Reference Library</SectionTitle></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {resources.map((res,i)=>(
-              <Reveal key={res.slug} delay={i*60}>
-                <div className="flex flex-col bg-white border border-[rgba(0,102,204,0.1)] rounded-[16px] p-6 h-full"
-                  style={{boxShadow:'0 1px 4px rgba(4,13,30,0.05)'}}>
-                  <div className="flex items-start justify-between mb-4">
-                    <span className="text-[28px]">{TYPE_ICONS[res.type]}</span>
-                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full bg-[#E8F2FF] text-[#0044BB]">{TYPE_LABELS[res.type]}</span>
-                  </div>
-                  <h2 className="text-[16px] font-semibold text-[#0A1628] leading-snug mb-3">{res.title}</h2>
-                  <p className="text-[13.5px] text-[#3A5570] leading-[1.65] flex-1 mb-4">{res.desc}</p>
-                  <div className="mb-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8BA8C0] mb-2">Topics Covered</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {res.topics.map(t=><span key={t} className="text-[11px] px-2 py-0.5 rounded-[4px] bg-[#F2F6FB] text-[#506880]">{t}</span>)}
-                    </div>
-                  </div>
-                  <div className="flex gap-3 pt-4" style={{borderTop:'1px solid rgba(0,102,204,0.08)'}}>
-                    <Link href="/contact" className="flex-1 py-2.5 text-center text-[13px] font-semibold rounded-[8px] no-underline bg-[#0066CC] text-white hover:bg-[#1A7FEE] transition-colors">Request PDF</Link>
-                    <Link href="/blog" className="flex-1 py-2.5 text-center text-[13px] font-medium rounded-[8px] no-underline text-[#0055CC] hover:bg-[#EEF6FF] transition-colors"
-                      style={{border:'1px solid rgba(0,102,204,0.22)'}}>Related Articles</Link>
-                  </div>
-                </div>
+          <Reveal>
+            <Eyebrow>Explore by knowledge category</Eyebrow>
+            <div className="mt-3 grid grid-cols-1 gap-6 lg:grid-cols-[400px_1fr] lg:items-end">
+              <h2 className="font-serif text-[33px] leading-tight text-[#0A1628]">Find the information closest to the decision you are making</h2>
+              <p className="max-w-[760px] text-[14px] leading-[1.78] text-[#475467]">Use the knowledge centre for technical context, the application pages for process discovery and the downloads centre for current product-specific documents.</p>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category, index) => (
+              <Reveal key={category.title} delay={(index % 4) * 45}>
+                <Link href={category.href} className="group block h-full overflow-hidden border border-[#DCE3EC] bg-white text-[#0A1628] no-underline hover:border-[#9FB8C6]">
+                  <div className="relative min-h-[230px]"><Image src={category.image} alt={`${category.title} resource environment`} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#061d2b]/55 to-transparent" /><span className="absolute bottom-4 left-4 border border-white/25 bg-[#061d2b]/65 px-2.5 py-1 font-mono text-[10px] font-semibold text-white/80">{category.no}</span></div>
+                  <div className="p-6"><h3 className="text-[16px] font-semibold group-hover:text-[#12657B]">{category.title}</h3><p className="mt-3 text-[13px] leading-[1.68] text-[#475467]">{category.description}</p><span className="mt-6 block text-[12px] font-semibold text-[#12657B]">Explore category →</span></div>
+                </Link>
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="py-16 bg-[#F2F6FB]">
+      <section className="border-y border-[#E4E7EC] bg-[#F7F9FC] py-20">
         <Container>
-          <Reveal className="mb-8"><Eyebrow>Technical Blog</Eyebrow><SectionTitle>In-Depth Technical Articles</SectionTitle></Reveal>
-          <Reveal delay={60}>
-            <div className="flex flex-wrap gap-3">
-              {[
-                {label:'Electronic Grade IPA G1–G5 Guide',href:'/blog/electronic-grade-ipa-semiconductor-wafer-cleaning'},
-                {label:'PGMEA for EUV & ArF Lithography',href:'/blog/pgmea-photoresist-solvent-euv-arf-lithography'},
-                {label:'NMP Battery Electrode Slurry',href:'/blog/nmp-battery-electrode-slurry-pvdf-binder'},
-                {label:'DMC Li-ion Electrolyte',href:'/blog/dmc-lithium-battery-electrolyte-solvent'},
-                {label:'SEMI C1 Standard Explained',href:'/blog/semi-c1-standard-electronic-chemicals-semiconductor'},
-                {label:'Marangoni Drying IPA G5',href:'/blog/marangoni-drying-ipa-watermark-free-wafer'},
-                {label:'HPLC Acetonitrile LC-MS',href:'/blog/hplc-grade-acetonitrile-pharmaceutical-lc-ms'},
-                {label:'Advanced Packaging Solvents',href:'/blog/advanced-packaging-solvents-fowlp-hbm-2.5d'},
-                {label:'GaN SiC InP Cleaning Guide',href:'/blog/compound-semiconductor-cleaning-gan-sic-gaas'},
-                {label:'Acetone OSAT Backend Cleaning',href:'/blog/electronic-grade-acetone-osat-backend-cleaning'},
-              ].map(a=>(
-                <Link key={a.href} href={a.href} className="px-4 py-2.5 bg-white border border-[rgba(0,102,204,0.15)] rounded-[9px] text-[13px] font-medium text-[#0055CC] no-underline hover:bg-[#EEF6FF] transition-colors">
-                  {a.label} →
-                </Link>
-              ))}
-            </div>
+          <Reveal>
+            <Eyebrow>Featured technical knowledge</Eyebrow>
+            <div className="mt-3 flex flex-wrap items-end justify-between gap-5"><div><h2 className="font-serif text-[33px] text-[#0A1628]">Read the process before comparing the product</h2><p className="mt-4 max-w-[760px] text-[14px] leading-[1.75] text-[#475467]">Technical articles provide context for screening. Current controlled specifications and product documents still govern qualification.</p></div><Link href="/blog" className="text-[12.5px] font-semibold text-[#12657B] no-underline hover:underline">All technical articles →</Link></div>
           </Reveal>
+          <div className="mt-11 grid grid-cols-1 gap-px bg-[#DCE3EC] md:grid-cols-2 lg:grid-cols-4">
+            {featuredArticles.map((article, index) => (
+              <Reveal key={article.slug} delay={index * 50}>
+                <Link href={`/blog/${article.slug}`} className="group flex h-full min-h-[320px] flex-col bg-white p-6 text-[#0A1628] no-underline hover:bg-[#F2F8F5]">
+                  <div className="flex items-center justify-between gap-3"><span className="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#2F8C67]">{article.category}</span><span className="text-[10.5px] text-[#98A2B3]">{article.readTime} min</span></div>
+                  <h3 className="mt-8 text-[15px] font-semibold leading-[1.45] group-hover:text-[#12657B]">{article.title}</h3>
+                  <p className="mt-4 line-clamp-4 flex-1 text-[12.8px] leading-[1.7] text-[#475467]">{article.excerpt}</p>
+                  <span className="mt-6 border-t border-[#EAECF0] pt-4 text-[12px] font-semibold text-[#12657B]">Read article →</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 
-      <CtaBanner label="Custom Technical Support" title={<>Need a Custom Specification<br />or Technical Document?</>}
-        subtitle="Our team prepares application-specific spec sheets, qualification protocols, and CoA templates for your QMS."
-        p1="Contact Technical Team" h1="/contact" p2="View FAQ" h2="/faq"/>
+      <section className="py-20">
+        <Container>
+          <Reveal><Eyebrow>Application guides</Eyebrow><h2 className="mt-3 font-serif text-[33px] text-[#0A1628]">Move from industry question to a focused chemical shortlist</h2></Reveal>
+          <div className="mt-11 grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {applicationGuides.map(([title, detail, href, image], index) => (
+              <Reveal key={title} delay={index * 55}>
+                <Link href={href} className="group block h-full overflow-hidden border border-[#DCE3EC] bg-white text-[#0A1628] no-underline hover:border-[#9FB8C6]">
+                  <div className="relative min-h-[260px]"><Image src={image} alt={`${title} application guide`} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#061d2b]/60 to-transparent" /></div>
+                  <div className="p-6"><span className="font-mono text-[11px] font-semibold text-[#2F8C67]">0{index + 1}</span><h3 className="mt-5 text-[16px] font-semibold group-hover:text-[#12657B]">{title}</h3><p className="mt-3 text-[13px] leading-[1.68] text-[#475467]">{detail}</p><span className="mt-6 block text-[12px] font-semibold text-[#12657B]">Open application guide →</span></div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#F1F5F3] py-20">
+        <Container>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[350px_1fr]">
+            <Reveal><div><Eyebrow>Product selection guides</Eyebrow><h2 className="mt-3 font-serif text-[32px] leading-tight text-[#0A1628]">Procurement questions that deserve more than a product table</h2><p className="mt-5 text-[14px] leading-[1.75] text-[#475467]">These guides organise the technical, packaging and supplier-review questions before price comparisons begin.</p></div></Reveal>
+            <div className="grid grid-cols-1 gap-px bg-[#CBD8D5] md:grid-cols-3">
+              {selectionGuides.map(([title, detail, href], index) => (
+                <Reveal key={title} delay={index * 55}>
+                  <Link href={href} className="group flex h-full min-h-[280px] flex-col bg-white p-7 text-[#0A1628] no-underline hover:bg-[#F8FCFA]"><span className="font-mono text-[11px] font-semibold text-[#2F8C67]">0{index + 1}</span><h3 className="mt-8 text-[15px] font-semibold group-hover:text-[#12657B]">{title}</h3><p className="mt-3 flex-1 text-[13px] leading-[1.7] text-[#475467]">{detail}</p><span className="mt-6 text-[12px] font-semibold text-[#12657B]">Read guide →</span></Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#07182D] text-white">
+        <Container>
+          <div className="grid grid-cols-1 gap-9 py-16 lg:grid-cols-[1fr_auto] lg:items-center">
+            <Reveal><div><Eyebrow light>Technical documents</Eyebrow><h2 className="mt-3 font-serif text-[31px]">Find the current file for the product, grade and market</h2><p className="mt-4 max-w-[760px] text-[14px] leading-[1.72] text-white/60">Search specifications, TDS, SDS, CoA examples and company documents. Files without a verified local master remain request-only.</p></div></Reveal>
+            <div className="flex flex-wrap gap-3"><Link href="/downloads" className="bg-white px-6 py-3.5 text-[12.5px] font-semibold text-[#08283b] no-underline hover:bg-[#DDEDE4]">Open downloads centre</Link><Link href="/compliance" className="border border-white/20 px-6 py-3.5 text-[12.5px] font-semibold text-white no-underline hover:bg-white/10">Review compliance support</Link></div>
+          </div>
+        </Container>
+      </section>
+
+      <CtaBanner label="Technical support" title={<>Need knowledge,<br />documents or a product shortlist?</>} subtitle="Share the application, product, grade, destination and the decision your team needs to make." p1="Ask a Technical Question" h1="/contact" p2="Browse Products" h2="/products" />
     </>
   )
 }

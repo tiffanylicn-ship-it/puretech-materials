@@ -1,51 +1,51 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, CtaBanner } from '@/components/ui/index'
+import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
-import { solutions } from '@/lib/seo-content'
+import { solutionRoutes } from '@/lib/architecture-content'
 
 export const metadata: Metadata = {
-  title: 'Application Solutions | IPA Wafer Cleaning, PGMEA EUV Litho, NMP Battery | PureTech',
-  description: 'Process-specific chemical guides: IPA for wafer cleaning, PGMEA for EUV lithography, NMP for battery electrode slurry. Grade selection, specs, FAQs.',
+  title: 'High-Purity Chemical Solutions by Application',
+  description: 'Solution-first routes for semiconductor, pharmaceutical, analytical, industrial and custom chemical supply requirements.',
 }
 
 export default function SolutionsPage() {
   return (
     <>
-      <section className="relative py-20 overflow-hidden" style={{background:'linear-gradient(135deg,#020C1B 0%,#040D1E 60%,#071629 100%)'}}>
-        <div className="grid-bg grid-mask absolute inset-0 pointer-events-none"/>
-        <div className="glow bg-[#0055CC]/18 w-[500px] h-[320px]" style={{top:0,left:'45%',transform:'translateX(-50%)'}}/>
-        <Container className="relative z-10">
-          <Eyebrow light>Application Solutions</Eyebrow>
-          <h1 className="font-serif text-[clamp(28px,4vw,50px)] text-white leading-[1.1] mb-4 tracking-[-0.5px]">Process-Specific Chemical Guides</h1>
-          <p className="text-[16px] leading-[1.72] max-w-[540px]" style={{color:'rgba(255,255,255,0.58)'}}>
-            Deep-dive application guides matching the right chemical grade to your specific process — with specification tables, grade selection logic, and FAQs.
-          </p>
+      <section className="relative min-h-[540px] overflow-hidden bg-[#061d2b] text-white">
+        <Image src="/images/puretech/hero.jpg" alt="High-purity chemical solutions and manufacturing" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061d2b] via-[#061d2b]/92 to-[#061d2b]/18" />
+        <Container className="relative z-10 flex min-h-[540px] items-center py-20">
+          <div className="max-w-[720px]">
+            <Eyebrow light>Solutions</Eyebrow>
+            <h1 className="mt-5 font-serif text-[clamp(34px,4.5vw,56px)] leading-[1.08] tracking-[-0.7px]">Start with the application. Build the product shortlist from there.</h1>
+            <p className="mt-6 max-w-[660px] text-[16px] leading-[1.75] text-white/68">Five routes for customers who know the manufacturing or analytical problem they need to solve, even when they have not selected a chemical grade yet.</p>
+          </div>
         </Container>
       </section>
-      <section className="py-16">
+
+      <section className="py-20">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {solutions.map((sol,i)=>(
-              <Reveal key={sol.slug} delay={i*60}>
-                <Link href={`/solutions/${sol.slug}`}
-                  className="group flex flex-col bg-white border border-[rgba(0,102,204,0.1)] rounded-[16px] p-6 no-underline h-full hover:shadow-[0_8px_28px_rgba(0,102,204,0.12)] hover:-translate-y-1 transition-all duration-250"
-                  style={{boxShadow:'0 1px 4px rgba(4,13,30,0.05)'}}>
-                  <div className="mb-4">
-                    <span className="text-[10.5px] font-semibold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full bg-[#E8F2FF] text-[#0044BB]">{sol.chemical}</span>
+          <Reveal>
+            <Eyebrow>Solution routes</Eyebrow>
+            <h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">Choose the use closest to your project</h2>
+          </Reveal>
+          <div className="mt-11 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {solutionRoutes.map((solution, index) => (
+              <Reveal key={solution.slug} delay={index * 55} className={index === solutionRoutes.length - 1 ? 'md:col-span-2' : ''}>
+                <Link href={`/solutions/${solution.slug}`} className={`group grid h-full overflow-hidden border border-[#DCE3EC] bg-white text-[#0A1628] no-underline hover:border-[#9FB8C6] ${index === solutionRoutes.length - 1 ? 'md:grid-cols-[360px_1fr]' : ''}`}>
+                  <div className={`relative ${index === solutionRoutes.length - 1 ? 'min-h-[250px]' : 'min-h-[260px]'}`}>
+                    <Image src={solution.image} alt={`${solution.title} chemical application`} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
                   </div>
-                  <h2 className="text-[16px] font-semibold text-[#0A1628] leading-snug mb-3 group-hover:text-[#0055CC] transition-colors">{sol.title}</h2>
-                  <p className="text-[13px] text-[#3A5570] leading-[1.62] flex-1">{sol.intro.slice(0,120)}…</p>
-                  <div className="mt-4 pt-4 space-y-1.5" style={{borderTop:'1px solid rgba(0,102,204,0.07)'}}>
-                    {sol.specs.slice(0,3).map(s=>(
-                      <div key={s.param} className="flex justify-between text-[11.5px]">
-                        <span className="text-[#8BA8C0]">{s.param}</span>
-                        <span className="font-mono font-semibold text-[#0A1628]">{s.requirement.split('/')[0].trim()}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex items-center gap-1 text-[12.5px] font-semibold text-[#0066CC]">
-                    Full Grade Guide <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                  <div className="p-7">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="font-mono text-[11px] text-[#2F8C67]">0{index + 1}</span>
+                      <span className="text-[12px] font-semibold text-[#12657B]">Open solution →</span>
+                    </div>
+                    <h2 className="mt-7 font-serif text-[25px]">{solution.title}</h2>
+                    <p className="mt-2 text-[12px] font-medium text-[#667085]">{solution.subline}</p>
+                    <p className="mt-4 line-clamp-3 text-[13px] leading-[1.7] text-[#475467]">{solution.overview}</p>
                   </div>
                 </Link>
               </Reveal>
@@ -53,9 +53,20 @@ export default function SolutionsPage() {
           </div>
         </Container>
       </section>
-      <CtaBanner label="Application Support" title={<>Need Help Selecting<br />the Right Grade?</>}
-        subtitle="Our FAE team reviews your process specification and recommends the correct grade with supporting data."
-        p1="Contact FAE Team" h1="/contact" p2="Browse Products" h2="/products"/>
+
+      <section className="bg-[#F1F5F3] py-16">
+        <Container>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <Eyebrow>Know the chemical already?</Eyebrow>
+              <h2 className="mt-3 font-serif text-[29px] text-[#0A1628]">Use the product database for names, grades and specifications</h2>
+            </div>
+            <Link href="/products" className="bg-[#12657B] px-6 py-3.5 text-[13px] font-semibold text-white no-underline hover:bg-[#2F8C67]">Open products</Link>
+          </div>
+        </Container>
+      </section>
+
+      <CtaBanner label="Technical discussion" title={<>No catalogue category<br />matches the project?</>} subtitle="Describe the process, current material, critical limits, documents, pack and qualification timing." p1="Discuss Your Requirement" h1="/contact" p2="View Manufacturing" h2="/manufacturing" />
     </>
   )
 }

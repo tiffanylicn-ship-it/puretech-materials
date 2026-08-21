@@ -9,77 +9,74 @@ type NavChild = { label: string; href: string } | { divider: true };
 type NavItem = { label: string; href: string; children?: NavChild[] };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "Products",
     href: "/products",
     children: [
-      { label: "Electronic Grade Solvents", href: "/products?cat=electronic" },
-      { label: "Process Acids & Oxidants", href: "/products?cat=acid" },
-      { label: "Photoresist & Lithography", href: "/products?cat=photoresist" },
-      { label: "Battery Chemicals", href: "/products?cat=battery" },
-      { label: "Laboratory & HPLC", href: "/products?cat=lab" },
+      { label: "Electronic Materials", href: "/products/electronic-materials" },
+      { label: "High-Purity Solvents", href: "/products/high-purity-solvents" },
+      { label: "Pharmaceutical Solvents", href: "/products/pharmaceutical-solvents" },
+      { label: "Trace Analysis Chemicals", href: "/products/trace-analysis" },
+      { label: "Specialty Chemicals", href: "/products/specialty-chemicals" },
       { divider: true },
       { label: "View All Products →", href: "/products" },
     ],
   },
   {
-    label: "Industries",
-    href: "/industries",
+    label: "Applications",
+    href: "/applications",
     children: [
-      {
-        label: "Semiconductor & Electronics",
-        href: "/industries/semiconductor",
-      },
-      { label: "EV Battery & Energy Storage", href: "/industries/ev-battery" },
-      { label: "Display & OLED", href: "/industries/display-panel" },
-      {
-        label: "Pharmaceutical & Laboratory",
-        href: "/industries/pharmaceutical-lab",
-      },
+      { label: "Semiconductor & Electronics", href: "/applications/semiconductor" },
+      { label: "Pharmaceutical Manufacturing", href: "/applications/pharmaceutical" },
+      { label: "Battery & Advanced Materials", href: "/applications/battery-materials" },
+      { label: "Laboratory & Analytical Testing", href: "/applications/laboratory-testing" },
+      { label: "ICP-MS & Trace Analysis", href: "/applications/icp-ms" },
+      { label: "Coatings & Chemical Processing", href: "/applications/coatings" },
+      { label: "Custom Industrial Applications", href: "/applications/industrial-applications" },
+      { divider: true },
+      { label: "View All Applications →", href: "/applications" },
     ],
   },
   {
-    label: "Solutions",
-    href: "/solutions",
+    label: "Manufacturing",
+    href: "/manufacturing",
+  },
+  {
+    label: "Quality",
+    href: "/quality",
+  },
+  {
+    label: "OEM",
+    href: "/oem-custom-chemical-solutions",
+  },
+  {
+    label: "Global Markets",
+    href: "/markets",
     children: [
-      {
-        label: "IPA for Wafer Cleaning",
-        href: "/solutions/ipa-for-wafer-cleaning",
-      },
-      {
-        label: "PGMEA for EUV Lithography",
-        href: "/solutions/pgmea-for-euv-lithography",
-      },
-      {
-        label: "NMP for Battery Electrode",
-        href: "/solutions/nmp-for-battery-electrode",
-      },
+      { label: "Europe", href: "/markets/europe" },
+      { label: "North America", href: "/markets/north-america" },
+      { label: "Japan & Korea", href: "/markets/japan-korea" },
+      { label: "Southeast Asia", href: "/markets/southeast-asia" },
+      { label: "Distributor Partnership", href: "/markets/distributor-partnership" },
       { divider: true },
-      { label: "All Application Guides →", href: "/solutions" },
+      { label: "Global Supply Capability →", href: "/global-chemical-supply" },
     ],
   },
   {
     label: "Resources",
     href: "/resources",
     children: [
-      { label: "Technical Resources", href: "/resources" },
-      { label: "Technical Blog", href: "/blog" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Applications Overview", href: "/applications" },
+      { label: "Knowledge Centre", href: "/resources" },
+      { label: "Technical Knowledge", href: "/knowledge" },
+      { label: "Application Guides", href: "/applications" },
+      { label: "Product Selection Guides", href: "/guides" },
+      { label: "Industry Insights & Articles", href: "/blog" },
+      { label: "Regulatory & Compliance", href: "/compliance" },
+      { label: "Downloads", href: "/downloads" },
+      { label: "Frequently Asked Questions", href: "/faq" },
     ],
   },
-  {
-    label: "About",
-    href: "/about",
-    children: [
-      { label: "Company Overview", href: "/about" },
-      { label: "Manufacturing", href: "/about#manufacturing" },
-      { label: "Quality & Compliance", href: "/about#quality" },
-      { divider: true },
-      { label: "Contact Us →", href: "/contact" },
-    ],
-  },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -115,7 +112,7 @@ export function Navbar() {
               <li key={item.href} className="nav-item relative">
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 rounded-[7px] px-3 py-2.5 text-[13px] font-medium no-underline transition-colors ${isActive(item.href) ? "bg-white/10 text-white" : "text-white/75 hover:bg-white/5 hover:text-white"}`}
+                  className={`flex items-center gap-1 rounded-[7px] px-2.5 py-2.5 text-[12.5px] font-medium no-underline transition-colors ${isActive(item.href) ? "bg-white/10 text-white" : "text-white/75 hover:bg-white/5 hover:text-white"}`}
                 >
                   {item.label}
                   {item.children && (

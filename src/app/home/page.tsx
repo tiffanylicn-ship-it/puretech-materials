@@ -30,25 +30,31 @@ const productFamilies = [
     no: "01",
     title: "Electronic & Advanced Materials",
     text: "Electronic grade solvents for semiconductor cleaning, coating and precision processes.",
-    href: "/products?cat=electronic",
+    href: "/products/electronic-materials",
   },
   {
     no: "02",
     title: "High-Purity & Specialty Solvents",
     text: "Alcohols, ketones, esters, ethers and hydrocarbons in purified industrial grades.",
-    href: "/products",
+    href: "/products/high-purity-solvents",
   },
   {
     no: "03",
-    title: "Pharmaceutical & GMP",
+    title: "Pharmaceutical Manufacturing Solvents",
     text: "Documented, batch-consistent solvents for API processing, formulation and production.",
-    href: "/products?cat=lab",
+    href: "/products/pharmaceutical-solvents",
   },
   {
     no: "04",
     title: "Trace Analysis & Ultra-Pure Reagents",
     text: "Trace-grade acids, solvents and reagents for ICP-MS and elemental analysis workflows.",
-    href: "/products?cat=lab",
+    href: "/products/trace-analysis",
+  },
+  {
+    no: "05",
+    title: "Specialty Chemicals",
+    text: "Lithography, polar aprotic and carbonate chemistry for advanced manufacturing processes.",
+    href: "/products/specialty-chemicals",
   },
 ];
 
@@ -191,8 +197,8 @@ export default function HomePage() {
               industrial and analytical applications.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <PrimaryLink href="/products" light>
-                Explore Products
+              <PrimaryLink href="/solutions" light>
+                Explore Solutions
               </PrimaryLink>
               <Link
                 href="/contact"
@@ -203,9 +209,9 @@ export default function HomePage() {
             </div>
             <dl className="mt-14 grid max-w-xl grid-cols-3 gap-4 border-t border-white/15 pt-6">
               {[
-                [`≥99.999%`, `Purity grades`],
-                [`<1 ppb`, `Trace metals`],
-                [`20–1000 L`, `Packaging range`],
+                [`Process-led`, `Product selection`],
+                [`Lot-based`, `Quality review`],
+                [`Bottle to bulk`, `Supply formats`],
               ].map(([value, label]) => (
                 <div key={label}>
                   <dt className="font-mono text-base text-white md:text-lg">
@@ -252,6 +258,9 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+          <div className="mt-8">
+            <PrimaryLink href="/manufacturing">Explore Manufacturing</PrimaryLink>
+          </div>
         </div>
       </section>
 
@@ -262,7 +271,7 @@ export default function HomePage() {
             title="Our Chemical Materials Portfolio"
             description="Selected high-purity chemical products for advanced manufacturing, pharmaceutical production, trace analysis and industrial applications."
           />
-          <div className="mt-14 grid gap-px bg-[#cfdbdf] md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-px bg-[#cfdbdf] md:grid-cols-2 lg:grid-cols-5">
             {productFamilies.map((item) => (
               <Link
                 key={item.no}
@@ -285,7 +294,7 @@ export default function HomePage() {
             ))}
           </div>
           <Link
-            href="/contact"
+            href="/oem-custom-chemical-solutions"
             className="mt-px flex flex-col justify-between gap-4 bg-[#08283b] p-8 text-white no-underline sm:flex-row sm:items-center"
           >
             <span>
@@ -330,7 +339,7 @@ export default function HomePage() {
               ))}
             </ul>
             <div className="mt-9">
-              <PrimaryLink href="/products?cat=electronic" light>
+              <PrimaryLink href="/products/electronic-materials" light>
                 View Electronic Materials
               </PrimaryLink>
             </div>
@@ -411,8 +420,8 @@ export default function HomePage() {
           <div className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="Product Line"
-              title="Pharmaceutical & GMP Solvents"
-              description="Reliable solvent supply for pharmaceutical manufacturing, API processing, formulation and GMP-controlled production environments."
+              title="Pharmaceutical Manufacturing Solvents"
+              description="Solvent supply for API processing, formulation, extraction and controlled pharmaceutical production environments."
             />
             <div className="mt-9 flex flex-wrap gap-2">
               {[
@@ -450,7 +459,7 @@ export default function HomePage() {
               ))}
             </ul>
             <div className="mt-9">
-              <PrimaryLink href="/industries/pharmaceutical-lab">
+              <PrimaryLink href="/applications/pharmaceutical">
                 Explore Pharmaceutical Solutions
               </PrimaryLink>
             </div>
@@ -470,21 +479,19 @@ export default function HomePage() {
             <div>
               <ul className="grid gap-px bg-white/10">
                 {[
-                  "Trace Grade Nitric Acid",
-                  "Trace Grade Hydrochloric Acid",
-                  "Trace Grade Hydrofluoric Acid",
+                  "Nitric Acid",
+                  "Hydrochloric Acid",
                   "Hydrogen Peroxide",
-                  "Ultra-Pure Water",
-                  "Trace Analysis Acetonitrile",
+                  "Acetonitrile",
+                  "Methanol",
+                  "Electronic Grade IPA",
                 ].map((item) => (
                   <li
                     key={item}
                     className="flex items-center justify-between bg-[#061d2b] px-5 py-4 text-sm text-white/85"
                   >
                     <span>{item}</span>
-                    <span className="font-mono text-[11px] text-[#62bd88]">
-                      &lt;1 ppb
-                    </span>
+                    <span className="font-mono text-[11px] text-[#62bd88]">Review spec</span>
                   </li>
                 ))}
               </ul>
@@ -537,6 +544,9 @@ export default function HomePage() {
               </article>
             ))}
           </div>
+          <div className="mt-8">
+            <PrimaryLink href="/quality">Review Quality & Documentation</PrimaryLink>
+          </div>
         </div>
       </section>
 
@@ -569,6 +579,9 @@ export default function HomePage() {
               />
             </div>
           </div>
+          <div className="mt-8">
+            <PrimaryLink href="/applications">Explore Applications</PrimaryLink>
+          </div>
 
           <div className="mt-24">
             <SectionHeading
@@ -588,6 +601,9 @@ export default function HomePage() {
                   </p>
                 </article>
               ))}
+            </div>
+            <div className="mt-8">
+              <PrimaryLink href="/oem-custom-chemical-solutions">View OEM & Custom Supply</PrimaryLink>
             </div>
           </div>
         </div>
@@ -613,10 +629,10 @@ export default function HomePage() {
               Request Quote or Sample
             </PrimaryLink>
             <Link
-              href="/products"
+              href="/global-chemical-supply"
               className="inline-flex items-center border border-white/25 px-6 py-3.5 text-sm font-semibold text-white no-underline hover:bg-white/10"
             >
-              Browse Product Catalog
+              Explore Global Supply
             </Link>
           </div>
         </div>

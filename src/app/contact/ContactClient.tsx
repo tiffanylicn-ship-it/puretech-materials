@@ -1,233 +1,144 @@
 'use client'
-import { useState } from 'react'
+
+import Image from 'next/image'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { Container, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 
-const TYPES = [
-  'Sample Request (Qualification Lot)',
-  'Technical Specification / Compatibility',
-  'RFQ / Volume Pricing',
-  'Application Support (FAE)',
-  'Supply Agreement / Long-term Contract',
-  'SDS / Regulatory Documents',
-  'Other',
-]
-const PRODS = [
-  'Electronic Grade IPA (EIPA)','Electronic Grade Ethanol','PGMEA','PGME',
-  'Acetone (Electronic Grade)','NMP','DMC (Dimethyl Carbonate)',
-  'Acetonitrile','Methanol','n-Heptane','THF','DMSO','Other / Multiple Products',
-]
-const HOW = [
-  { title:'Sample Request',   desc:'Qualification lot with full CoA, ICP-MS report, and LPC data for internal process evaluation.' },
-  { title:'Technical Support',desc:'Specification questions, grade selection guidance, and compatibility data from our FAE team.' },
-  { title:'RFQ & Pricing',    desc:'Volume-based pricing, packaging options, and long-term supply agreement discussions.' },
-  { title:'Compliance Docs',  desc:'SDS, REACH declarations, CoA templates, and regulatory documentation for your QMS.' },
-]
-const CONTACTS = [
-  { label:'Email', value:'info@puretechmaterials.com' },
-  { label:'Phone', value:'+1 (650) 000-0000' },
-  { label:'Hours', value:'Mon–Fri · 8:00 AM – 6:00 PM PST' },
+const enquiryTypes = [
+  'Product quotation',
+  'Qualification sample',
+  'Technical specification review',
+  'SDS / TDS / CoA / declarations',
+  'Custom packaging or private label',
+  'Distributor or long-term supply programme',
+  'Other technical enquiry',
 ]
 
-const inp = 'w-full px-4 py-3 border border-[rgba(0,102,204,0.2)] rounded-[8px] text-[13.5px] font-[inherit] text-[#0A1628] bg-[#F2F6FB] outline-none transition-all duration-200 focus:border-[#0066CC] focus:shadow-[0_0_0_3px_rgba(0,102,204,0.1)] focus:bg-white placeholder:text-[#8BA8C0]'
+const products = [
+  'Electronic Grade IPA', 'Electronic Grade Ethanol', 'PGMEA', 'PGME', 'NMP',
+  'DMC / EMC / DEC', 'Acetonitrile', 'Methanol', 'Acetone', 'Process acids / bases',
+  'Multiple products', 'Other / not yet selected',
+]
+
+const inputClass = 'w-full border border-[#C8D5DD] bg-[#F7F9FA] px-4 py-3 text-[13px] text-[#0A1628] outline-none transition-colors placeholder:text-[#98A2B3] focus:border-[#12657B] focus:bg-white'
 
 export default function ContactClient() {
   const [form, setForm] = useState({
-    fname:'',lname:'',email:'',company:'',title:'',type:'',product:'',application:'',message:''
+    name: '', email: '', company: '', country: '', type: '', product: '', application: '',
+    specification: '', packaging: '', volume: '', timing: '', message: '',
   })
-  const [done, setDone]       = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError]     = useState('')
+  const [error, setError] = useState('')
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) =>
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  const onChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm((current) => ({ ...current, [event.target.name]: event.target.value }))
+  }
 
-  const submit = () => {
-    if (!form.fname || !form.email || !form.company) {
-      setError('Please fill in First Name, Work Email, and Company.')
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!form.name || !form.email || !form.company || !form.type) {
+      setError('Please complete your name, work email, company and enquiry type.')
       return
     }
     setError('')
-    setLoading(true)
-    setTimeout(() => { setLoading(false); setDone(true) }, 900)
+    const subject = `PURETECHMATERIALS enquiry — ${form.product || form.type}`
+    const body = [
+      `Name: ${form.name}`,
+      `Work email: ${form.email}`,
+      `Company: ${form.company}`,
+      `Country / region: ${form.country}`,
+      `Enquiry type: ${form.type}`,
+      `Product: ${form.product}`,
+      `Application / process: ${form.application}`,
+      `Current or target specification: ${form.specification}`,
+      `Packaging: ${form.packaging}`,
+      `Estimated annual volume: ${form.volume}`,
+      `Target timing: ${form.timing}`,
+      '',
+      form.message,
+    ].join('\n')
+    window.location.href = `mailto:info@puretechmaterials.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-20 overflow-hidden"
-        style={{ background:'linear-gradient(135deg,#020C1B 0%,#040D1E 60%,#071629 100%)' }}>
-        <div className="wafer-bg absolute inset-0 opacity-22 pointer-events-none" />
-        <div className="glow bg-[#0055CC]/18 w-[480px] h-[360px]" style={{ top:0,right:'20%' }} />
-        <Container className="relative z-10">
-          <Eyebrow light>Contact Us</Eyebrow>
-          <h1 className="font-serif text-[clamp(28px,4vw,48px)] text-white leading-[1.12] mb-4 tracking-[-0.4px]">
-            Talk to Our<br />Technical Team
-          </h1>
-          <p className="text-[15.5px] leading-[1.72] max-w-[460px]" style={{ color:'rgba(255,255,255,0.62)' }}>
-            Whether initiating a qualification, sourcing for production, or needing application support — we respond within one business day.
-          </p>
+      <section className="relative min-h-[500px] overflow-hidden bg-[#061d2b] text-white">
+        <Image src="/images/puretech/hero.jpg" alt="Technical chemical supply discussion" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061d2b] via-[#061d2b]/92 to-[#061d2b]/20" />
+        <Container className="relative z-10 flex min-h-[500px] items-center py-20">
+          <div className="max-w-[700px]">
+            <Eyebrow light>Global chemical partnership</Eyebrow>
+            <h1 className="mt-5 font-serif text-[clamp(34px,4.5vw,54px)] leading-[1.08] tracking-[-0.7px]">Bring us the process, specification and supply need</h1>
+            <p className="mt-6 max-w-[660px] text-[16px] leading-[1.75] text-white/68">A useful enquiry tells us what the material must do, which limits matter, how it will be packed and when qualification needs to begin.</p>
+          </div>
         </Container>
       </section>
 
       <section className="py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-14 items-start">
-
-            {/* Left info column */}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[340px_1fr]">
             <Reveal>
-              <h3 className="text-[17px] font-semibold text-[#0A1628] mb-5">How Can We Help?</h3>
-              <div className="space-y-3 mb-8">
-                {HOW.map((item,i) => (
-                  <div key={i} className="flex gap-3 items-start p-4 rounded-[11px] border border-[rgba(0,102,204,0.1)] bg-[#F2F6FB]">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#0066CC] flex-shrink-0 mt-1.5" />
-                    <div>
-                      <h4 className="text-[13px] font-semibold text-[#0A1628] mb-0.5">{item.title}</h4>
-                      <p className="text-[12.5px] text-[#2C4160] leading-[1.55]">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-4 mb-8">
-                {CONTACTS.map((c,i) => (
-                  <div key={i} className="flex gap-3 items-start">
-                    <div className="w-px h-full bg-[rgba(0,102,204,0.15)] self-stretch mt-1" />
-                    <div>
-                      <p className="text-[10px] text-[#506880] uppercase tracking-[0.1em] font-semibold">{c.label}</p>
-                      <p className="text-[13.5px] text-[#0A1628] font-medium">{c.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="p-5 rounded-[13px]"
-                style={{ background:'linear-gradient(135deg,#040D1E,#071429)', border:'1px solid rgba(0,102,204,0.22)' }}>
-                <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[#4BAAF5] mb-2">Response Commitment</p>
-                <p className="text-[13px] leading-[1.65]" style={{ color:'rgba(255,255,255,0.62)' }}>
-                  All inquiries answered within <strong style={{ color:'rgba(255,255,255,0.85)' }}>one business day</strong>. Sample requests processed in 3–5 business days depending on destination and product.
-                </p>
+              <div className="lg:sticky lg:top-24">
+                <Eyebrow>Before you send</Eyebrow>
+                <h2 className="mt-3 font-serif text-[28px] leading-tight text-[#0A1628]">The details that make the first response useful</h2>
+                <ul className="mt-7 space-y-4">
+                  {[
+                    'Product, chemical family or application',
+                    'Current or target specification',
+                    'Critical analytical or process limits',
+                    'Required documents and destination market',
+                    'Pack format, sample need and annual volume',
+                    'Target qualification or delivery timing',
+                  ].map((item) => <li key={item} className="flex gap-3 text-[13px] leading-[1.6] text-[#475467]"><span className="text-[#2F8C67]">—</span>{item}</li>)}
+                </ul>
+                <div className="mt-8 border-t border-[#DCE3EC] pt-6">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Direct email</p>
+                  <a href="mailto:info@puretechmaterials.com" className="mt-2 block text-[14px] font-semibold text-[#12657B]">info@puretechmaterials.com</a>
+                  <p className="mt-3 text-[11.5px] leading-[1.6] text-[#667085]">The form opens an email draft in your mail application; it does not upload confidential files to this website.</p>
+                </div>
               </div>
             </Reveal>
 
-            {/* Form */}
-            <Reveal delay={80}>
-              <div className="bg-white border border-[rgba(0,102,204,0.12)] rounded-[20px] overflow-hidden"
-                style={{ boxShadow:'0 4px 28px rgba(4,13,30,0.07)' }}>
-
-                {/* Form header */}
-                <div className="px-8 py-5 border-b border-[rgba(0,102,204,0.08)]"
-                  style={{ background:'linear-gradient(135deg,#F2F6FB,#E8F0F8)' }}>
-                  <h3 className="text-[17px] font-semibold text-[#0A1628]">Send an Inquiry</h3>
-                  <p className="text-[12.5px] text-[#506880] mt-0.5">Fields marked * are required</p>
+            <Reveal delay={70}>
+              <form onSubmit={submit} className="border border-[#DCE3EC] bg-white">
+                <div className="border-b border-[#DCE3EC] bg-[#F1F5F3] px-7 py-5">
+                  <h2 className="text-[18px] font-semibold text-[#0A1628]">Prepare an enquiry email</h2>
+                  <p className="mt-1 text-[12px] text-[#667085]">Required fields are marked with *</p>
                 </div>
-
-                {done ? (
-                  <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
-                    <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-4">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.2">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-[20px] font-semibold text-[#0A1628] mb-2">Inquiry Submitted</h3>
-                    <p className="text-[14px] text-[#2C4160] max-w-[320px] leading-[1.65]">
-                      A member of our technical or commercial team will respond within one business day.
-                    </p>
+                <div className="space-y-5 p-7">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label="Name *"><input name="name" value={form.name} onChange={onChange} className={inputClass} autoComplete="name" /></Field>
+                    <Field label="Work email *"><input name="email" type="email" value={form.email} onChange={onChange} className={inputClass} autoComplete="email" /></Field>
                   </div>
-                ) : (
-                  <div className="px-8 py-7">
-                    {/* Name */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">First Name *</label>
-                        <input name="fname" value={form.fname} onChange={onChange} placeholder="John" className={inp}/>
-                      </div>
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Last Name</label>
-                        <input name="lname" value={form.lname} onChange={onChange} placeholder="Smith" className={inp}/>
-                      </div>
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Work Email *</label>
-                      <input name="email" type="email" value={form.email} onChange={onChange} placeholder="j.smith@company.com" className={inp}/>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Company *</label>
-                        <input name="company" value={form.company} onChange={onChange} placeholder="TSMC / Samsung / CATL…" className={inp}/>
-                      </div>
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Job Title</label>
-                        <input name="title" value={form.title} onChange={onChange} placeholder="Process Engineer" className={inp}/>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Inquiry Type *</label>
-                        <select name="type" value={form.type} onChange={onChange} className={inp}>
-                          <option value="">Select type…</option>
-                          {TYPES.map(t=><option key={t}>{t}</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Product of Interest</label>
-                        <select name="product" value={form.product} onChange={onChange} className={inp}>
-                          <option value="">Select product…</option>
-                          {PRODS.map(p=><option key={p}>{p}</option>)}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Application / Process Node</label>
-                      <input name="application" value={form.application} onChange={onChange}
-                        placeholder="e.g. G5 IPA for post-CMP SRD, PGMEA for ArF litho, DMC for Li-ion electrolyte…"
-                        className={inp}/>
-                    </div>
-
-                    <div className="mb-5">
-                      <label className="block text-[12px] font-semibold text-[#0A1628] mb-1.5">Message</label>
-                      <textarea name="message" value={form.message} onChange={onChange} rows={5}
-                        placeholder="Describe your requirement, process context, volume, or technical question in detail."
-                        className={`${inp} resize-y min-h-[110px]`}/>
-                    </div>
-
-                    {error && (
-                      <p className="text-[12.5px] text-red-600 mb-4 bg-red-50 border border-red-100 rounded-[8px] px-4 py-2.5">{error}</p>
-                    )}
-
-                    <button onClick={submit} disabled={loading}
-                      className="w-full py-3.5 rounded-[9px] text-[14.5px] font-semibold border-none cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 text-white"
-                      style={{ background:loading?'#5599DD':'#0066CC' }}>
-                      {loading ? (
-                        <>
-                          <svg className="animate-spin" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-                          </svg>
-                          Sending…
-                        </>
-                      ) : (
-                        <>
-                          Send Inquiry
-                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <path d="M2.5 7.5h10M8 3l4.5 4.5L8 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                          </svg>
-                        </>
-                      )}
-                    </button>
-                    <p className="text-[11px] text-[#8BA8C0] text-center mt-3">
-                      We never share your information with third parties.
-                    </p>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label="Company *"><input name="company" value={form.company} onChange={onChange} className={inputClass} autoComplete="organization" /></Field>
+                    <Field label="Country / region"><input name="country" value={form.country} onChange={onChange} className={inputClass} autoComplete="country-name" /></Field>
                   </div>
-                )}
-              </div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label="Enquiry type *"><select name="type" value={form.type} onChange={onChange} className={inputClass}><option value="">Select…</option>{enquiryTypes.map((item) => <option key={item}>{item}</option>)}</select></Field>
+                    <Field label="Product or family"><select name="product" value={form.product} onChange={onChange} className={inputClass}><option value="">Select…</option>{products.map((item) => <option key={item}>{item}</option>)}</select></Field>
+                  </div>
+                  <Field label="Application / process"><input name="application" value={form.application} onChange={onChange} placeholder="What will the material be used for?" className={inputClass} /></Field>
+                  <Field label="Current or target specification"><textarea name="specification" value={form.specification} onChange={onChange} rows={3} placeholder="List critical parameters, methods or an incumbent grade." className={`${inputClass} resize-y`} /></Field>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <Field label="Packaging"><input name="packaging" value={form.packaging} onChange={onChange} placeholder="e.g. 20 L" className={inputClass} /></Field>
+                    <Field label="Annual volume"><input name="volume" value={form.volume} onChange={onChange} placeholder="Estimate" className={inputClass} /></Field>
+                    <Field label="Target timing"><input name="timing" value={form.timing} onChange={onChange} placeholder="Month / quarter" className={inputClass} /></Field>
+                  </div>
+                  <Field label="Additional context"><textarea name="message" value={form.message} onChange={onChange} rows={4} placeholder="Document checklist, sample quantity, qualification plan or commercial notes." className={`${inputClass} resize-y`} /></Field>
+                  {error && <p className="border border-[#FDA29B] bg-[#FEF3F2] px-4 py-3 text-[12.5px] text-[#B42318]">{error}</p>}
+                  <button type="submit" className="w-full bg-[#12657B] px-6 py-3.5 text-[14px] font-semibold text-white hover:bg-[#2F8C67]">Open email draft</button>
+                  <p className="text-center text-[11px] leading-[1.55] text-[#667085]">Review the draft and add attachments in your email application before sending.</p>
+                </div>
+              </form>
             </Reveal>
           </div>
         </Container>
       </section>
     </>
   )
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return <label className="block text-[12px] font-semibold text-[#0A1628]">{label}<span className="mt-1.5 block font-normal">{children}</span></label>
 }
