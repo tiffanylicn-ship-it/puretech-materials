@@ -219,4 +219,19 @@ export const productCategoryPages: ProductCategoryPage[] = [
     ],
     selectionNotes: ['Formulation or process function', 'Compatibility and impurity priorities', 'Pilot-to-production transfer', 'Custom specification and supply volume'],
   },
+  {
+    slug: 'custom-supply',
+    title: 'Custom Chemical Supply',
+    metaTitle: 'Custom Chemical Supply | Bulk, Packaging & Specification Solutions',
+    description: 'Bulk chemicals, customer-defined specifications, packaging programmes and long-term supply planning for industrial and distributor projects.',
+    headline: 'Custom supply begins with a controlled commercial and technical brief',
+    image: '/images/puretech/manufacturing.jpg',
+    productIds: [],
+    groups: [
+      { title: 'Bulk supply', items: ['Bulk IPA', 'Bulk Ethanol', 'Bulk Methanol', 'Bulk Acetone'] },
+      { title: 'Packaging programmes', items: ['Drums', 'IBCs', 'Customer-specific packaging review'] },
+      { title: 'Commercial programmes', items: ['Private Label', 'Custom Specification', 'Long-Term Supply'] },
+    ],
+    selectionNotes: ['Product and application scope', 'Target specification and methods', 'Pack, label and destination', 'Forecast, qualification stage and timing'],
+  },
 ]

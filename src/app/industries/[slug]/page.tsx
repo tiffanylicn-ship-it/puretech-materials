@@ -13,12 +13,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const industry = industries.find((item) => item.slug === slug)
   if (!industry) return { title: 'Not Found' }
+  const url = `https://puretechmaterials.com/industries/${industry.slug}`
+  const image = 'https://puretechmaterials.com/images/puretech/applications.jpg'
 
   return {
     title: industry.metaTitle,
     description: industry.metaDescription,
     keywords: industry.keywords.join(', '),
-    alternates: { canonical: `https://puretechmaterials.com/industries/${industry.slug}` },
+    alternates: { canonical: url },
+    openGraph: { title: industry.metaTitle, description: industry.metaDescription, type: 'website', url, images: [{ url: image, alt: `${industry.title} chemical application guide` }] },
+    twitter: { card: 'summary_large_image', title: industry.metaTitle, description: industry.metaDescription, images: [image] },
   }
 }
 

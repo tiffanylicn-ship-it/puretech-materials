@@ -6,6 +6,7 @@ import { Container, Eyebrow, GradeBadge, GradeChip } from '@/components/ui/index
 import { Reveal } from '@/components/ui/Reveal'
 import { GradeCompareChart } from '@/components/ui/GradeChart'
 import { coreProductSeoPages, coreProductSeoPath } from '@/lib/core-seo-pages'
+import { productPagesV3 } from '@/lib/product-pages-v3'
 import {
   ALL_CATEGORY_META,
   allProductsWithG1,
@@ -26,10 +27,19 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params
   const product = allProductsWithG1.find((item) => item.id === id)
   if (!product) return { title: 'Product Not Found' }
+  const v3Page = productPagesV3.find((page) => page.productId === product.id)
+  const url = `https://puretechmaterials.com${v3Page ? `/products/${v3Page.slug}` : `/product/${product.id}`}`
+  const visual = categoryVisuals[product.category] ?? categoryVisuals.general
+  const image = `https://puretechmaterials.com${product.id === 'eipa' ? '/images/puretech/electronic-grade-ipa-hero-v2.png' : visual.hero}`
+  const title = v3Page?.seoTitle ?? `${product.nameEn} | CAS ${product.cas} | PureTech Materials`
+  const description = v3Page?.metaDescription ?? productIntroduction(product).slice(0, 155)
 
   return {
-    title: `${product.nameEn} | CAS ${product.cas} | PureTech Materials`,
-    description: productIntroduction(product).slice(0, 155),
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, type: 'website', url, images: [{ url: image, alt: `${product.nameEn} high-purity chemical material` }] },
+    twitter: { card: 'summary_large_image', title, description, images: [image] },
   }
 }
 
@@ -57,6 +67,8 @@ const categoryVisuals: Record<string, { hero: string; application: string }> = {
 }
 
 function productPath(productId: string) {
+  const v3Page = productPagesV3.find((page) => page.productId === productId)
+  if (v3Page) return `/products/${v3Page.slug}`
   const seoPage = coreProductSeoPages.find((page) => page.productId === productId)
   return seoPage ? coreProductSeoPath(seoPage) : `/product/${productId}`
 }

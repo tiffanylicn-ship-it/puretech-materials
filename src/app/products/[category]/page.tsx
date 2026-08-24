@@ -8,14 +8,33 @@ import { productCategoryPages } from '@/lib/architecture-content'
 import { coreProductSeoPages, coreProductSeoPath, findCoreProductSeoPath } from '@/lib/core-seo-pages'
 import { allProductsWithG1, type GradeKey } from '@/lib/products'
 import { primaryApplication } from '@/lib/application-finder'
+import { ProductDetailContent, type ProductDetailEditorial } from '@/app/product/[id]/page'
+import { PortfolioProductPage } from '@/components/product/PortfolioProductPage'
+import { findProductPageV3, productPagesV3 } from '@/lib/product-pages-v3'
 
 export function generateStaticParams() {
-  return productCategoryPages.map((category) => ({ category: category.slug }))
+  return [
+    ...productCategoryPages.map((category) => ({ category: category.slug })),
+    ...productPagesV3.map((product) => ({ category: product.slug })),
+  ]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }): Promise<Metadata> {
   const { category: slug } = await params
   const category = productCategoryPages.find((item) => item.slug === slug)
+  const productPage = findProductPageV3(slug)
+  if (productPage) {
+    const url = `https://puretechmaterials.com/products/${productPage.slug}`
+    const image = `https://puretechmaterials.com${productPage.image}`
+    return {
+      title: productPage.seoTitle,
+      description: productPage.metaDescription,
+      keywords: productPage.keywords,
+      alternates: { canonical: url },
+      openGraph: { title: productPage.seoTitle, description: productPage.metaDescription, type: 'website', url, images: [{ url: image, alt: `${productPage.name} manufacturing and application` }] },
+      twitter: { card: 'summary_large_image', title: productPage.seoTitle, description: productPage.metaDescription, images: [image] },
+    }
+  }
   if (!category) return { title: 'Product Category Not Found' }
   return {
     title: category.metaTitle,
@@ -27,11 +46,32 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
 export default async function ProductCategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category: slug } = await params
   const category = productCategoryPages.find((item) => item.slug === slug)
+  const productPage = findProductPageV3(slug)
+  if (productPage) {
+    if (!productPage.productId) return <PortfolioProductPage product={productPage} />
+    const product = allProductsWithG1.find((item) => item.id === productPage.productId)
+    if (!product) return <PortfolioProductPage product={productPage} />
+    const editorial: ProductDetailEditorial = {
+      categoryLabel: productPage.categoryLabel,
+      categoryHref: productPage.categoryHref,
+      headline: productPage.h1,
+      intro: productPage.shortDescription,
+      lead: productPage.applications[0],
+      fitTitle: `Qualify ${productPage.name} around the process`,
+      fitSummary: 'The product name begins the discussion. Critical attributes, test methods, packaging and routine supply conditions determine whether a candidate is useful.',
+      buyerNotes: productPage.applications.slice(0, 3).map((application) => ({ title: application, detail: 'Review the current specification and representative sample against the actual process and qualified baseline.' })),
+      selectionQuestions: ['What role does the material perform in the process?', 'Which limits and methods control customer acceptance?', 'What sample and production pack represent routine use?', 'Which destination, documents, annual demand and timing apply?'],
+    }
+    return <ProductDetailContent product={product} editorial={editorial} />
+  }
   if (!category) notFound()
   const products = category.productIds
     .map((id) => allProductsWithG1.find((product) => product.id === id))
     .filter((product): product is (typeof allProductsWithG1)[number] => Boolean(product))
   const supplementaryPages = coreProductSeoPages.filter((page) => page.categorySlug === category.slug && !page.productId)
+  const v3CategoryMap = { 'electronic-materials': 'electronic', 'high-purity-solvents': 'solvents', 'pharmaceutical-solvents': 'pharma', 'trace-analysis': 'trace', 'custom-supply': 'custom' } as const
+  const v3Category = v3CategoryMap[category.slug as keyof typeof v3CategoryMap]
+  const v3Pages = v3Category ? productPagesV3.filter((page) => page.category === v3Category) : []
 
   return (
     <>
@@ -81,7 +121,17 @@ export default async function ProductCategoryPage({ params }: { params: Promise<
         <Container>
           <Reveal><Eyebrow>Products</Eyebrow><h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">Products in this category</h2><p className="mt-4 max-w-[760px] text-[14px] leading-[1.7] text-[#475467]">Use these pages for initial screening. Confirm the current specification, grade availability, documentation and pack before qualification.</p></Reveal>
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product, index) => {
+            {v3Pages.map((page, index) => (
+              <Reveal key={page.slug} delay={(index % 6) * 40}>
+                <Link href={`/products/${page.slug}`} className="group flex h-full flex-col border border-[#DCE3EC] bg-white p-5 text-[#0A1628] no-underline hover:border-[#9FB8C6]">
+                  <span className="w-fit border border-[#BFD4CD] bg-[#F1F8F5] px-2 py-1 font-mono text-[9.5px] font-semibold text-[#2F6B55]">{page.id}</span>
+                  <h3 className="mt-5 text-[15px] font-semibold leading-snug group-hover:text-[#12657B]">{page.name}</h3>
+                  <p className="mt-3 flex-1 text-[12.5px] leading-[1.65] text-[#475467]">{page.applications.slice(0, 3).join(' · ')}</p>
+                  <span className="mt-5 border-t border-[#EAECF0] pt-3 text-[12px] font-semibold text-[#12657B]">View product →</span>
+                </Link>
+              </Reveal>
+            ))}
+            {v3Pages.length === 0 && products.map((product, index) => {
               const grades = product.grades.filter((grade) => grade.startsWith('G')).slice(0, 3)
               const displayed = grades.length > 0 ? grades : product.grades.slice(0, 2)
               return (
@@ -96,7 +146,7 @@ export default async function ProductCategoryPage({ params }: { params: Promise<
                 </Reveal>
               )
             })}
-            {supplementaryPages.map((page, index) => (
+            {v3Pages.length === 0 && supplementaryPages.map((page, index) => (
               <Reveal key={page.slug} delay={((products.length + index) % 6) * 40}>
                 <Link href={coreProductSeoPath(page)} className="group flex h-full flex-col border border-[#BFD4CD] bg-[#F7FBF9] p-5 text-[#0A1628] no-underline hover:border-[#70A590]">
                   <span className="w-fit border border-[#BFD4CD] px-2 py-1 font-mono text-[10px] font-semibold text-[#12657B]">Technical review</span>

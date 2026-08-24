@@ -52,9 +52,9 @@ const productFamilies = [
   },
   {
     no: "05",
-    title: "Specialty Chemicals",
-    text: "Lithography, polar aprotic and carbonate chemistry for advanced manufacturing processes.",
-    href: "/products/specialty-chemicals",
+    title: "Custom Chemical Supply",
+    text: "Customer-defined specifications, packaging, private-label and long-term supply programmes.",
+    href: "/products/custom-supply",
   },
 ];
 

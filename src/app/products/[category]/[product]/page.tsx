@@ -22,17 +22,21 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
   const { category, product } = await params
   const page = findCoreProductSeoPage(category, product)
   if (!page) return { title: 'Product Page Not Found' }
+  const url = `https://puretechmaterials.com${coreProductSeoPath(page)}`
+  const image = `https://puretechmaterials.com${page.categorySlug === 'trace-analysis' ? '/images/puretech/trace-analysis.jpg' : page.categorySlug === 'electronic-materials' ? '/images/puretech/electronic-materials.jpg' : '/images/puretech/high-purity-solvents.jpg'}`
 
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    alternates: { canonical: `https://puretechmaterials.com${coreProductSeoPath(page)}` },
+    alternates: { canonical: url },
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
       type: 'website',
-      url: `https://puretechmaterials.com${coreProductSeoPath(page)}`,
+      url,
+      images: [{ url: image, alt: `${page.productName} chemical material` }],
     },
+    twitter: { card: 'summary_large_image', title: page.metaTitle, description: page.metaDescription, images: [image] },
   }
 }
 

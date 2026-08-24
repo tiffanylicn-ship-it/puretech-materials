@@ -14,6 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return { title: 'Article Not Found' }
+  const image = `https://puretechmaterials.com${post.image}`
+  const url = `https://puretechmaterials.com/blog/${post.slug}`
   return {
     title: post.metaTitle,
     description: post.metaDescription,
@@ -23,10 +25,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.metaDescription,
       type: 'article',
       publishedTime: post.date,
-      images: [{ url: post.image, alt: post.imageAlt }],
+      url,
+      images: [{ url: image, alt: post.imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metaTitle,
+      description: post.metaDescription,
+      images: [image],
     },
     alternates: {
-      canonical: `https://puretechmaterials.com/blog/${post.slug}`,
+      canonical: url,
     },
   }
 }

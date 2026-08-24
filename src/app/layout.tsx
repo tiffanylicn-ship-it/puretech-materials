@@ -6,11 +6,11 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://puretechmaterials.com"),
   title: {
-    default: "PURETECHMATERIALS | High-Purity Chemical Materials",
+    default: "PURETECHMATERIALS | High Purity Chemical Materials Manufacturer",
     template: "%s | PURETECHMATERIALS",
   },
   description:
-    "High-purity solvents, electronic materials, pharmaceutical-grade chemicals and customized supply solutions for demanding industrial applications.",
+    "PURETECHMATERIALS supplies high purity solvents, electronic materials, pharmaceutical solvents and customized chemical solutions for global industries.",
   keywords: [
     "electronic grade IPA",
     "PGMEA",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "PURETECHMATERIALS | High-Purity Chemical Materials",
+    title: "PURETECHMATERIALS | High Purity Chemical Materials Manufacturer",
     description:
-      "High-purity chemical materials for electronics, pharmaceutical manufacturing, trace analysis and advanced industry.",
+      "High purity solvents, electronic materials, pharmaceutical solvents and customized chemical solutions for global industries.",
     siteName: "PURETECHMATERIALS",
     images: [
       {

@@ -9,6 +9,18 @@ export const metadata: Metadata = {
   title: 'Chemical Solutions for Advanced Industries',
   description: 'High-purity solvents and specialty chemical materials for semiconductor, pharmaceutical, battery, analytical and industrial manufacturing applications.',
   alternates: { canonical: 'https://puretechmaterials.com/applications' },
+  openGraph: {
+    title: 'Chemical Solutions for Advanced Industries | PURETECHMATERIALS',
+    description: 'Navigate high-purity chemical materials by process environment and application.',
+    url: 'https://puretechmaterials.com/applications',
+    images: [{ url: 'https://puretechmaterials.com/images/puretech/applications.jpg', alt: 'High-purity chemical applications in advanced industry' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chemical Solutions for Advanced Industries | PURETECHMATERIALS',
+    description: 'Navigate high-purity chemical materials by process environment and application.',
+    images: ['https://puretechmaterials.com/images/puretech/applications.jpg'],
+  },
 }
 
 export default function ApplicationsPage() {

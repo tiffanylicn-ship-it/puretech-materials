@@ -16,17 +16,26 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
   const { slug } = await params
   const application = findApplicationPage(slug)
   if (!application) return { title: 'Application Page Not Found' }
+  const image = `https://puretechmaterials.com${application.image}`
+  const url = `https://puretechmaterials.com${applicationPath(application)}`
 
   return {
     title: application.metaTitle,
     description: application.metaDescription,
     keywords: application.keywords,
-    alternates: { canonical: `https://puretechmaterials.com${applicationPath(application)}` },
+    alternates: { canonical: url },
     openGraph: {
       title: application.metaTitle,
       description: application.metaDescription,
       type: 'website',
-      url: `https://puretechmaterials.com${applicationPath(application)}`,
+      url,
+      images: [{ url: image, alt: application.imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: application.metaTitle,
+      description: application.metaDescription,
+      images: [image],
     },
   }
 }

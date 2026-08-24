@@ -14,8 +14,16 @@ export const metadata: Metadata = {
     description: 'Flexible production, custom specifications, private-label packaging and planned chemical supply programmes.',
     type: 'website',
     url: 'https://puretechmaterials.com/oem-custom-chemical-solutions',
+    images: [{ url: 'https://puretechmaterials.com/images/puretech/manufacturing.jpg', alt: 'Custom chemical manufacturing and private-label packaging' }],
   },
+  twitter: { card: 'summary_large_image', title: 'Custom Chemical Manufacturing Solutions | PURETECHMATERIALS', description: 'Flexible production, custom specifications, private-label packaging and planned chemical supply programmes.', images: ['https://puretechmaterials.com/images/puretech/manufacturing.jpg'] },
 }
+
+const oemRoutes = [
+  ['Private Label Chemicals', '/oem/private-label'],
+  ['Custom Packaging', '/oem/custom-packaging'],
+  ['Bulk Supply Programmes', '/oem/bulk-supply'],
+]
 
 const reasons = [
   ['01', 'Engineering support', 'Technical review from purification route and specification priorities through packaging and scale transfer.'],
@@ -84,6 +92,14 @@ export default function OemCustomChemicalSolutionsPage() {
               <Link href="/contact" className="bg-white px-6 py-3.5 text-[13px] font-semibold text-[#08283b] no-underline hover:bg-[#DDEDE4]">Request OEM consultation</Link>
               <Link href="#oem-capabilities" className="border border-white/25 px-6 py-3.5 text-[13px] font-semibold text-white no-underline hover:bg-white/10">Explore capabilities</Link>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-[#DCE3EC] bg-white py-7">
+        <Container>
+          <div className="grid grid-cols-1 gap-px bg-[#DCE3EC] md:grid-cols-3">
+            {oemRoutes.map(([label, href], index) => <Link key={href} href={href} className="group flex items-center justify-between bg-[#F7F9FC] px-5 py-4 text-[#102A43] no-underline hover:bg-[#EFF7F3]"><span><span className="mr-3 font-mono text-[10px] text-[#2F8C67]">0{index + 1}</span><span className="text-[13px] font-semibold">{label}</span></span><span className="text-[#2F8C67]">→</span></Link>)}
           </div>
         </Container>
       </section>

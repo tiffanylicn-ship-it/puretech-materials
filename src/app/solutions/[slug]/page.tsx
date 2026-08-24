@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const solution = solutionRoutes.find((item) => item.slug === slug)
   if (!solution) return { title: 'Solution Not Found' }
-  return { title: solution.metaTitle, description: solution.metaDescription, alternates: { canonical: `https://puretechmaterials.com/solutions/${solution.slug}` } }
+  const url = `https://puretechmaterials.com/solutions/${solution.slug}`
+  const image = `https://puretechmaterials.com${solution.image}`
+  return { title: solution.metaTitle, description: solution.metaDescription, alternates: { canonical: url }, openGraph: { title: solution.metaTitle, description: solution.metaDescription, type: 'website', url, images: [{ url: image, alt: `${solution.title} chemical solution` }] }, twitter: { card: 'summary_large_image', title: solution.metaTitle, description: solution.metaDescription, images: [image] } }
 }
 
 export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {

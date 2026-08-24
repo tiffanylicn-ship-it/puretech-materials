@@ -83,10 +83,14 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
   const { slug } = await params
   const page = pages.find((item) => item.slug === slug)
   if (!page) return { title: 'Custom Solution Not Found' }
+  const url = `https://puretechmaterials.com/custom-solutions/${page.slug}`
+  const image = `https://puretechmaterials.com${page.image}`
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    alternates: { canonical: `https://puretechmaterials.com/custom-solutions/${page.slug}` },
+    alternates: { canonical: url },
+    openGraph: { title: page.metaTitle, description: page.metaDescription, type: 'website', url, images: [{ url: image, alt: page.imageAlt }] },
+    twitter: { card: 'summary_large_image', title: page.metaTitle, description: page.metaDescription, images: [image] },
   }
 }
 

@@ -14,13 +14,21 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params
   const page = findMarketPage(slug)
   if (!page) return { title: 'Market Page Not Found' }
-  return { title: page.seoTitle, description: page.description, alternates: { canonical: `https://puretechmaterials.com/markets/${page.slug}` } }
+  const url = `https://puretechmaterials.com/markets/${page.slug}`
+  const image = `https://puretechmaterials.com${page.image}`
+  return {
+    title: page.seoTitle,
+    description: page.description,
+    alternates: { canonical: url },
+    openGraph: { title: page.seoTitle, description: page.description, type: 'website', url, images: [{ url: image, alt: `${page.name} high-purity chemical market` }] },
+    twitter: { card: 'summary_large_image', title: page.seoTitle, description: page.description, images: [image] },
+  }
 }
 
 const solutionGroups = [
-  { title: 'Electronic & advanced materials', products: [['Electronic Grade IPA', '/products/electronic-grade-ipa', 'Cleaning and contamination-sensitive processes'], ['PGMEA', '/products/pgmea', 'Lithography and compatible coating systems'], ['NMP', '/products/nmp-solvent', 'Electronics and advanced-material processing']] },
-  { title: 'High-purity & process solvents', products: [['High-Purity IPA', '/products/ipa-solvent', 'Cleaning, process and formulation work'], ['Ethanol', '/products/ethanol-solvent', 'Process, extraction and controlled cleaning'], ['Acetone', '/products/acetone', 'Compatible cleaning, washing and work-up']] },
-  { title: 'Trace analysis chemicals', products: [['Trace Grade Nitric Acid', '/products/trace-grade-nitric-acid', 'Digestion and elemental sample preparation'], ['Trace Grade Hydrochloric Acid', '/products/trace-grade-hydrochloric-acid', 'Stabilisation and defined digestion chemistry'], ['Ultrapure Water', '/products/ultrapure-water', 'Blank, dilution and contamination-sensitive work']] },
+  { title: 'Electronic & advanced materials', products: [['Electronic Grade IPA', '/products/electronic-grade-ipa', 'Cleaning and contamination-sensitive processes'], ['PGMEA', '/products/pgmea', 'Lithography and compatible coating systems'], ['NMP', '/products/nmp', 'Electronics and advanced-material processing']] },
+  { title: 'High-purity & process solvents', products: [['High-Purity IPA', '/products/high-purity-ipa', 'Cleaning, process and formulation work'], ['Ethanol', '/products/high-purity-ethanol', 'Process, extraction and controlled cleaning'], ['Acetone', '/products/acetone', 'Compatible cleaning, washing and work-up']] },
+  { title: 'Trace analysis chemicals', products: [['Trace Grade Nitric Acid', '/products/trace-nitric-acid', 'Digestion and elemental sample preparation'], ['Trace Grade Hydrochloric Acid', '/products/trace-hydrochloric-acid', 'Stabilisation and defined digestion chemistry'], ['Ultrapure Water', '/products/ultrapure-water', 'Blank, dilution and contamination-sensitive work']] },
 ]
 
 export default async function MarketDetailPage({ params }: { params: Params }) {

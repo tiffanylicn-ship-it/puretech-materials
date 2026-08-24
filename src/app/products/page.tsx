@@ -3,8 +3,21 @@ import { Suspense } from 'react'
 import ProductsClient from './ProductsClient'
 
 export const metadata: Metadata = {
-  title:'Chemical Product Finder by Application | PureTech Materials',
-  description:'Find solvents and process chemicals by wafer cleaning, lithography, battery, HPLC, LC-MS, pharmaceutical processing and precision-cleaning applications.',
+  title: 'High Purity Chemical Materials',
+  description: 'Explore high purity solvents, electronic materials, pharmaceutical solvents, trace-analysis chemicals and custom supply programmes by application, grade and packaging.',
+  alternates: { canonical: 'https://puretechmaterials.com/products' },
+  openGraph: {
+    title: 'High Purity Chemical Materials | PURETECHMATERIALS',
+    description: 'Find chemical materials by application, grade, product family and packaging route.',
+    url: 'https://puretechmaterials.com/products',
+    images: [{ url: 'https://puretechmaterials.com/images/puretech/high-purity-solvents.jpg', alt: 'High-purity chemical materials and controlled packaging' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'High Purity Chemical Materials | PURETECHMATERIALS',
+    description: 'Find chemical materials by application, grade, product family and packaging route.',
+    images: ['https://puretechmaterials.com/images/puretech/high-purity-solvents.jpg'],
+  },
 }
 
 export default function ProductsPage() {

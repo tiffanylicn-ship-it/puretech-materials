@@ -7,7 +7,17 @@ import { Reveal } from '@/components/ui/Reveal'
 export const metadata: Metadata = {
   title: 'Quality, Documentation & Compliance Support',
   description: 'PureTech quality approach for specifications, analytical methods, batch traceability, CoA, SDS, change control and market-specific compliance support.',
+  alternates: { canonical: 'https://puretechmaterials.com/quality' },
+  openGraph: { title: 'Quality, Documentation & Compliance Support | PURETECHMATERIALS', description: 'Review testing, documentation, compliance and traceability routes for high-purity chemical supply.', type: 'website', url: 'https://puretechmaterials.com/quality', images: [{ url: 'https://puretechmaterials.com/images/puretech/quality-control.jpg', alt: 'High-purity chemical quality testing and documentation' }] },
+  twitter: { card: 'summary_large_image', title: 'Quality, Documentation & Compliance Support | PURETECHMATERIALS', description: 'Review testing, documentation, compliance and traceability routes for high-purity chemical supply.', images: ['https://puretechmaterials.com/images/puretech/quality-control.jpg'] },
 }
+
+const qualityRoutes = [
+  ['Testing Capability', '/quality/testing'],
+  ['Quality Documentation', '/quality/documentation'],
+  ['Compliance Support', '/quality/compliance'],
+  ['Batch Traceability', '/quality/traceability'],
+]
 
 const qualityPillars = [
   ['Controlled specification', 'Acceptance should be based on an agreed specification with defined parameters, methods, units and limits.'],
@@ -38,6 +48,14 @@ export default function QualityPage() {
             <Eyebrow light>Quality & compliance</Eyebrow>
             <h1 className="mt-5 font-serif text-[clamp(34px,4.5vw,56px)] leading-[1.08] tracking-[-0.7px]">Quality should be reviewable, not simply claimed</h1>
             <p className="mt-6 max-w-[640px] text-[16px] leading-[1.75] text-white/68">Technical buyers need a specification they can compare, methods they can understand, lot records they can trace and documents their quality system can control.</p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-[#DCE3EC] bg-white py-7">
+        <Container>
+          <div className="grid grid-cols-1 gap-px bg-[#DCE3EC] sm:grid-cols-2 lg:grid-cols-4">
+            {qualityRoutes.map(([label, href], index) => <Link key={href} href={href} className="group flex items-center justify-between bg-[#F7F9FC] px-5 py-4 text-[#102A43] no-underline hover:bg-[#EFF7F3]"><span><span className="mr-3 font-mono text-[10px] text-[#2F8C67]">0{index + 1}</span><span className="text-[12.5px] font-semibold">{label}</span></span><span className="text-[#2F8C67]">→</span></Link>)}
           </div>
         </Container>
       </section>

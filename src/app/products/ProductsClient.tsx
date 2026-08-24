@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { Container, Eyebrow, GradeChip } from '@/components/ui/index'
 import { allProductsWithG1, type GradeKey, type Product } from '@/lib/products'
 import { applicationRoutes, primaryApplication, productSearchText } from '@/lib/application-finder'
+import { productPagesV3 } from '@/lib/product-pages-v3'
 
 const portfolioCategories = [
   { key: 'all', label: 'All products' },
@@ -75,7 +76,7 @@ const categoryCards = [
   { title: 'High-Purity Solvents', description: 'Alcohols, ketones, esters, ethers and specialty solvents for controlled processes.', products: 'IPA · Methanol · Acetone · THF · DMSO', image: '/images/puretech/high-purity-solvents.jpg', href: '/products/high-purity-solvents' },
   { title: 'Pharmaceutical Solvents', description: 'Process solvents for synthesis, work-up, extraction and controlled manufacturing.', products: 'Ethanol · IPA · Acetone · Ethyl Acetate', image: '/images/puretech/pharma-gmp.jpg', href: '/products/pharmaceutical-solvents' },
   { title: 'Trace Analysis', description: 'Acids, oxidants and solvents for contamination-sensitive analytical workflows.', products: 'Nitric Acid · HCl · H₂O₂ · Acetonitrile', image: '/images/puretech/trace-analysis.jpg', href: '/products/trace-analysis' },
-  { title: 'Specialty Chemicals', description: 'Lithography, polar aprotic and carbonate chemistry for advanced applications.', products: 'PGMEA · NMP · DMSO · DMC · EMC', image: '/images/puretech/applications.jpg', href: '/products/specialty-chemicals' },
+  { title: 'Custom Chemical Supply', description: 'Custom specifications, mixtures, pack formats and supply programmes for qualified industrial use.', products: 'Custom purity · Blends · Private label · Bulk supply', image: '/images/puretech/applications.jpg', href: '/products/custom-supply' },
 ]
 
 const solutionCards = [
@@ -86,6 +87,12 @@ const solutionCards = [
 ]
 
 const featuredIds = ['eipa', 'pgmea', 'nmp', 'acetonitrile', 'dmc', 'hydrogen-peroxide']
+
+const productPageById = new Map(
+  productPagesV3
+    .filter((page) => page.productId)
+    .map((page) => [page.productId as string, `/products/${page.slug}`]),
+)
 
 function matchesCategory(product: Product, key: string) {
   if (key === 'all') return true
@@ -121,7 +128,7 @@ function ProductDatabaseCard({ product }: { product: Product }) {
   const grades = product.grades.filter((grade) => grade.startsWith('G')).slice(0, 3)
   const shownGrades = grades.length > 0 ? grades : product.grades.slice(0, 2)
   return (
-    <Link href={`/product/${product.id}`} className="group flex h-full flex-col rounded-2xl border border-[#D8E0E5] bg-white p-5 text-[#1F2933] no-underline shadow-[0_2px_10px_rgba(16,42,67,0.04)] transition hover:border-[#9FB6AD] hover:shadow-[0_8px_24px_rgba(16,42,67,0.08)]">
+    <Link href={productPageById.get(product.id) ?? `/product/${product.id}`} className="group flex h-full flex-col rounded-2xl border border-[#D8E0E5] bg-white p-5 text-[#1F2933] no-underline shadow-[0_2px_10px_rgba(16,42,67,0.04)] transition hover:border-[#9FB6AD] hover:shadow-[0_8px_24px_rgba(16,42,67,0.08)]">
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-wrap gap-1.5">{shownGrades.map((grade) => <GradeChip key={grade} g={grade as GradeKey} />)}</div>
         <span className="font-mono text-[10px] text-[#98A2B3]">{product.no.toString().padStart(2, '0')}</span>

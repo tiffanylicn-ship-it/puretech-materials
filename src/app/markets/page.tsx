@@ -15,10 +15,11 @@ const regions = [
   ['North America', 'Advanced manufacturing, biotech, analytical and industrial projects with site-led qualification.', '/markets/north-america', '/images/puretech/applications.jpg'],
   ['Japan & Korea', 'Precision electronics and advanced-material programmes focused on specification and change control.', '/markets/japan-korea', '/images/puretech/electronic-materials.jpg'],
   ['Southeast Asia', 'Electronics, pharmaceutical, industrial and distribution projects with destination-led logistics review.', '/markets/southeast-asia', '/images/puretech/manufacturing.jpg'],
+  ['Middle East', 'Industrial, pharmaceutical, analytical and distribution projects with destination-led packaging and document review.', '/markets/middle-east', '/images/puretech/manufacturing.jpg'],
 ]
 
 const countries = [
-  ['Germany', '/markets/germany'], ['France', '/markets/france'], ['Netherlands', '/markets/netherlands'], ['United Kingdom', '/markets/united-kingdom'], ['Italy', '/markets/italy'], ['Spain', '/markets/spain'], ['United States', '/markets/usa'], ['Canada', '/markets/canada'], ['Japan', '/markets/japan'], ['South Korea', '/markets/south-korea'],
+  ['Germany', '/markets/germany'], ['France', '/markets/france'], ['Netherlands', '/markets/netherlands'], ['United Kingdom', '/markets/uk'], ['Italy', '/markets/italy'], ['Spain', '/markets/spain'], ['United States', '/markets/usa'], ['Canada', '/markets/canada'], ['Japan', '/markets/japan'], ['South Korea', '/markets/south-korea'],
 ]
 
 export default function MarketsPage() {

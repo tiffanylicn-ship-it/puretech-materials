@@ -9,6 +9,7 @@ type NavChild = { label: string; href: string } | { divider: true };
 type NavItem = { label: string; href: string; children?: NavChild[] };
 
 const NAV_ITEMS: NavItem[] = [
+  { label: "Home", href: "/" },
   {
     label: "Products",
     href: "/products",
@@ -17,7 +18,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "High-Purity Solvents", href: "/products/high-purity-solvents" },
       { label: "Pharmaceutical Solvents", href: "/products/pharmaceutical-solvents" },
       { label: "Trace Analysis Chemicals", href: "/products/trace-analysis" },
-      { label: "Specialty Chemicals", href: "/products/specialty-chemicals" },
+      { label: "Custom Chemical Supply", href: "/products/custom-supply" },
       { divider: true },
       { label: "View All Products →", href: "/products" },
     ],
@@ -26,13 +27,12 @@ const NAV_ITEMS: NavItem[] = [
     label: "Applications",
     href: "/applications",
     children: [
-      { label: "Semiconductor & Electronics", href: "/applications/semiconductor" },
-      { label: "Pharmaceutical Manufacturing", href: "/applications/pharmaceutical" },
-      { label: "Battery & Advanced Materials", href: "/applications/battery-materials" },
-      { label: "Laboratory & Analytical Testing", href: "/applications/laboratory-testing" },
-      { label: "ICP-MS & Trace Analysis", href: "/applications/icp-ms" },
-      { label: "Coatings & Chemical Processing", href: "/applications/coatings" },
-      { label: "Custom Industrial Applications", href: "/applications/industrial-applications" },
+      { label: "Semiconductor Manufacturing", href: "/applications/semiconductor" },
+      { label: "Pharmaceutical Production", href: "/applications/pharmaceutical" },
+      { label: "Electronics Manufacturing", href: "/applications/electronics" },
+      { label: "Chemical Processing", href: "/applications/chemical-processing" },
+      { label: "Laboratory Testing", href: "/applications/laboratory" },
+      { label: "Industrial Cleaning", href: "/applications/industrial-cleaning" },
       { divider: true },
       { label: "View All Applications →", href: "/applications" },
     ],
@@ -40,23 +40,40 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Manufacturing",
     href: "/manufacturing",
+    children: [
+      { label: "Purification Technology", href: "/manufacturing/purification" },
+      { label: "Production Facility", href: "/manufacturing/facility" },
+      { label: "Packaging Capability", href: "/manufacturing/packaging" },
+    ],
   },
   {
     label: "Quality",
     href: "/quality",
+    children: [
+      { label: "Testing Capability", href: "/quality/testing" },
+      { label: "Quality Documentation", href: "/quality/documentation" },
+      { label: "Compliance Support", href: "/quality/compliance" },
+      { label: "Batch Traceability", href: "/quality/traceability" },
+    ],
   },
   {
-    label: "OEM",
+    label: "OEM Solutions",
     href: "/oem-custom-chemical-solutions",
+    children: [
+      { label: "Private Label Chemicals", href: "/oem/private-label" },
+      { label: "Custom Packaging", href: "/oem/custom-packaging" },
+      { label: "Bulk Supply", href: "/oem/bulk-supply" },
+    ],
   },
   {
-    label: "Global Markets",
+    label: "Markets",
     href: "/markets",
     children: [
       { label: "Europe", href: "/markets/europe" },
       { label: "North America", href: "/markets/north-america" },
       { label: "Japan & Korea", href: "/markets/japan-korea" },
       { label: "Southeast Asia", href: "/markets/southeast-asia" },
+      { label: "Middle East", href: "/markets/middle-east" },
       { label: "Distributor Partnership", href: "/markets/distributor-partnership" },
       { divider: true },
       { label: "Global Supply Capability →", href: "/global-chemical-supply" },
@@ -112,7 +129,7 @@ export function Navbar() {
               <li key={item.href} className="nav-item relative">
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 rounded-[7px] px-2.5 py-2.5 text-[12.5px] font-medium no-underline transition-colors ${isActive(item.href) ? "bg-white/10 text-white" : "text-white/75 hover:bg-white/5 hover:text-white"}`}
+                  className={`flex items-center gap-1 rounded-[7px] px-2 py-2.5 text-[11.5px] font-medium no-underline transition-colors ${isActive(item.href) ? "bg-white/10 text-white" : "text-white/75 hover:bg-white/5 hover:text-white"}`}
                 >
                   {item.label}
                   {item.children && (
