@@ -57,7 +57,7 @@ export default function ContactClient() {
       '',
       form.message,
     ].join('\n')
-    window.location.href = `mailto:info@puretechmaterials.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:tiffanylicn@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
   return (
@@ -93,7 +93,7 @@ export default function ContactClient() {
                 </ul>
                 <div className="mt-8 border-t border-[#DCE3EC] pt-6">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Direct email</p>
-                  <a href="mailto:info@puretechmaterials.com" className="mt-2 block text-[14px] font-semibold text-[#12657B]">info@puretechmaterials.com</a>
+                  <a href="mailto:tiffanylicn@gmail.com" className="mt-2 block text-[14px] font-semibold text-[#12657B]">tiffanylicn@gmail.com</a>
                   <p className="mt-3 text-[11.5px] leading-[1.6] text-[#667085]">The form opens an email draft in your mail application; it does not upload confidential files to this website.</p>
                 </div>
               </div>
