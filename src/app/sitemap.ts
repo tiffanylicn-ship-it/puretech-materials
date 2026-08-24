@@ -3,6 +3,7 @@ import { applicationPages } from '@/lib/application-pages'
 import { productCategoryPages, solutionRoutes } from '@/lib/architecture-content'
 import { blogPosts } from '@/lib/blog'
 import { capabilityPagesV3 } from '@/lib/capability-pages-v3'
+import { caseStudies } from '@/lib/case-studies'
 import { industries } from '@/lib/industry-content'
 import { marketPages } from '@/lib/market-pages'
 import { productPagesV3 } from '@/lib/product-pages-v3'
@@ -28,6 +29,7 @@ const primaryRoutes = [
   '/downloads',
   '/faq',
   '/blog',
+  '/case-studies',
   '/industries',
   '/solutions',
   '/custom-solutions',
@@ -49,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...solutionRoutes.map((page) => entry(`/solutions/${page.slug}`, 0.7, 'monthly')),
     ...['chemical-oem', 'bulk-supply'].map((slug) => entry(`/custom-solutions/${slug}`, 0.68, 'monthly')),
     ...blogPosts.map((post) => ({ ...entry(`/blog/${post.slug}`, 0.62, 'yearly'), lastModified: new Date(post.date) })),
+    ...caseStudies.map((study) => entry(`/case-studies/${study.slug}`, 0.68, 'monthly')),
   ]
 
   return Array.from(new Map(entries.map((item) => [item.url, item])).values())

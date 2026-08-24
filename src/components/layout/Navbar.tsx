@@ -88,6 +88,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Application Guides", href: "/applications" },
       { label: "Product Selection Guides", href: "/guides" },
       { label: "Industry Insights & Articles", href: "/blog" },
+      { label: "Application Cases", href: "/case-studies" },
       { label: "Regulatory & Compliance", href: "/compliance" },
       { label: "Downloads", href: "/downloads" },
       { label: "Frequently Asked Questions", href: "/faq" },

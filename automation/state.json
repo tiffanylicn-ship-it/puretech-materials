@@ -1,0 +1,9 @@
+{
+  "project": "PURETECHMATERIALS",
+  "timezone": "Europe/London",
+  "cadence": "every 2 days",
+  "articlesPerRun": 2,
+  "lastSuccessfulRun": null,
+  "lastPublishedSlugs": [],
+  "status": "ready"
+}

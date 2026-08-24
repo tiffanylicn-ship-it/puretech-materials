@@ -155,6 +155,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="prose-article" style={{ fontSize: '15.5px', lineHeight: '1.78', color: '#1E3448' }}
                 dangerouslySetInnerHTML={{ __html: post.content }} />
 
+              {post.sources && post.sources.length > 0 && (
+                <div className="mt-10 border border-[#DCE3EC] bg-[#F7F9FC] p-6">
+                  <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Primary sources</p>
+                  <ul className="space-y-3">
+                    {post.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer" className="text-[12.5px] font-semibold text-[#12657B] hover:underline">{source.label} ↗</a></li>)}
+                  </ul>
+                </div>
+              )}
+
               {/* Primary tag list */}
               <div className="mt-10 pt-8" style={{ borderTop: '1px solid rgba(0,102,204,0.1)' }}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#8BA8C0] mb-3">Tags</p>
@@ -195,7 +204,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div>
                   <p className="text-[13.5px] font-semibold text-[#0A1628]">PureTech Materials — Technical Team</p>
                   <p className="text-[13px] text-[#3A5570] mt-1 leading-[1.6]">
-                    Written by process engineers with hands-on experience in semiconductor wet clean, lithography, advanced packaging, and battery manufacturing. PureTech provides SEMI C1 certified electronic grade chemicals for fabs, OSATs, and battery manufacturers worldwide.
+                    Practical technical content for buyers, quality teams and process specialists comparing high-purity chemical specifications, qualification evidence and supply routes. Product claims remain subject to the current controlled specification and project review.
                   </p>
                 </div>
               </div>

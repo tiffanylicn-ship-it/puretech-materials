@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | PURETECHMATERIALS",
   },
   description:
-    "PURETECHMATERIALS supplies high purity solvents, electronic materials, pharmaceutical solvents and customized chemical solutions for global industries.",
+    "PURETECHMATERIALS supplies documented high-purity solvents, electronic materials, pharmaceutical solvents and custom chemical solutions for European and North American industries.",
   keywords: [
     "electronic grade IPA",
     "PGMEA",
@@ -21,12 +21,18 @@ export const metadata: Metadata = {
     "NMP",
     "DMC battery grade",
     "HPLC solvents",
+    "high purity chemical supplier Europe",
+    "specialty chemical supplier USA",
+    "REACH chemical supplier",
+    "TSCA chemical import support",
+    "pharmaceutical solvent supplier Europe",
+    "bulk solvent supplier North America",
   ],
   openGraph: {
     type: "website",
     title: "PURETECHMATERIALS | High Purity Chemical Materials Manufacturer",
     description:
-      "High purity solvents, electronic materials, pharmaceutical solvents and customized chemical solutions for global industries.",
+      "High-purity solvents, electronic materials, pharmaceutical solvents and custom chemical programmes for European, North American and global industries.",
     siteName: "PURETECHMATERIALS",
     images: [
       {

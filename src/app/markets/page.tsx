@@ -5,9 +5,11 @@ import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 
 export const metadata: Metadata = {
-  title: 'Global Markets | High-Purity Chemical Supply',
-  description: 'Regional chemical supply planning for Europe, North America and Asia Pacific, with product, documentation, packaging and partner support.',
+  title: 'Global Markets | High-Purity Chemical Supplier Europe & USA',
+  description: 'High-purity chemical and specialty solvent supply planning for Europe, the USA, Canada and Asia Pacific, with product, REACH, TSCA, documentation and packaging review.',
+  keywords: ['high purity chemical supplier Europe', 'specialty chemical supplier USA', 'bulk solvent supplier North America', 'REACH chemical supplier', 'TSCA chemical import support', 'electronic grade solvent distributor'],
   alternates: { canonical: 'https://puretechmaterials.com/markets' },
+  openGraph: { title: 'Global High-Purity Chemical Markets', description: 'Application-led chemical supply planning for Europe, North America and advanced manufacturing markets.', url: 'https://puretechmaterials.com/markets', images: ['/images/puretech/manufacturing.jpg'] },
 }
 
 const regions = [

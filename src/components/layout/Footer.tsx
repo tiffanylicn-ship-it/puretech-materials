@@ -27,6 +27,7 @@ const COLS = {
     { label: "Regulatory & Compliance", href: "/compliance" },
     { label: "Downloads", href: "/downloads" },
     { label: "Technical Articles", href: "/blog" },
+    { label: "Application Cases", href: "/case-studies" },
     { label: "FAQ", href: "/faq" },
   ],
   Company: [

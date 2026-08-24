@@ -96,6 +96,21 @@ function technicalReading(product: Product) {
   ]
 }
 
+function productQualificationScenarios(product: Product) {
+  if (['electronic', 'photoresist'].includes(product.category)) return [
+    ['European process qualification', `A contamination-sensitive production team compares ${product.nameEn} with its incumbent material using the agreed water, metals, organic-impurity, residue and particle controls.`, 'Supplier CoA and specification data are evaluated alongside a representative process trial and incoming-control plan.'],
+    ['North American second-source review', `A site qualifies ${product.nameEn} for supply resilience without changing its approved process or dispensing route.`, 'The review connects sample identity, production-pack compatibility, analytical comparison and documented change communication.'],
+  ]
+  if (product.category === 'lab' || product.category === 'acid') return [
+    ['Method-blank investigation', `An analytical laboratory checks whether ${product.nameEn} contributes to variability near its working reporting range.`, 'The candidate lot is run through the laboratory’s actual preparation method; supplier data supports but does not replace local blank trending.'],
+    ['Multi-site reagent alignment', `European and US laboratories compare ${product.nameEn} for a shared analytical workflow.`, 'Pack, sampling, storage, element panel and acceptance checks are aligned, followed by verification at each site.'],
+  ]
+  return [
+    ['Process-material second source', `A manufacturer evaluates ${product.nameEn} against the material attributes that influence its reaction, formulation, extraction or cleaning result.`, 'Specification comparison is followed by a representative trial, production-pack review and approval of the document route.'],
+    ['Pack and scale transition', `A qualified small pack of ${product.nameEn} is considered for drum, IBC or another production presentation.`, 'Container compatibility, transfer materials, sampling and receiving controls are reviewed before the pack route changes.'],
+  ]
+}
+
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const product = allProductsWithG1.find((item) => item.id === id)
@@ -124,6 +139,7 @@ export function ProductDetailContent({ product, editorial }: { product: Product;
   const heroImage = product.id === 'eipa' ? '/images/puretech/electronic-grade-ipa-hero-v2.png' : visuals.hero
   const productName = product.nameEn.split('(')[0].trim()
   const reading = technicalReading(product)
+  const qualificationScenarios = productQualificationScenarios(product)
 
   const applicationGroups = [
     { title: 'Semiconductor & electronics', items: product.semiApps, colour: '#0066CC' },
@@ -392,6 +408,13 @@ export function ProductDetailContent({ product, editorial }: { product: Product;
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-[#E4E7EC] py-20">
+        <Container>
+          <Reveal><Eyebrow>Representative application cases</Eyebrow><h2 className="mt-3 max-w-[780px] font-serif text-[31px] text-[#102A43]">A practical evidence route for {productName}</h2><p className="mt-4 max-w-[860px] text-[13.5px] leading-[1.75] text-[#475467]">These are illustrative composite qualification scenarios, not named customer claims. Exact methods, limits and acceptance decisions belong to the customer’s controlled process.</p></Reveal>
+          <div className="mt-9 grid grid-cols-1 gap-5 lg:grid-cols-2">{qualificationScenarios.map(([title, situation, evidence], index) => <Reveal key={title} delay={index * 55}><article className="h-full border border-[#DCE3EC] bg-[#F7F9FC] p-7"><span className="font-mono text-[10px] font-semibold text-[#2F6B55]">CASE 0{index + 1}</span><h3 className="mt-5 font-serif text-[22px] text-[#102A43]">{title}</h3><p className="mt-4 text-[12.8px] leading-[1.72] text-[#475467]">{situation}</p><div className="mt-6 border-l-2 border-[#2F6B55] pl-4"><p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#667085]">Evidence route</p><p className="mt-2 text-[12.2px] leading-[1.68] text-[#475467]">{evidence}</p></div></article></Reveal>)}</div>
         </Container>
       </section>
 

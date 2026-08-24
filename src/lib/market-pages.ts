@@ -40,3 +40,43 @@ export const marketPages: MarketPage[] = [
 export function findMarketPage(slug: string) {
   return marketPages.find((page) => page.slug === slug)
 }
+
+export function marketKeywords(page: MarketPage) {
+  const location = page.name
+  const regional = page.region === 'Europe' || page.slug === 'europe'
+    ? ['REACH chemical supplier', 'EU CLP chemical labelling', 'high purity solvent supplier Europe']
+    : page.region === 'North America' || ['north-america', 'usa', 'canada'].includes(page.slug)
+      ? ['TSCA chemical import support', 'specialty chemical supplier USA', 'bulk solvent supplier North America']
+      : ['global high purity chemical supplier', 'export chemical manufacturer', 'specialty solvent distributor']
+
+  return Array.from(new Set([
+    `high purity chemical supplier ${location}`,
+    `specialty solvent supplier ${location}`,
+    `electronic grade solvent supplier ${location}`,
+    `pharmaceutical solvent supplier ${location}`,
+    `bulk chemical supplier ${location}`,
+    `custom chemical manufacturer ${location}`,
+    ...regional,
+  ]))
+}
+
+export function marketSearchIntents(page: MarketPage) {
+  const location = page.name
+  return [
+    {
+      title: `High-purity chemical supplier in ${location}`,
+      detail: 'Buyers using this search usually need a product shortlist, current specification, lot-document format and a delivery route that can be qualified together.',
+      href: '/products',
+    },
+    {
+      title: `Specialty and bulk solvent supply for ${location}`,
+      detail: 'The useful comparison includes annual demand, production pack, dangerous-goods route, site receiving constraints and continuity expectations—not price alone.',
+      href: '/products/custom-supply',
+    },
+    {
+      title: `Chemical documentation and market support for ${location}`,
+      detail: 'SDS, CoA, specification, label, importer responsibilities and destination status should be reviewed for the actual product and customer route.',
+      href: '/quality/documentation',
+    },
+  ]
+}

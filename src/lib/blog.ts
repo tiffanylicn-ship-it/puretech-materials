@@ -4,6 +4,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 import { faqItems } from "./seo-content"
+import europeUsBlogPosts from "@/data/europe-us-blog-posts.json"
 
 export interface BlogPost {
   slug: string
@@ -19,9 +20,11 @@ export interface BlogPost {
   imageAlt: string
   seoKeywords: string[]
   content: string
+  sources?: { label: string; url: string }[]
 }
 
 export const blogPosts: BlogPost[] = [
+  ...(europeUsBlogPosts as BlogPost[]),
 
   // ── 1 ─────────────────────────────────────────────────────────
   {
