@@ -1,5 +1,108 @@
 [
   {
+    "slug": "low-particle-electronic-grade-ipa-wafer-cleaning",
+    "title": "Low-Particle Electronic-Grade IPA for Wafer Cleaning: What to Qualify Beyond Assay",
+    "metaTitle": "Low-Particle Electronic-Grade IPA for Wafer Cleaning",
+    "metaDescription": "Learn how particle counts, trace metals, water, residue and lot stability shape electronic-grade IPA qualification for semiconductor wafer cleaning and drying.",
+    "category": "Electronic Grade Solvents",
+    "tags": ["electronic-grade IPA", "low-particle solvent", "wafer cleaning", "LPC", "ICP-MS", "semiconductor purity"],
+    "date": "2026-08-25",
+    "readTime": 4,
+    "wordRange": [200, 500],
+    "excerpt": "Assay alone cannot define an IPA for contamination-sensitive wafer cleaning. Particle counts, metals, water, residue, packaging and multi-lot stability must be evaluated together.",
+    "image": "/blog-images/low-particle-electronic-grade-ipa-wafer-cleaning.jpg",
+    "imageAlt": "Low-particle electronic-grade IPA wafer cleaning system with a silicon wafer, controlled rinse module and clean filtration path",
+    "seoKeywords": ["low particle electronic grade IPA wafer cleaning", "high purity IPA semiconductor supplier", "electronic grade IPA liquid particle count", "IPA LPC specification for wafer cleaning", "low residue IPA semiconductor cleaning", "lot stable electronic grade isopropyl alcohol"],
+    "content": "<p>For semiconductor wafer cleaning, a high assay is only the starting point. An IPA can be chemically pure by GC and still introduce particles, trace metals, water or non-volatile residue through filtration, transfer and packaging. SEMI notes that liquid-chemical purity affects device yield, while its recent particle-precursor work reflects how shrinking device geometries make contamination control increasingly demanding.</p><h2>Low particles must be controlled through the full route</h2><p>Liquid particle counting should be reviewed at the particle sizes relevant to the fab, with the sampling method and reporting convention stated. The result also needs context: filter material and rating, conditioning, filling environment, container cleanliness and point-of-use transfer can all change the material delivered to the wafer. A clean solvent in an unqualified package is not a controlled system.</p><p>Trace metals by ICP-MS, water by Karl Fischer and non-volatile residue should be assessed alongside LPC data. These attributes address different failure modes; none can substitute for another. Review the available <a href=\"/products/electronic-materials/electronic-grade-ipa\">electronic-grade IPA route</a> against the actual rinse, displacement-dry or maintenance-clean step rather than choosing a grade name in isolation.</p><h2>Use multiple lots to test product stability</h2><p>A practical qualification compares at least three representative lots from the proposed production and filling route. Trend actual particle counts, critical metals, water and residue instead of recording pass/fail alone. Then run the site process and compare wafer defect maps, watermarking and surface results against the incumbent under matched conditions.</p><p>The goal is lower material-driven variation, not a claim that IPA alone controls yield. Connect the supplier data to <a href=\"/quality/testing\">product-specific analytical testing</a>, verify the proposed <a href=\"/manufacturing/packaging\">container and filling route</a>, and define a change-notification trigger before approval. To compare a current specification and pack, <a href=\"/contact?subject=Low-particle%20electronic-grade%20IPA\">request an IPA qualification review</a>.</p>",
+    "sources": [
+      {"label": "SEMI C1 — Guide for the Analysis of Liquid Chemicals", "url": "https://store-us.semi.org/products/c00100-semi-c1-guide-for-the-analysis-of-liquid-chemicals"},
+      {"label": "SEMI — Measurement of particle precursors in ultrapure water", "url": "https://www.semi.org/en/standards-watch-2023-sept/newly-published-standard-for-measurement-of-particle-precursors-in-upw"},
+      {"label": "SEMI — Advanced Cleaning and Surface Preparation Report", "url": "https://www.semi.org/en/products-services/market-data/advanced-cleaning-and-surface-preparation-report"}
+    ]
+  },
+  {
+    "slug": "high-purity-pgmea-stable-photoresist-coating",
+    "title": "High-Purity PGMEA for Stable Photoresist Coating: Reducing Film and Edge Variation",
+    "metaTitle": "High-Purity PGMEA for Stable Photoresist Coating",
+    "metaDescription": "See how PGMEA purity, water, acidity, residue, particles and lot consistency can reduce solvent-driven variation in photoresist coating and edge-bead removal.",
+    "category": "Photoresist & Lithography",
+    "tags": ["high-purity PGMEA", "photoresist coating", "film stability", "edge-bead removal", "lithography solvent", "lot consistency"],
+    "date": "2026-08-25",
+    "readTime": 4,
+    "wordRange": [200, 500],
+    "excerpt": "Stable photoresist coating depends on more than PGMEA assay. Water, acidity, residue, particles, evaporation behaviour and batch consistency must stay inside the qualified formulation window.",
+    "image": "/blog-images/high-purity-pgmea-stable-photoresist-coating.jpg",
+    "imageAlt": "High-purity PGMEA supporting a smooth and stable photoresist coating on a semiconductor wafer in a clean lithography track",
+    "seoKeywords": ["high purity PGMEA stable photoresist coating", "PGMEA low particle lithography solvent", "PGMEA lot consistency film thickness", "semiconductor grade PGMEA supplier", "low residue PGMEA edge bead removal", "PGMEA photoresist solvent qualification"],
+    "content": "<p>PGMEA is widely used as a solvent for advanced semiconductor resist technology, but assay alone does not predict coating performance. The solvent enters a formulation whose viscosity, evaporation profile and wetting behaviour determine film uniformity and edge condition. Water, acidity, organic impurities, non-volatile residue and particles can therefore become sources of variation even when the headline purity looks strong.</p><h2>High purity protects the formulation window</h2><p>SEMI C72 covers PGMEA, PGME and a 70/30 PGME/PGMEA mixture used in advanced resist technology. For a real purchasing specification, translate that process context into measurable limits. Request the organic impurity profile, water, acidity, residue, trace-metal panel and particle data, together with the test methods and reporting limits. Compare the <a href=\"/products/electronic-materials/pgmea\">high-purity PGMEA product route</a> with the actual resist chemistry and coating track.</p><p>Lower contamination and tighter lot-to-lot results help remove the solvent as an uncontrolled variable. They do not guarantee a nanometre film-thickness target by themselves; dispense volume, spin speed, temperature, humidity and resist age still matter. The useful supplier advantage is a material whose measured attributes remain inside the qualified window from sample to production scale.</p><h2>Qualify coating stability across representative lots</h2><p>Run multiple PGMEA lots through the same formulation and track conditions. Compare mean film thickness and within-wafer range, edge-bead width, defect maps, drying behaviour and post-bake appearance. Keep the container and closure consistent with the intended production pack, because storage and transfer can affect moisture and particles.</p><p>Use <a href=\"/quality/testing\">analytical testing</a> to align methods and limits, connect each result to <a href=\"/quality/traceability\">batch traceability</a>, and document changes that would require requalification. For a sample plan tied to your resist or coating system, <a href=\"/contact?subject=High-purity%20PGMEA%20coating%20stability\">request a PGMEA technical review</a>.</p>",
+    "sources": [
+      {"label": "SEMI C72 — Guide for PGME, PGMEA and 70/30 PGME/PGMEA", "url": "https://store-us.semi.org/products/c07200-semi-c72-guide-for-propylene-glycol-mono-methyl-ether-pgme-propylene-glycol-mono-methyl-ether-acetate-pgmea-and-the-mixture-70wt-pgme-30wt-pgmea"},
+      {"label": "SEMI C1 — Guide for the Analysis of Liquid Chemicals", "url": "https://store-us.semi.org/products/c00100-semi-c1-guide-for-the-analysis-of-liquid-chemicals"}
+    ]
+  },
+  {
+    "slug": "low-uv-absorbance-acetonitrile-190-nm-hplc-baseline",
+    "title": "Low-UV-Absorbance Acetonitrile at 190 nm: Protecting HPLC Baseline Stability",
+    "metaTitle": "Low-UV Acetonitrile at 190 nm for Stable HPLC Baselines",
+    "metaDescription": "Understand why low UV absorbance, low impurities, filtration and lot consistency matter when qualifying acetonitrile for 190 nm HPLC and gradient methods.",
+    "category": "HPLC & Analytical Solvents",
+    "tags": ["HPLC acetonitrile", "190 nm", "low UV absorbance", "baseline stability", "gradient HPLC", "analytical solvent"],
+    "date": "2026-08-25",
+    "readTime": 4,
+    "wordRange": [200, 500],
+    "excerpt": "At 190 nm, small solvent differences become visible. Low UV absorbance, controlled impurities, effective filtration and lot consistency help protect baseline stability and reduce ghost peaks.",
+    "image": "/blog-images/low-uv-absorbance-acetonitrile-190-nm-hplc-baseline.jpg",
+    "imageAlt": "Low-UV-absorbance acetonitrile connected to an HPLC system for a clean and stable baseline near 190 nm",
+    "seoKeywords": ["low UV absorbance acetonitrile 190 nm HPLC", "acetonitrile stable HPLC baseline", "HPLC gradient grade acetonitrile supplier", "low impurity acetonitrile ghost peaks", "filtered HPLC acetonitrile", "lot consistent acetonitrile for UV detection"],
+    "content": "<p>Low-wavelength HPLC exposes solvent quality quickly. Thermo Fisher's UV-detection guidance lists 190 nm as the minimum wavelength for acetonitrile, so a method operating near that region has little margin for UV-absorbing impurities. A small change between solvent lots can appear as baseline movement, noise or an unexpected peak—especially during a gradient.</p><h2>Purity must be interpreted at the working wavelength</h2><p>A general assay does not show how a solvent behaves in the detector. Review absorbance or transmittance at the method wavelength, the UV cutoff convention, water, residue and relevant organic impurities. Agilent also highlights low impurity levels for reducing ghost peaks, lot-to-lot reproducibility and 0.2 μm prefiltration in its HPLC acetonitrile range. Those are useful qualification categories even when a laboratory sets different acceptance limits.</p><p>Start with the <a href=\"/product/acetonitrile\">acetonitrile grade portfolio</a>, then match the specification to the detector, column and gradient. For LC-MS work, include ion background and adduct behaviour; for UV methods, focus on the actual wavelength range and programmed solvent composition.</p><h2>Verify stability with a blank gradient</h2><p>Run a blank using the final mobile-phase preparation, bottles, tubing and gradient. Compare baseline slope, noise and ghost peaks across representative lots under identical conditions. Record detector wavelength, reference wavelength, temperature, preparation date and bottle position so the comparison can be repeated. A spectral scan can help distinguish broad solvent absorbance from a discrete contaminant peak.</p><p>High purity and low UV absorbance are valuable because they reduce the solvent's contribution to analytical variation; they do not replace system suitability. Align the supplier CoA with <a href=\"/quality/testing\">laboratory testing controls</a> and <a href=\"/quality/documentation\">controlled documentation</a>. To review a current wavelength and gradient, <a href=\"/contact?subject=Low-UV%20acetonitrile%20190%20nm\">request an acetonitrile qualification discussion</a>.</p>",
+    "sources": [
+      {"label": "Thermo Fisher Scientific — Introduction to UV-based detection", "url": "https://assets.thermofisher.com/TFS-Assets/CMD/Flyers/ws-72681-hplc-uv-detection-springwebinars2018-ws72681-en.pdf"},
+      {"label": "Agilent — InfinityLab Acetonitrile for HPLC", "url": "https://www.agilent.com/en/product/liquid-chromatography/hplc-supplies-accessories/hplc-solvents/infinitylab-acetonitrile-for-hplc"}
+    ]
+  },
+  {
+    "slug": "low-residue-electronic-grade-acetone-precision-cleaning",
+    "title": "Low-Residue Electronic-Grade Acetone for Precision Cleaning and Particle Control",
+    "metaTitle": "Low-Residue Electronic-Grade Acetone for Precision Cleaning",
+    "metaDescription": "A qualification guide to low-residue electronic-grade acetone, covering particles, non-volatile residue, water, metals, packaging and surface verification.",
+    "category": "Electronic Grade Solvents",
+    "tags": ["electronic-grade acetone", "low residue", "precision cleaning", "particle control", "NVR", "electronics manufacturing"],
+    "date": "2026-08-25",
+    "readTime": 4,
+    "wordRange": [200, 500],
+    "excerpt": "Fast evaporation does not automatically mean a clean surface. Electronic-grade acetone must control non-volatile residue, particles, water, metals and contamination introduced during dispensing.",
+    "image": "/blog-images/low-residue-electronic-grade-acetone-precision-cleaning.jpg",
+    "imageAlt": "Low-residue electronic-grade acetone rinsing precision electronic substrates and optical components on a spotless controlled cleaning tray",
+    "seoKeywords": ["low residue electronic grade acetone precision cleaning", "high purity acetone particle control", "electronic grade acetone NVR specification", "acetone for electronics substrate cleaning", "low particle acetone supplier", "precision cleaning solvent lot stability"],
+    "content": "<p>Acetone evaporates rapidly and dissolves many organic residues, but fast drying is not proof of surface cleanliness. High-boiling impurities can remain as non-volatile residue (NVR), while particles can be introduced by the solvent, wipe, container or dispensing path. For sensitive electronic and optical components, the cleaning process must control both molecular film and particulate contamination.</p><h2>Low residue and low particles are separate attributes</h2><p>NASA's precision-cleaning specification requires verification by particle and/or NVR analysis when visual inspection is not enough. NASA also identifies acetone among solvents used in controlled cleaning, with cleaning solvents and consumables tested for cleanliness before use. This is a useful purchasing principle: qualify the complete cleaning route, not only the solvent name.</p><p>For <a href=\"/product/acetone\">electronic-grade acetone</a>, compare assay, non-volatile residue, water, trace metals and liquid particle data. Review the methods, limits and reporting convention, then confirm filtration, filling environment, container material and closure. The package that supplies production should represent the package tested during qualification.</p><h2>Verify the result on the real surface</h2><p>First confirm material compatibility and safe handling for the component. Under the approved procedure, compare the incumbent and candidate solvent using a defined contamination load, rinse or wipe method, drying time and protected post-clean handling. Measure the outcome with the technique appropriate to the surface: NVR, particle count, contact angle, microscopy or a downstream functional test.</p><p>Multiple lots should produce comparable cleaning results and incoming data. This demonstrates product stability more convincingly than one unusually clean sample. Link the acceptance plan to <a href=\"/quality/testing\">testing capability</a>, qualify the <a href=\"/manufacturing/packaging\">container and closure</a>, and retain lot identity through use. For a process-specific sample plan, <a href=\"/contact?subject=Low-residue%20electronic-grade%20acetone\">request an acetone cleaning review</a>.</p>",
+    "sources": [
+      {"label": "NASA — Process Specification for Cleaning of Hardware", "url": "https://www.nasa.gov/wp-content/uploads/2023/03/prc-5001-current.pdf"},
+      {"label": "NASA — Introduction to Precision Cleaning", "url": "https://www.nasa.gov/centers-and-facilities/white-sands/introduction-to-precision-cleaning/"},
+      {"label": "NASA — Cleanliness Is Next to Space Readiness", "url": "https://www.nasa.gov/general/lori-mooney-cleanliness-is-next-to-space-readiness-part-1-of-2/"}
+    ]
+  },
+  {
+    "slug": "lot-to-lot-stable-ultra-pure-chemicals-nanometer-process-control",
+    "title": "Lot-to-Lot Stable Ultra-Pure Chemicals for Lower Nanometer-Scale Process Variation",
+    "metaTitle": "Lot-Stable Ultra-Pure Chemicals for Nanometer Process Control",
+    "metaDescription": "Learn how multi-lot data, particle and trace-metal control, clean packaging and statistical trending can reduce chemical-driven nanometer-scale process variation.",
+    "category": "Quality & Contamination Control",
+    "tags": ["lot-to-lot stability", "ultra-pure chemicals", "nanometer process control", "statistical process control", "trace metals", "particle precursors"],
+    "date": "2026-08-25",
+    "readTime": 5,
+    "wordRange": [200, 500],
+    "excerpt": "Nanometer-scale process control needs more than a passing CoA. Multi-lot results, sensitive methods, clean delivery and statistical trending reduce the chemical-driven share of process variation.",
+    "image": "/blog-images/lot-to-lot-stable-ultra-pure-chemicals-nanometer-process-control.jpg",
+    "imageAlt": "Lot-to-lot stable ultra-pure chemical samples beside analytical equipment and a patterned wafer for nanometer-scale semiconductor process control",
+    "seoKeywords": ["lot to lot stable ultra pure chemicals nanometer process control", "high purity chemical batch consistency", "semiconductor chemical statistical process control", "low particle precursor electronic chemicals", "ICP-MS LPC lot trend supplier", "nanometer process variation high purity solvents"],
+    "content": "<p>At nanometer scale, a chemical can meet every release limit and still create avoidable process noise if its results move widely inside those limits. Film thickness, critical dimension, line width, surface roughness and defectivity are affected by many variables, but stable high-purity materials help reduce the material-driven share of that variation.</p><h2>Control the precursors, not only visible particles</h2><p>SEMI reports that the IRDS roadmap identified 3 nm as a critical particle size for next-generation devices and describes dissolved contaminants that can form particles after deposition or drying. That does not mean every process needs the same 3 nm specification. It means buyers should connect particle, particle-precursor, residue and trace-metal controls to the process risk and available metrology.</p><p>Use the appropriate <a href=\"/products/electronic-materials\">electronic-material portfolio</a> as a starting point, then define the method, detection or reporting limit, sampling point and package. A high purity claim without analytical sensitivity and a controlled delivery route is incomplete.</p><h2>Measure lot-to-lot stability explicitly</h2><p>Qualify several representative lots and retain actual results for critical attributes. NIST's process-control guidance shows why lot-to-lot variation should be treated as its own source rather than hidden inside short-term measurement repeatability. Trend lot means and within-lot precision separately where the data support it. Look for drift, step changes and recurring proximity to a limit.</p><p>The CoA should connect to the delivered pack through <a href=\"/quality/traceability\">batch traceability</a>. The analytical method, sample handling and reporting convention should be controlled through <a href=\"/quality/testing\">testing review</a>. Container, closure, filtration and transfer changes should trigger documented assessment, because post-purification handling can reintroduce particles or metals.</p><p>Stable ultra-pure chemicals cannot eliminate tool, environment or recipe variation. Their advantage is narrower, and valuable: they make the incoming material more predictable, so process engineers can identify other causes faster. To compare multi-lot data and change controls for a defined chemical, <a href=\"/contact?subject=Ultra-pure%20chemical%20lot%20stability\">request a stability-focused supplier review</a>.</p>",
+    "sources": [
+      {"label": "SEMI — Measurement of particle precursors in ultrapure water", "url": "https://www.semi.org/en/standards-watch-2023-sept/newly-published-standard-for-measurement-of-particle-precursors-in-upw"},
+      {"label": "NIST/SEMATECH — Shewhart control chart and lot-to-lot variation", "url": "https://www.itl.nist.gov/div898/handbook/pmc/section6/pmc614.htm"},
+      {"label": "SEMI C1 — Guide for the Analysis of Liquid Chemicals", "url": "https://store-us.semi.org/products/c00100-semi-c1-guide-for-the-analysis-of-liquid-chemicals"}
+    ]
+  },
+  {
     "slug": "reach-clp-high-purity-chemical-supplier-europe",
     "title": "Qualifying a High-Purity Chemical Supplier for Europe: REACH, CLP and the Documents Buyers Actually Need",
     "metaTitle": "High-Purity Chemical Supplier Europe | REACH & CLP Checklist",

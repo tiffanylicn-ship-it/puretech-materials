@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // PureTech Materials — Blog / Technical Articles
-// 10 SEO-optimized articles targeting semiconductor chemical keywords
+// SEO-optimized articles targeting semiconductor chemical keywords
 // ═══════════════════════════════════════════════════════════════
 
 import { faqItems } from "./seo-content"
@@ -15,6 +15,7 @@ export interface BlogPost {
   tags: string[]
   date: string
   readTime: number
+  wordRange?: [number, number]
   excerpt: string
   image: string
   imageAlt: string

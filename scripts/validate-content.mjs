@@ -20,7 +20,9 @@ for (const [index, post] of posts.entries()) {
   if (post.metaTitle.length < 35 || post.metaTitle.length > 75) errors.push(`${ref}: metaTitle must be 35–75 characters`)
   if (post.metaDescription.length < 120 || post.metaDescription.length > 180) errors.push(`${ref}: metaDescription must be 120–180 characters`)
   const words = post.content.replace(/<[^>]*>/g, ' ').replace(/&[^;]+;/g, ' ').trim().split(/\s+/).filter(Boolean).length
-  if (words < 650) errors.push(`${ref}: article has ${words} words; minimum is 650`)
+  const [minimumWords, maximumWords] = Array.isArray(post.wordRange) ? post.wordRange : [650, Infinity]
+  if (words < minimumWords) errors.push(`${ref}: article has ${words} words; minimum is ${minimumWords}`)
+  if (words > maximumWords) errors.push(`${ref}: article has ${words} words; maximum is ${maximumWords}`)
   if (!Array.isArray(post.seoKeywords) || post.seoKeywords.length < 5) errors.push(`${ref}: at least 5 SEO keywords required`)
   if (!Array.isArray(post.sources) || post.sources.length < 2 || post.sources.some((source) => !source.url?.startsWith('https://'))) errors.push(`${ref}: at least 2 HTTPS primary sources required`)
   const internalLinks = (post.content.match(/href=\"\//g) || []).length
