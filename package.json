@@ -1,0 +1,35 @@
+{
+  "name": "puretech-web",
+  "version": "1.0.0",
+  "description": "PURETECHMATERIALS corporate website and technical product library.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiffanylicn-ship-it/puretech-materials.git"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "content:check": "node scripts/validate-content.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "autoprefixer": "10.5.4",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "16.3.1",
+    "postcss": "8.5.26",
+    "tailwindcss": "3.4.19",
+    "typescript": "5.9.3"
+  }
+}
