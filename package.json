@@ -14,7 +14,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "content:check": "node scripts/validate-content.mjs"
+    "content:check": "node scripts/validate-content.mjs",
+    "seo:check": "node scripts/validate-seo.mjs",
+    "brand:icons": "node scripts/render-brand-icons.mjs"
   },
   "dependencies": {
     "next": "16.3.1",

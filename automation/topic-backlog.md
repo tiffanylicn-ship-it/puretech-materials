@@ -17,8 +17,8 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [ ] Supplier continuity planning for European pharmaceutical solvents
 - [ ] US semiconductor chemical second-source qualification checklist
 - [ ] Private-label laboratory solvent launch checklist for EU distributors
-- [ ] Dangerous-goods data a US chemical buyer should confirm before quotation
+- [x] Dangerous-goods data a US chemical buyer should confirm before quotation
 - [ ] Water by Karl Fischer in process solvents: specification versus process risk
 - [ ] Non-volatile residue in precision-cleaning solvents: qualification approach
 - [ ] Custom chemical scale-up: from customer formula to controlled batch release
-- [ ] Batch traceability expectations for European and North American chemical buyers
+- [x] Batch traceability expectations for European and North American chemical buyers

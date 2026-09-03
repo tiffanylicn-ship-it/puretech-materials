@@ -3,6 +3,34 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+const siteEntityJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://puretechmaterials.com/#organization',
+      name: 'PURETECHMATERIALS',
+      url: 'https://puretechmaterials.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://puretechmaterials.com/icon.png',
+        width: 512,
+        height: 512,
+      },
+      email: 'tiffanylicn@gmail.com',
+      description: 'High-purity chemical materials, documented solvent supply and custom chemical programmes for advanced industrial applications.',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://puretechmaterials.com/#website',
+      url: 'https://puretechmaterials.com',
+      name: 'PURETECHMATERIALS',
+      publisher: { '@id': 'https://puretechmaterials.com/#organization' },
+      inLanguage: 'en',
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://puretechmaterials.com"),
   title: {
@@ -53,6 +81,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteEntityJsonLd).replace(/</g, '\\u003c') }} />
+      </head>
       <body>
         <Navbar />
         <main className="pt-[72px]">{children}</main>

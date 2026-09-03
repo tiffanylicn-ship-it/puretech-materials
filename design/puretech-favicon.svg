@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">PURETECHMATERIALS favicon</title>
+  <desc id="desc">A white molecular hexagon on the PureTech teal-to-green brand field.</desc>
+  <defs>
+    <linearGradient id="brand" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F6476"/>
+      <stop offset="1" stop-color="#2D8D63"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#brand)"/>
+  <path d="M256 92 405 178v172L256 436 107 350V178Z" fill="#fff" fill-opacity=".10" stroke="#fff" stroke-width="28" stroke-linejoin="round"/>
+  <path d="M256 92v344M107 178l298 172M405 178 107 350" stroke="#fff" stroke-opacity=".42" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="50" fill="#fff"/>
+  <g fill="#fff" fill-opacity=".78">
+    <circle cx="256" cy="92" r="22"/>
+    <circle cx="405" cy="178" r="22"/>
+    <circle cx="405" cy="350" r="22"/>
+    <circle cx="256" cy="436" r="22"/>
+    <circle cx="107" cy="350" r="22"/>
+    <circle cx="107" cy="178" r="22"/>
+  </g>
+</svg>

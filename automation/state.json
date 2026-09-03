@@ -3,7 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": null,
-  "lastPublishedSlugs": [],
-  "status": "ready"
+  "lastSuccessfulRun": "2026-08-28",
+  "lastPublishedSlugs": [
+    "us-hazardous-materials-quotation-data-checklist",
+    "chemical-batch-traceability-europe-north-america"
+  ],
+  "status": "published"
 }
