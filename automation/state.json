@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-08-28",
+  "lastSuccessfulRun": "2026-09-03",
   "lastPublishedSlugs": [
-    "us-hazardous-materials-quotation-data-checklist",
-    "chemical-batch-traceability-europe-north-america"
+    "custom-chemical-scale-up-controlled-batch-release",
+    "bulk-solvent-drum-versus-ibc-north-american-plants"
   ],
   "status": "published"
 }

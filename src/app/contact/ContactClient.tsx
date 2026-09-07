@@ -94,6 +94,8 @@ export default function ContactClient() {
                 <div className="mt-8 border-t border-[#DCE3EC] pt-6">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Direct email</p>
                   <a href="mailto:tiffanylicn@gmail.com" className="mt-2 block text-[14px] font-semibold text-[#12657B]">tiffanylicn@gmail.com</a>
+                  <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#667085]">Sales enquiries</p>
+                  <a href="mailto:sales@puretechmaterials.com" className="mt-2 block text-[14px] font-semibold text-[#12657B]">sales@puretechmaterials.com</a>
                   <p className="mt-3 text-[11.5px] leading-[1.6] text-[#667085]">The form opens an email draft in your mail application; it does not upload confidential files to this website.</p>
                 </div>
               </div>

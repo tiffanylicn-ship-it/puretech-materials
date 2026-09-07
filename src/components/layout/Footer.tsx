@@ -97,6 +97,13 @@ export function Footer() {
               High-purity chemical materials for electronics, pharmaceutical
               manufacturing, trace analysis and advanced industrial production.
             </p>
+            <a
+              href="mailto:sales@puretechmaterials.com"
+              className="text-[12px] no-underline hover:text-white/70"
+              style={{ color: "rgba(255,255,255,0.52)" }}
+            >
+              Sales enquiries: sales@puretechmaterials.com
+            </a>
             <div className="flex gap-2 flex-wrap">
               {["LinkedIn", "Email", "WeChat"].map((s) => (
                 <span

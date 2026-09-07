@@ -16,6 +16,7 @@
 - If a prior run published code but stopped before public verification, resume with verification only. Never create replacement articles or publish the same files again.
 - Preserve all user changes. Do not reset, force-push or replace the managed JSON file wholesale.
 - Preserve queued user assets and workflow changes. Include them in the next successful Blog release after reviewing the uploader dry-run scope.
+- Read `pending-site-changes.md` before editing. Implement every item marked `pending` in the next successful Blog release, keep it pending through failed or preview-only attempts, and mark it complete only after the production URL is verified.
 - Never expose tokens, cookies or deployment credentials in logs, articles or commits.
 - If research, validation, GitHub or Vercel fails, retain the prepared work and report the exact blocker. Do not mark the run successful and do not double-publish on retry.
 
@@ -24,12 +25,13 @@
 1. Run `npm run content:check`.
 2. Run `npm run seo:check`.
 3. Run `npm run build` and review the generated article routes.
-4. Sync the canonical source to `/Users/e_e/Documents/Codex/2026-08-19/ke-yi/work/puretech-upload-staging` without copying `.next`, `node_modules` or secrets.
-5. Run the existing GitHub uploader in dry-run mode, review its file scope, then publish to `tiffanylicn-ship-it/puretech-materials` on `main` with an article-specific commit message.
-6. Wait for the linked Vercel production deployment to reach Ready.
-7. Verify both article URLs, their canonical metadata and sitemap entries on `https://puretechmaterials.com`.
-8. Only after both public pages pass, update `state.json`, mark the two backlog entries published and archive or remove the active lock.
-9. Commit the completed article, state, backlog and queued asset changes locally so the project is clean for the next scheduled run. This bookkeeping commit is local; the GitHub uploader remains the publication mechanism.
+4. Validate each included pending site change against its acceptance criteria and confirm that it did not remove an existing contact route unless the user explicitly requested replacement.
+5. Sync the canonical source to `/Users/e_e/Documents/Codex/2026-08-19/ke-yi/work/puretech-upload-staging` without copying `.next`, `node_modules` or secrets.
+6. Run the existing GitHub uploader in dry-run mode, review its file scope, then publish to `tiffanylicn-ship-it/puretech-materials` on `main` with an article-specific commit message.
+7. Wait for the linked Vercel production deployment to reach Ready.
+8. Verify both article URLs, their canonical metadata and sitemap entries on `https://puretechmaterials.com`, plus every pending site-change production URL.
+9. Only after all public pages pass, update `state.json`, mark the two backlog entries published, mark deployed site changes complete, and archive or remove the active lock.
+10. Commit the completed article, state, backlog and queued site changes locally so the project is clean for the next scheduled run. This bookkeeping commit is local; the GitHub uploader remains the publication mechanism.
 
 ## Acceptance gate
 
