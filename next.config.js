@@ -8,6 +8,7 @@ module.exports = {
       { source: '/products/nmp-solvent', destination: '/products/nmp', permanent: true },
       { source: '/products/ipa-solvent', destination: '/products/high-purity-ipa', permanent: true },
       { source: '/products/ethanol-solvent', destination: '/products/high-purity-ethanol', permanent: true },
+      { source: '/products/pharma-solvents', destination: '/products/pharmaceutical-solvents', permanent: true },
       { source: '/products/trace-grade-nitric-acid', destination: '/products/trace-nitric-acid', permanent: true },
       { source: '/products/trace-grade-hydrochloric-acid', destination: '/products/trace-hydrochloric-acid', permanent: true },
       { source: '/markets/united-kingdom', destination: '/markets/uk', permanent: true },

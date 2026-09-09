@@ -4,7 +4,7 @@ These changes were explicitly requested by the user and must travel with the nex
 
 ## sales-contact-email
 
-- Status: pending
+- Status: complete
 - Requested: 2026-09-04
 - Release: next successful two-blog production release
 - Value: `sales@puretechmaterials.com`
@@ -27,6 +27,6 @@ These changes were explicitly requested by the user and must travel with the nex
 
 ### Completion record
 
-- Production verification date:
-- Commit SHA:
-- Verified URLs:
+- Production verification date: 2026-09-07 (Europe/London)
+- Commit SHA: 8e4b3f96b4158959bec29d4238b7f72f97f373a2
+- Verified URLs: https://puretechmaterials.com/contact ; https://puretechmaterials.com/
