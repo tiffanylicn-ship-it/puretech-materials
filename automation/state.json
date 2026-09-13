@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-09-07",
+  "lastSuccessfulRun": "2026-09-11",
   "lastPublishedSlugs": [
-    "eu-destination-language-sds-document-revision-workflow",
-    "us-semiconductor-chemical-second-source-qualification"
+    "icp-ms-coa-reporting-limits-trace-metal-buyers",
+    "karl-fischer-water-process-solvent-specification-risk"
   ],
   "status": "published"
 }
