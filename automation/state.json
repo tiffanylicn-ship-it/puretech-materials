@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-09-11",
+  "lastSuccessfulRun": "2026-09-13",
   "lastPublishedSlugs": [
-    "icp-ms-coa-reporting-limits-trace-metal-buyers",
-    "karl-fischer-water-process-solvent-specification-risk"
+    "container-closure-qualification-ultrapure-electronic-chemicals",
+    "pharmaceutical-solvent-supply-continuity-europe-buyers"
   ],
   "status": "published"
 }

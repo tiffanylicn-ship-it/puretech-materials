@@ -13,8 +13,8 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] EU destination-language SDS and controlled document revision workflow
 - [x] Chemical change-notification clauses for pharmaceutical raw-material suppliers
 - [x] Trace-metal reporting limits: how buyers should read an ICP-MS CoA
-- [ ] Container-closure qualification for ultra-pure electronic chemicals
-- [ ] Supplier continuity planning for European pharmaceutical solvents
+- [x] Container-closure qualification for ultra-pure electronic chemicals
+- [x] Supplier continuity planning for European pharmaceutical solvents
 - [x] US semiconductor chemical second-source qualification checklist
 - [x] Private-label laboratory solvent launch checklist for EU distributors
 - [x] Dangerous-goods data a US chemical buyer should confirm before quotation
