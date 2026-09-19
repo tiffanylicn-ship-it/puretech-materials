@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-09-13",
+  "lastSuccessfulRun": "2026-09-17",
   "lastPublishedSlugs": [
-    "container-closure-qualification-ultrapure-electronic-chemicals",
-    "pharmaceutical-solvent-supply-continuity-europe-buyers"
+    "ich-q3c-solvent-risk-review-api-procurement",
+    "icp-ms-nitric-acid-lot-qualification-method-blanks"
   ],
   "status": "published"
 }

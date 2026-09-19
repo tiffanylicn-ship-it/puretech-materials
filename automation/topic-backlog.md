@@ -4,10 +4,10 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 
 - [ ] Electronic-grade IPA supplier qualification for European semiconductor wet cleaning
 - [ ] PGMEA and PGME purchasing guide for US photoresist formulation teams
-- [ ] REACH and CLP responsibility matrix for European private-label chemicals
-- [ ] TSCA questions for US importers of custom chemical blends
-- [ ] ICH Q3C solvent risk review for API manufacturing procurement
-- [ ] ICP-MS nitric acid lot qualification and method blank trending
+- [x] REACH and CLP responsibility matrix for European private-label chemicals
+- [x] TSCA questions for US importers of custom chemical blends
+- [x] ICH Q3C solvent risk review for API manufacturing procurement
+- [x] ICP-MS nitric acid lot qualification and method blank trending
 - [ ] High-purity acetonitrile for LC-MS: gradient baseline and detector suitability
 - [x] Bulk solvent drum versus IBC decision guide for North American plants
 - [x] EU destination-language SDS and controlled document revision workflow
