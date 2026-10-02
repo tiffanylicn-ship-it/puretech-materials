@@ -24,5 +24,7 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] Batch traceability expectations for European and North American chemical buyers
 - [x] EU NMP restriction supplier review for industrial users
 - [x] HPLC solvent change control for regulated analytical methods
-- [ ] EU poison-centre notification and UFI change control for hazardous private-label mixtures
-- [ ] US spent-solvent procurement: building waste-determination evidence before process changes
+- [x] EU poison-centre notification and UFI change control for hazardous private-label mixtures
+- [x] US spent-solvent procurement: building waste-determination evidence before process changes
+- [ ] Extended SDS exposure-scenario review for European industrial chemical buyers
+- [ ] cGMP laboratory reagent control for US pharmaceutical QC buyers
