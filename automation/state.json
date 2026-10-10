@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-09-28",
+  "lastSuccessfulRun": "2026-10-02",
   "lastPublishedSlugs": [
-    "eu-poison-centre-ufi-change-control-private-label-mixtures",
-    "us-spent-solvent-procurement-waste-determination-process-changes"
+    "extended-sds-exposure-scenario-review-european-chemical-buyers",
+    "cgmp-laboratory-reagent-control-us-pharmaceutical-qc-buyers"
   ],
   "status": "published"
 }
