@@ -28,5 +28,7 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] US spent-solvent procurement: building waste-determination evidence before process changes
 - [x] Extended SDS exposure-scenario review for European industrial chemical buyers
 - [x] cGMP laboratory reagent control for US pharmaceutical QC buyers
-- [ ] EU microplastics restriction documentation for industrial chemical buyers
-- [ ] OSHA HazCom 2024 transition planning for US chemical buyers
+- [x] EU microplastics restriction documentation for industrial chemical buyers
+- [x] OSHA HazCom 2024 transition planning for US chemical buyers
+- [ ] EU CLP label change control for European chemical buyers
+- [ ] TSCA PFAS reporting supplier data requests for US chemical buyers
