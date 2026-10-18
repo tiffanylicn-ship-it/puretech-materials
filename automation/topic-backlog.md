@@ -30,5 +30,7 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] cGMP laboratory reagent control for US pharmaceutical QC buyers
 - [x] EU microplastics restriction documentation for industrial chemical buyers
 - [x] OSHA HazCom 2024 transition planning for US chemical buyers
-- [ ] EU CLP label change control for European chemical buyers
-- [ ] TSCA PFAS reporting supplier data requests for US chemical buyers
+- [x] EU CLP label change control for European chemical buyers
+- [x] TSCA PFAS reporting supplier data requests for US chemical buyers
+- [ ] EU REACH authorisation supplier review for industrial chemical buyers
+- [ ] OSHA process safety management raw-material change review for US chemical buyers

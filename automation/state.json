@@ -3,10 +3,10 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-10-02",
+  "lastSuccessfulRun": "2026-10-16",
   "lastPublishedSlugs": [
-    "extended-sds-exposure-scenario-review-european-chemical-buyers",
-    "cgmp-laboratory-reagent-control-us-pharmaceutical-qc-buyers"
+    "eu-clp-label-change-control-chemical-buyers",
+    "tsca-pfas-reporting-supplier-data-us-chemical-buyers"
   ],
   "status": "published"
 }
