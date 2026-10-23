@@ -1,0 +1,15 @@
+{
+  "project": "PURETECHMATERIALS",
+  "timezone": "Europe/London",
+  "cadence": "every 2 days",
+  "articlesPerRun": 2,
+  "lastSuccessfulRun": "2026-10-23",
+  "lastPublishedSlugs": [
+    "epcra-tier-ii-supplier-data-workflow-us-chemical-buyers",
+    "eu-biocidal-products-article-95-supplier-evidence-workflow"
+  ],
+  "status": "published",
+  "publicationCommit": "d1f6051bbf9db2bc5fc26f39ac913a6282ca13d0",
+  "verifiedProductionCommit": "d1f6051bbf9db2bc5fc26f39ac913a6282ca13d0",
+  "productionVerifiedAt": "2026-10-23T09:29:01+01:00"
+}

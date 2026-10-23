@@ -34,5 +34,5 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] TSCA PFAS reporting supplier data requests for US chemical buyers
 - [x] EU REACH authorisation supplier review for industrial chemical buyers
 - [x] OSHA process safety management raw-material change review for US chemical buyers
-- [ ] EPA EPCRA Tier II supplier-data workflow for US chemical buyers
-- [ ] EU Biocidal Products Regulation Article 95 supplier-evidence workflow
+- [x] EPA EPCRA Tier II supplier-data workflow for US chemical buyers
+- [x] EU Biocidal Products Regulation Article 95 supplier-evidence workflow
