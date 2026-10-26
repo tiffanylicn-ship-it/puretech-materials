@@ -36,3 +36,5 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] OSHA process safety management raw-material change review for US chemical buyers
 - [x] EPA EPCRA Tier II supplier-data workflow for US chemical buyers
 - [x] EU Biocidal Products Regulation Article 95 supplier-evidence workflow
+- [ ] US hazardous-materials shipping-paper and emergency-response information workflow
+- [ ] FDA drug-component receipt, identity testing and supplier-document workflow
