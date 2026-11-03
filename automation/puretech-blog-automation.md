@@ -2,11 +2,12 @@
 
 ## Editorial standard
 
-1. Select two unused, non-overlapping topics from `topic-backlog.md`. Search all existing titles, slugs, headings and target keywords before writing.
-2. Target European or North American B2B buyers in procurement, quality, EHS, laboratory or process roles. Write natural professional English, not generic promotional prose.
-3. Research current official primary sources. Prefer ECHA, European Commission, UK HSE, US EPA, FDA, OSHA, PHMSA, NIST and standards-owner documentation. Never invent certifications, customer names, performance numbers, local inventory, registrations or regulatory conclusions.
-4. Each article must contain 1,000–1,600 useful words, at least two primary sources, five specific search phrases, and relevant internal links to a product, application, market, quality page or qualification case.
-5. Add both records to `src/data/europe-us-blog-posts.json`. Keep metadata concise, use a descriptive existing website image and include sources in the structured `sources` field.
+1. Before selecting articles, count unused, non-overlapping entries in `topic-backlog.md`. If fewer than two are available, run a backlog-maintenance phase: search existing titles, slugs, headings and target keywords; research current primary sources; then append at least six distinct, non-overlapping B2B topic entries. These workflow-curated entries are approved for selection unless explicitly labelled `needs-review`. Do not mark any entry published during curation.
+2. Select two unused, non-overlapping topics from `topic-backlog.md`. Search all existing titles, slugs, headings and target keywords before writing.
+3. Target European or North American B2B buyers in procurement, quality, EHS, laboratory or process roles. Write natural professional English, not generic promotional prose.
+4. Research current official primary sources. Prefer ECHA, European Commission, UK HSE, US EPA, FDA, OSHA, PHMSA, NIST and standards-owner documentation. Never invent certifications, customer names, performance numbers, local inventory, registrations or regulatory conclusions.
+5. Each article must contain 1,000–1,600 useful words, at least two primary sources, five specific search phrases, and relevant internal links to a product, application, market, quality page or qualification case.
+6. Add both records to `src/data/europe-us-blog-posts.json`. Keep metadata concise, use a descriptive existing website image and include sources in the structured `sources` field.
 
 ## Safety and concurrency
 

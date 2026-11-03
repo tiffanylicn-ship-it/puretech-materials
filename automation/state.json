@@ -3,13 +3,13 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-10-23",
+  "lastSuccessfulRun": "2026-10-26",
   "lastPublishedSlugs": [
-    "epcra-tier-ii-supplier-data-workflow-us-chemical-buyers",
-    "eu-biocidal-products-article-95-supplier-evidence-workflow"
+    "us-hazmat-shipping-paper-emergency-response-information-buyers",
+    "fda-drug-component-receipt-identity-testing-supplier-documents"
   ],
   "status": "published",
-  "publicationCommit": "d1f6051bbf9db2bc5fc26f39ac913a6282ca13d0",
-  "verifiedProductionCommit": "d1f6051bbf9db2bc5fc26f39ac913a6282ca13d0",
-  "productionVerifiedAt": "2026-10-23T09:29:01+01:00"
+  "publicationCommit": "11ad85f326a619cf54c3ac113869aefa639bd5af",
+  "verifiedProductionCommit": "11ad85f326a619cf54c3ac113869aefa639bd5af",
+  "productionVerifiedAt": "2026-10-26T03:18:00+00:00"
 }

@@ -36,5 +36,11 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] OSHA process safety management raw-material change review for US chemical buyers
 - [x] EPA EPCRA Tier II supplier-data workflow for US chemical buyers
 - [x] EU Biocidal Products Regulation Article 95 supplier-evidence workflow
-- [ ] US hazardous-materials shipping-paper and emergency-response information workflow
-- [ ] FDA drug-component receipt, identity testing and supplier-document workflow
+- [x] US hazardous-materials shipping-paper and emergency-response information workflow
+- [x] FDA drug-component receipt, identity testing and supplier-document workflow
+- [ ] FDA nitrosamine-risk supplier evidence for API starting materials and solvents
+- [ ] US TSCA SNUR screening for chemical import and processing change proposals
+- [ ] PHMSA hazardous-materials security-plan applicability for chemical supply teams
+- [ ] EU POPs Regulation procurement screening for industrial chemical buyers
+- [ ] EU GMP Annex 1 contamination-control evidence for sterile-manufacturing material suppliers
+- [ ] REACH Candidate List monitoring and Article 33 supplier-evidence workflow for chemical buyers
