@@ -38,8 +38,8 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] EU Biocidal Products Regulation Article 95 supplier-evidence workflow
 - [x] US hazardous-materials shipping-paper and emergency-response information workflow
 - [x] FDA drug-component receipt, identity testing and supplier-document workflow
-- [ ] FDA nitrosamine-risk supplier evidence for API starting materials and solvents
-- [ ] US TSCA SNUR screening for chemical import and processing change proposals
+- [x] FDA nitrosamine-risk supplier evidence for API starting materials and solvents
+- [x] US TSCA SNUR screening for chemical import and processing change proposals
 - [ ] PHMSA hazardous-materials security-plan applicability for chemical supply teams
 - [ ] EU POPs Regulation procurement screening for industrial chemical buyers
 - [ ] EU GMP Annex 1 contamination-control evidence for sterile-manufacturing material suppliers

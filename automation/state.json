@@ -3,13 +3,13 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-10-26",
+  "lastSuccessfulRun": "2026-11-03",
   "lastPublishedSlugs": [
-    "us-hazmat-shipping-paper-emergency-response-information-buyers",
-    "fda-drug-component-receipt-identity-testing-supplier-documents"
+    "fda-nitrosamine-risk-supplier-evidence-api-starting-materials-solvents",
+    "us-tsca-snur-screening-chemical-import-processing-change-proposals"
   ],
   "status": "published",
-  "publicationCommit": "11ad85f326a619cf54c3ac113869aefa639bd5af",
-  "verifiedProductionCommit": "11ad85f326a619cf54c3ac113869aefa639bd5af",
-  "productionVerifiedAt": "2026-10-26T03:18:00+00:00"
+  "publicationCommit": "d842a3d1d8b490a0b77012d7d550a8ae68aa9a5b",
+  "verifiedProductionCommit": "d842a3d1d8b490a0b77012d7d550a8ae68aa9a5b",
+  "productionVerifiedAt": "2026-11-03T11:48:00+00:00"
 }
