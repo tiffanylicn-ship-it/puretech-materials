@@ -3,13 +3,13 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-11-03",
+  "lastSuccessfulRun": "2026-11-07",
   "lastPublishedSlugs": [
-    "fda-nitrosamine-risk-supplier-evidence-api-starting-materials-solvents",
-    "us-tsca-snur-screening-chemical-import-processing-change-proposals"
+    "phmsa-hazmat-security-plan-applicability-chemical-supply-teams",
+    "eu-pops-regulation-procurement-screening-industrial-chemical-buyers"
   ],
   "status": "published",
-  "publicationCommit": "d842a3d1d8b490a0b77012d7d550a8ae68aa9a5b",
-  "verifiedProductionCommit": "d842a3d1d8b490a0b77012d7d550a8ae68aa9a5b",
-  "productionVerifiedAt": "2026-11-03T11:48:00+00:00"
+  "publicationCommit": "5273d694fcc6cc30d3c387978b0f6011ec739aa7",
+  "verifiedProductionCommit": "5273d694fcc6cc30d3c387978b0f6011ec739aa7",
+  "productionVerifiedAt": "2026-11-07T12:00:58+00:00"
 }
