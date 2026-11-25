@@ -42,5 +42,11 @@ Use one primary keyword cluster per article. Mark an item only after its public 
 - [x] US TSCA SNUR screening for chemical import and processing change proposals
 - [x] PHMSA hazardous-materials security-plan applicability for chemical supply teams
 - [x] EU POPs Regulation procurement screening for industrial chemical buyers
-- [ ] EU GMP Annex 1 contamination-control evidence for sterile-manufacturing material suppliers
-- [ ] REACH Candidate List monitoring and Article 33 supplier-evidence workflow for chemical buyers
+- [x] EU GMP Annex 1 contamination-control evidence for sterile-manufacturing material suppliers
+- [x] REACH Candidate List monitoring and Article 33 supplier-evidence workflow for chemical buyers
+- [ ] EPA TRI supplier notification for PFAS and chemicals of special concern in US chemical mixtures
+- [ ] EPA Risk Management Program threshold screening before US regulated-substance procurement changes
+- [ ] PHMSA hazardous-materials registration screening for US bulk-chemical supply and transport plans
+- [ ] EU Prior Informed Consent (PIC) export and import documentation workflow for restricted industrial chemicals
+- [ ] UK COSHH purchasing workflow: turning supplier SDS information into site-specific chemical risk controls
+- [ ] REACH PPORD notification evidence for European pilot-scale product and process development chemicals
