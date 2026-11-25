@@ -3,13 +3,13 @@
   "timezone": "Europe/London",
   "cadence": "every 2 days",
   "articlesPerRun": 2,
-  "lastSuccessfulRun": "2026-11-07",
+  "lastSuccessfulRun": "2026-11-25",
   "lastPublishedSlugs": [
-    "phmsa-hazmat-security-plan-applicability-chemical-supply-teams",
-    "eu-pops-regulation-procurement-screening-industrial-chemical-buyers"
+    "epa-tri-supplier-notification-pfas-chemical-mixtures",
+    "epa-rmp-threshold-screening-regulated-substance-procurement"
   ],
   "status": "published",
-  "publicationCommit": "5273d694fcc6cc30d3c387978b0f6011ec739aa7",
-  "verifiedProductionCommit": "5273d694fcc6cc30d3c387978b0f6011ec739aa7",
-  "productionVerifiedAt": "2026-11-07T12:00:58+00:00"
+  "publicationCommit": "ec279312853b9a32ac827b7ea8268ebbbf9030e9",
+  "verifiedProductionCommit": "ec279312853b9a32ac827b7ea8268ebbbf9030e9",
+  "productionVerifiedAt": "2026-11-25T09:00:13+00:00"
 }
