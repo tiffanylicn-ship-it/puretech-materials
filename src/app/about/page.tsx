@@ -6,6 +6,7 @@ import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 export const metadata: Metadata = {
   title: 'About PURETECHMATERIALS',
   description: 'PURETECHMATERIALS supplies high-purity solvents, electronic materials and specialty chemical solutions for advanced industries.',
+  alternates: { canonical: 'https://puretechmaterials.com/about' },
 }
 
 const focus = [

@@ -12,6 +12,10 @@ const legacyRoutes: Record<string, string> = {
   'nmp-for-battery-electrode': '/industries/ev-battery',
 }
 
+const relatedApplicationBySolution: Record<string, { href: string; label: string }> = {
+  industrial: { href: '/applications/industrial-cleaning', label: 'Explore industrial cleaning applications' },
+}
+
 export function generateStaticParams() {
   return solutionRoutes.map((solution) => ({ slug: solution.slug }))
 }
@@ -30,6 +34,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
   if (legacyRoutes[slug]) redirect(legacyRoutes[slug])
   const solution = solutionRoutes.find((item) => item.slug === slug)
   if (!solution) notFound()
+  const relatedApplication = relatedApplicationBySolution[slug]
 
   return (
     <>
@@ -88,6 +93,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
               <div className="mt-9 border-t border-[#DCE3EC]">
                 {solution.reviewPoints.map((point, index) => <div key={point} className="grid grid-cols-[40px_1fr] gap-4 border-b border-[#DCE3EC] py-4"><span className="font-mono text-[11px] text-[#2F8C67]">0{index + 1}</span><p className="text-[13px] text-[#344054]">{point}</p></div>)}
               </div>
+              {relatedApplication && <Link href={relatedApplication.href} className="mt-6 inline-flex text-[12.5px] font-semibold text-[#12657B] no-underline hover:underline">{relatedApplication.label} →</Link>}
             </div>
             <Reveal delay={80}>
               <aside className="border-t-4 border-[#12657B] bg-[#07182D] p-7 text-white">

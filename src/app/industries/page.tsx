@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Industries & Application Guides | PureTech Materials',
   description:
     'Explore process-led chemical guides for semiconductor, battery, display and pharmaceutical applications, then narrow the relevant product family and grade.',
+  alternates: { canonical: 'https://puretechmaterials.com/industries' },
 }
 
 export default function IndustriesPage() {

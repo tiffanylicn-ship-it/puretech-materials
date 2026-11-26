@@ -24,8 +24,22 @@ export interface BlogPost {
   sources?: { label: string; url: string }[]
 }
 
+const legacyInternalLinks: Record<string, string> = {
+  '/products/custom-chemicals': '/products/custom-supply',
+}
+
+function normalizeLegacyInternalLinks(content: string) {
+  return Object.entries(legacyInternalLinks).reduce(
+    (html, [legacyHref, currentHref]) => html.replaceAll(`href="${legacyHref}"`, `href="${currentHref}"`),
+    content,
+  )
+}
+
 export const blogPosts: BlogPost[] = [
-  ...(europeUsBlogPosts as BlogPost[]),
+  ...(europeUsBlogPosts as BlogPost[]).map((post) => ({
+    ...post,
+    content: normalizeLegacyInternalLinks(post.content),
+  })),
 
   // ── 1 ─────────────────────────────────────────────────────────
   {

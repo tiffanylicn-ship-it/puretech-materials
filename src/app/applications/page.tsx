@@ -121,6 +121,7 @@ export default function ApplicationsPage() {
                 <Eyebrow>How to use these pages</Eyebrow>
                 <h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">A better enquiry starts with the work, not the catalogue</h2>
                 <p className="mt-5 max-w-[760px] text-[14px] leading-[1.78] text-[#475467]">Describe the process in plain language: the surface, formulation, instrument or manufacturing step; the current material; what goes wrong; and what your approval process needs to see. That is usually enough to replace a long product list with a useful first shortlist.</p>
+                <Link href="/industries" className="mt-5 inline-flex text-[12.5px] font-semibold text-[#12657B] no-underline hover:underline">Browse industry process guides →</Link>
                 <div className="mt-9 grid grid-cols-1 gap-px bg-[#CBD8D5] sm:grid-cols-2">
                   {['Application and contact stage', 'Current product or specification', 'Critical impurity or performance limits', 'Pack, forecast and qualification timing'].map((item, index) => (
                     <div key={item} className="flex gap-4 bg-white p-5"><span className="font-mono text-[11px] font-semibold text-[#2F8C67]">0{index + 1}</span><p className="text-[13px] font-medium text-[#344054]">{item}</p></div>

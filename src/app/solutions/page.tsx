@@ -8,6 +8,7 @@ import { solutionRoutes } from '@/lib/architecture-content'
 export const metadata: Metadata = {
   title: 'High-Purity Chemical Solutions by Application',
   description: 'Solution-first routes for semiconductor, pharmaceutical, analytical, industrial and custom chemical supply requirements.',
+  alternates: { canonical: 'https://puretechmaterials.com/solutions' },
 }
 
 export default function SolutionsPage() {

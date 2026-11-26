@@ -47,7 +47,7 @@ export const caseStudies: CaseStudy[] = [
     approach: ['Map known process sensitivities to a focused impurity and physical-property review.', 'Compare the proposed specification and representative lots with the current material using the same methods where practical.', 'Include container, closure and dispensing-contact materials in the qualification protocol.', 'Evaluate coating, bake and inspection observations under controlled conditions before release.'],
     parameters: [{ label: 'Organic profile', detail: 'Main component and process-relevant trace organics are compared chromatographically.' }, { label: 'Water and acidity', detail: 'Reviewed for formulation stability and process compatibility.' }, { label: 'Non-volatile residue', detail: 'Considered with surface and defect observations.' }, { label: 'Change control', detail: 'Method, raw-material and pack changes require a defined communication route.' }],
     outcome: 'The approved baseline states exactly which material, specification, pack and trial evidence were assessed, making later change review more useful.',
-    products: [{ label: 'Electronic Grade PGMEA', href: '/products/electronic-grade-pgmea' }, { label: 'Photoresist Solvents', href: '/applications/semiconductor' }],
+    products: [{ label: 'Electronic Grade PGMEA', href: '/products/pgmea' }, { label: 'Photoresist Solvents', href: '/applications/semiconductor' }],
     image: '/images/puretech/electronic-materials.jpg',
     keywords: ['PGMEA supplier USA', 'electronic grade PGMEA North America', 'photoresist solvent supplier', 'PGMEA lithography qualification'],
   },

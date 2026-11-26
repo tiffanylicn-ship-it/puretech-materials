@@ -7,6 +7,7 @@ import { Reveal } from '@/components/ui/Reveal'
 export const metadata: Metadata = {
   title: 'Custom Chemical Supply, Packaging & Private Label',
   description: 'Discuss custom specifications, private-label supply, packaging, bulk programmes and distributor support with PureTech Materials.',
+  alternates: { canonical: 'https://puretechmaterials.com/custom-solutions' },
 }
 
 const services: { title: string; text: string; href?: string }[] = [
@@ -50,6 +51,7 @@ export default function CustomSolutionsPage() {
             <Eyebrow>Scope</Eyebrow>
             <h2 className="mt-3 font-serif text-[31px] text-[#0A1628]">Eight ways a supply programme can be adapted</h2>
             <p className="mt-4 max-w-[760px] text-[14px] leading-[1.7] text-[#475467]">Not every product is suitable for every option. Feasibility depends on chemistry, grade, order volume, packaging compatibility, destination and regulatory requirements.</p>
+            <Link href="/products/specialty-chemicals" className="mt-5 inline-flex text-[12.5px] font-semibold text-[#12657B] no-underline hover:underline">Browse specialty chemistry routes →</Link>
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-px bg-[#DCE3EC] md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (

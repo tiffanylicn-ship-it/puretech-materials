@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Technical Blog — Semiconductor Chemicals & Process Chemistry',
   description: 'PureTech Materials technical blog: in-depth articles on electronic grade IPA, PGMEA photoresist solvents, NMP battery chemicals, SEMI C1 standards, Marangoni drying, and advanced packaging wet process chemistry.',
   keywords: ['semiconductor chemicals blog','electronic grade IPA guide','PGMEA lithography','NMP battery electrode','SEMI C1 standard','Marangoni drying','advanced packaging solvents'],
+  alternates: { canonical: 'https://puretechmaterials.com/blog' },
 }
 
 function formatDate(d: string) {

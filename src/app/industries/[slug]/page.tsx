@@ -5,6 +5,13 @@ import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { industries } from '@/lib/industry-content'
 
+const relatedApplicationByIndustry: Record<string, { href: string; label: string }> = {
+  semiconductor: { href: '/applications/semiconductor', label: 'Semiconductor applications' },
+  'display-panel': { href: '/applications/electronics', label: 'Electronics manufacturing applications' },
+  'ev-battery': { href: '/applications/battery-materials', label: 'Battery and advanced materials applications' },
+  'pharmaceutical-lab': { href: '/applications/pharmaceutical', label: 'Pharmaceutical manufacturing applications' },
+}
+
 export function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }))
 }
@@ -30,6 +37,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   const { slug } = await params
   const industry = industries.find((item) => item.slug === slug)
   if (!industry) notFound()
+  const relatedApplication = relatedApplicationByIndustry[slug]
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -155,6 +163,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               </Reveal>
             ))}
           </div>
+          {relatedApplication && (
+            <Link href={relatedApplication.href} className="mt-6 inline-flex text-[12.5px] font-semibold text-[#0066CC] no-underline hover:underline">
+              Explore {relatedApplication.label} →
+            </Link>
+          )}
         </Container>
       </section>
 

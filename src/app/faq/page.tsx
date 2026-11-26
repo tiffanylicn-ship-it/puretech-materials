@@ -7,6 +7,7 @@ import { faqItems } from '@/lib/seo-content'
 export const metadata: Metadata = {
   title: 'FAQ — Electronic Grade Chemicals, SEMI C1, IPA, PGMEA, Battery Solvents | PureTech',
   description: 'Answers to frequently asked questions about electronic grade IPA, SEMI C1 grades, CoA requirements, battery grade DMC/NMP, HPLC solvents, supplier qualification, and packaging options.',
+  alternates: { canonical: 'https://puretechmaterials.com/faq' },
 }
 
 const CATEGORIES = Array.from(
