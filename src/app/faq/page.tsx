@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, CtaBanner } from '@/components/ui/index'
+import { Container, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { faqItems } from '@/lib/seo-content'
 
@@ -55,7 +55,7 @@ export default function FaqPage() {
       <section className="py-16">
         <Container>
           <div className="max-w-[860px] mx-auto space-y-16">
-            {CATEGORIES.map((cat,ci)=>{
+            {CATEGORIES.map((cat)=>{
               const items = faqItems.filter(f=>f.category===cat)
               const anchorId = cat.toLowerCase().replace(/[\s&]+/g,'-')
               return (

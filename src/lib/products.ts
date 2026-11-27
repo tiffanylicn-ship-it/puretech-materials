@@ -1143,15 +1143,6 @@ export const g1Products: Product[] = [
 
 // Update existing products to include G1 grade data
 export function getProductWithG1(product: Product): Product {
-  const g1SpecMap: Record<string, SpecRow[]> = {
-    'eipa': [
-      {param:'Assay (GC)',           method:'GC-FID',     unit:'%',      g1:'≥99.0', g2:'≥99.9',   g3:'≥99.99',  g4:'≥99.999',  g5:'≥99.9999'},
-      {param:'Water Content (KF)',   method:'Karl Fischer',unit:'ppm',   g1:'≤500',  g2:'≤50',     g3:'≤20',     g4:'≤10',      g5:'≤5'},
-      {param:'Total Metals (ICP)',   method:'ICP-MS',     unit:'ppb ea.',g1:'≤50',   g2:'≤10',     g3:'≤2',      g4:'≤0.5',     g5:'<0.1'},
-      {param:'Particles ≥0.5 μm',   method:'LPC',        unit:'ct/mL',  g1:'≤500',  g2:'≤100',    g3:'≤20',     g4:'≤10',      g5:'≤5'},
-      {param:'Residue on Evap.',     method:'Gravimetric',unit:'ppm',    g1:'≤10',   g2:'≤5',      g3:'≤2',      g4:'≤1',       g5:'≤0.5'},
-    ],
-  }
   return product
 }
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogoMark, LogoText } from "@/components/ui/Logo";
 
 type NavChild = { label: string; href: string } | { divider: true };
@@ -102,10 +102,10 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  useEffect(() => {
+  const closeMobileMenu = () => {
     setMobileOpen(false);
     setExpanded(null);
-  }, [pathname]);
+  };
 
   const isActive = (href: string) =>
     href === "/"
@@ -182,6 +182,7 @@ export function Navbar() {
             <div className="flex items-center">
               <Link
                 href={item.href}
+                onClick={closeMobileMenu}
                 className="flex-1 px-3 py-4 text-[15px] font-medium text-white/85 no-underline"
               >
                 {item.label}
@@ -211,6 +212,7 @@ export function Navbar() {
                     <Link
                       key={child.href}
                       href={child.href}
+                      onClick={closeMobileMenu}
                       className="block py-2.5 text-[13px] text-white/65 no-underline"
                     >
                       {child.label}
@@ -223,6 +225,7 @@ export function Navbar() {
         ))}
         <Link
           href="/contact"
+          onClick={closeMobileMenu}
           className="mt-5 block bg-[#2f8c67] px-5 py-3.5 text-center text-sm font-semibold text-white no-underline"
         >
           Request Quote

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Container, Eyebrow, SectionTitle, SectionSub } from '@/components/ui/index'
+import { Container, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { blogPosts, categories } from '@/lib/blog'
 

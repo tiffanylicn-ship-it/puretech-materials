@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Container, Eyebrow } from '@/components/ui/index'
+import { Container } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { getPostBySlug, getRelatedPosts, blogPosts } from '@/lib/blog'
 
@@ -129,13 +129,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <Container className="max-w-[900px]">
             <div className="rounded-[16px] overflow-hidden border border-[rgba(0,102,204,0.12)]"
               style={{ boxShadow: '0 4px 24px rgba(4,13,30,0.08)' }}>
-              <img
+              <Image
                 src={post.image}
                 alt={post.imageAlt}
                 width={900}
                 height={480}
-                className="w-full h-auto block"
-                loading="eager"
+                priority
+                sizes="(max-width: 900px) 100vw, 900px"
+                className="block h-auto w-full"
               />
             </div>
             <p className="text-[11.5px] mt-2.5 text-center" style={{ color: '#8BA8C0' }}>
@@ -290,9 +291,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     className="group flex flex-col bg-white border border-[rgba(0,102,204,0.1)] rounded-[14px] overflow-hidden no-underline h-full hover:shadow-[0_6px_20px_rgba(0,102,204,0.1)] transition-all duration-250">
                     {/* Mini image preview */}
                     {rp.image && (
-                      <div className="h-[100px] overflow-hidden bg-[#040D1E]">
-                        <img src={rp.image} alt={rp.imageAlt}
-                          className="w-full h-full object-cover object-top opacity-85" />
+                      <div className="relative h-[100px] overflow-hidden bg-[#040D1E]">
+                        <Image src={rp.image} alt={rp.imageAlt} fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover object-top opacity-85" />
                       </div>
                     )}
                     <div className="p-5 flex flex-col flex-1">

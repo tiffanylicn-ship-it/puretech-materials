@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  experimental: {
+    agentUpgrade: 'security',
+  },
   async redirects() {
     return [
       { source: '/global-supply', destination: '/global-chemical-supply', permanent: true },

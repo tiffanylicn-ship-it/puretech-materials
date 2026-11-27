@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Container, Eyebrow, GradeChip } from '@/components/ui/index'
 import { allProductsWithG1, type GradeKey, type Product } from '@/lib/products'
@@ -147,27 +147,23 @@ function ProductDatabaseCard({ product }: { product: Product }) {
   )
 }
 
-export default function ProductsClient() {
-  const params = useSearchParams()
-  const [category, setCategory] = useState('all')
-  const [grade, setGrade] = useState('all')
-  const [useCase, setUseCase] = useState('all')
-  const [packaging, setPackaging] = useState('all')
-  const [query, setQuery] = useState('')
+type ProductSearchParams = ReturnType<typeof useSearchParams>
 
-  useEffect(() => {
-    const requestedCategory = params.get('cat') ?? 'all'
-    const mappedCategory = requestedCategory === 'general' ? 'high-purity'
-      : requestedCategory === 'lab' ? 'high-purity'
-        : ['acid', 'peroxide'].includes(requestedCategory) ? 'trace'
-          : ['photoresist', 'battery', 'base'].includes(requestedCategory) ? 'specialty'
-            : requestedCategory
-    setCategory(mappedCategory)
-    setUseCase(params.get('use') ?? 'all')
-    setQuery(params.get('q') ?? '')
-    setGrade('all')
-    setPackaging('all')
-  }, [params])
+function requestedProductCategory(params: ProductSearchParams) {
+  const requestedCategory = params.get('cat') ?? 'all'
+  return requestedCategory === 'general' ? 'high-purity'
+    : requestedCategory === 'lab' ? 'high-purity'
+      : ['acid', 'peroxide'].includes(requestedCategory) ? 'trace'
+        : ['photoresist', 'battery', 'base'].includes(requestedCategory) ? 'specialty'
+          : requestedCategory
+}
+
+function ProductsFilters({ params }: { params: ProductSearchParams }) {
+  const [category, setCategory] = useState(() => requestedProductCategory(params))
+  const [grade, setGrade] = useState('all')
+  const [useCase, setUseCase] = useState(() => params.get('use') ?? 'all')
+  const [packaging, setPackaging] = useState('all')
+  const [query, setQuery] = useState(() => params.get('q') ?? '')
 
   const activeRoute = applicationRoutes.find((route) => route.id === useCase)
   const featured = featuredIds.map((id) => allProductsWithG1.find((product) => product.id === id)).filter((product): product is Product => Boolean(product))
@@ -337,6 +333,11 @@ export default function ProductsClient() {
       </section>
     </>
   )
+}
+
+export default function ProductsClient() {
+  const params = useSearchParams()
+  return <ProductsFilters key={params.toString()} params={params} />
 }
 
 function FilterGroup({ title, items, active, onSelect }: { title: string; items: { key: string; label: string }[]; active: string; onSelect: (key: string) => void }) {
