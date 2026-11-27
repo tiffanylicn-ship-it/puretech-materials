@@ -59,7 +59,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       <div className="border-b border-[#DCE3EC] bg-[#F7F9FC] py-3">
         <Container>
           <nav className="flex flex-wrap items-center gap-2 text-[12px] text-[#667085]">
-            <Link href="/home" className="no-underline hover:text-[#0066CC]">Home</Link>
+            <Link href="/" className="no-underline hover:text-[#0066CC]">Home</Link>
             <span className="text-[#B8C2CE]">›</span>
             <Link href="/industries" className="no-underline hover:text-[#0066CC]">Industries</Link>
             <span className="text-[#B8C2CE]">›</span>

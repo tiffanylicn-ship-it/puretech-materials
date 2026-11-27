@@ -4,9 +4,11 @@ import { productCategoryPages, solutionRoutes } from '@/lib/architecture-content
 import { blogPosts } from '@/lib/blog'
 import { capabilityPagesV3 } from '@/lib/capability-pages-v3'
 import { caseStudies } from '@/lib/case-studies'
+import { coreProductSeoPages, coreProductSeoPath } from '@/lib/core-seo-pages'
 import { industries } from '@/lib/industry-content'
 import { marketPages } from '@/lib/market-pages'
 import { productPagesV3 } from '@/lib/product-pages-v3'
+import { allProductsWithG1 } from '@/lib/products'
 
 const baseUrl = 'https://puretechmaterials.com'
 const lastModified = new Date('2026-08-24')
@@ -40,10 +42,19 @@ function entry(pathname: string, priority: number, changeFrequency: MetadataRout
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const productsWithPreferredPages = new Set([
+    ...productPagesV3.flatMap((page) => page.productId ? [page.productId] : []),
+    ...coreProductSeoPages.flatMap((page) => page.productId ? [page.productId] : []),
+  ])
+
   const entries = [
     ...primaryRoutes.map((path, index) => entry(path, index === 0 ? 1 : 0.8, index === 0 ? 'weekly' : 'monthly')),
     ...productCategoryPages.map((page) => entry(`/products/${page.slug}`, 0.85, 'weekly')),
     ...productPagesV3.map((page) => entry(`/products/${page.slug}`, 0.8, 'monthly')),
+    ...coreProductSeoPages.map((page) => entry(coreProductSeoPath(page), 0.8, 'monthly')),
+    ...allProductsWithG1
+      .filter((product) => !productsWithPreferredPages.has(product.id))
+      .map((product) => entry(`/product/${product.id}`, 0.72, 'monthly')),
     ...applicationPages.map((page) => entry(`/applications/${page.slug}`, 0.75, 'monthly')),
     ...capabilityPagesV3.map((page) => entry(`/${page.group}/${page.slug}`, 0.72, 'monthly')),
     ...marketPages.map((page) => entry(`/markets/${page.slug}`, 0.65, 'monthly')),

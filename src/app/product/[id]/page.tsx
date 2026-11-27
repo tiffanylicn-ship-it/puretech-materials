@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Container, Eyebrow, GradeBadge, GradeChip } from '@/components/ui/index'
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const product = allProductsWithG1.find((item) => item.id === id)
   if (!product) return { title: 'Product Not Found' }
   const v3Page = productPagesV3.find((page) => page.productId === product.id)
-  const url = `https://puretechmaterials.com${v3Page ? `/products/${v3Page.slug}` : `/product/${product.id}`}`
+  const url = `https://puretechmaterials.com${productPath(product.id)}`
   const visual = categoryVisuals[product.category] ?? categoryVisuals.general
   const image = `https://puretechmaterials.com${product.id === 'eipa' ? '/images/puretech/electronic-grade-ipa-hero-v2.png' : visual.hero}`
   const title = v3Page?.seoTitle ?? `${product.nameEn} | CAS ${product.cas} | PureTech Materials`
@@ -115,6 +115,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const { id } = await params
   const product = allProductsWithG1.find((item) => item.id === id)
   if (!product) notFound()
+
+  const preferredPath = productPath(product.id)
+  if (preferredPath !== `/product/${product.id}`) permanentRedirect(preferredPath)
 
   return <ProductDetailContent product={product} />
 }

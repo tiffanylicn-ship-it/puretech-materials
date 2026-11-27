@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { Container, CtaBanner, Eyebrow } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { solutionRoutes } from '@/lib/architecture-content'
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  if (legacyRoutes[slug]) redirect(legacyRoutes[slug])
+  if (legacyRoutes[slug]) permanentRedirect(legacyRoutes[slug])
   const solution = solutionRoutes.find((item) => item.slug === slug)
   if (!solution) notFound()
   const relatedApplication = relatedApplicationBySolution[slug]

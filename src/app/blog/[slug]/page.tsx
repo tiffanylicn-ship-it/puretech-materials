@@ -6,6 +6,13 @@ import { Container } from '@/components/ui/index'
 import { Reveal } from '@/components/ui/Reveal'
 import { getPostBySlug, getRelatedPosts, blogPosts } from '@/lib/blog'
 
+const metadataExperiments: Record<string, { title: string; description: string }> = {
+  'hplc-grade-acetonitrile-pharmaceutical-lc-ms': {
+    title: 'HPLC Grade Acetonitrile for LC-MS Analysis | PureTech',
+    description: 'Compare HPLC, gradient and LC-MS grade acetonitrile for pharmaceutical analysis, including UV cutoff, water, impurities and method-fit considerations.',
+  },
+}
+
 export function generateStaticParams() {
   return blogPosts.map(p => ({ slug: p.slug }))
 }
@@ -16,13 +23,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return { title: 'Article Not Found' }
   const image = `https://puretechmaterials.com${post.image}`
   const url = `https://puretechmaterials.com/blog/${post.slug}`
+  const experiment = metadataExperiments[post.slug]
+  const title = experiment?.title ?? post.metaTitle
+  const description = experiment?.description ?? post.metaDescription
   return {
-    title: post.metaTitle,
-    description: post.metaDescription,
+    title: experiment ? { absolute: title } : title,
+    description,
     keywords: [...post.tags, ...post.seoKeywords].join(', '),
     openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title,
+      description,
       type: 'article',
       publishedTime: post.date,
       url,
@@ -30,8 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title,
+      description,
       images: [image],
     },
     alternates: {
@@ -81,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="border-b border-[rgba(0,102,204,0.1)] py-3 bg-[#F2F6FB]">
         <Container>
           <nav className="flex items-center gap-2 text-[12px] flex-wrap" style={{ color: '#8BA8C0' }}>
-            <Link href="/home" className="no-underline hover:text-[#0066CC] transition-colors" style={{ color: '#506880' }}>Home</Link>
+            <Link href="/" className="no-underline hover:text-[#0066CC] transition-colors" style={{ color: '#506880' }}>Home</Link>
             <span style={{ color: '#C5D8E8' }}>›</span>
             <Link href="/blog" className="no-underline hover:text-[#0066CC] transition-colors" style={{ color: '#506880' }}>Blog</Link>
             <span style={{ color: '#C5D8E8' }}>›</span>
